@@ -13,13 +13,40 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="헤더 파일\Network">
+      <UniqueIdentifier>{9a463f83-7984-40d8-abd3-6d5087e7460c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\main">
+      <UniqueIdentifier>{d06c8b4d-df40-4ee3-806c-d42649b92ffc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Thread">
+      <UniqueIdentifier>{9cec7068-f20a-4734-b3ec-30ab1bfd5041}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="NetAddress.h">
+      <Filter>헤더 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketUtils.h">
+      <Filter>헤더 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreMacro.h">
+      <Filter>헤더 파일\main</Filter>
+    </ClInclude>
+    <ClInclude Include="RecvBuffer.h">
+      <Filter>헤더 파일\Network</Filter>
+    </ClInclude>
     <ClInclude Include="CorePch.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\main</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\main</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreTLS.h">
+      <Filter>헤더 파일\main</Filter>
+    </ClInclude>
+    <ClInclude Include="Lock.h">
+      <Filter>헤더 파일\Thread</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +57,21 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CorePch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="NetAddress.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketUtils.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="RecvBuffer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreTLS.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Lock.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
