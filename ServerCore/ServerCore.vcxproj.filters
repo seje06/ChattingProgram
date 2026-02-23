@@ -22,6 +22,9 @@
     <Filter Include="헤더 파일\Thread">
       <UniqueIdentifier>{9cec7068-f20a-4734-b3ec-30ab1bfd5041}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Network\Iocp">
+      <UniqueIdentifier>{495f97aa-3a3a-44b2-8851-cd4f491b6a40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NetAddress.h">
@@ -48,6 +51,15 @@
     <ClInclude Include="Lock.h">
       <Filter>헤더 파일\Thread</Filter>
     </ClInclude>
+    <ClInclude Include="SendBuffer.h">
+      <Filter>헤더 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="IocpEvent.h">
+      <Filter>헤더 파일\Network\Iocp</Filter>
+    </ClInclude>
+    <ClInclude Include="IocpCore.h">
+      <Filter>헤더 파일\Network\Iocp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ServerCore.cpp">
@@ -72,6 +84,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Lock.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="IocpEvent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SendBuffer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="IocpCore.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
