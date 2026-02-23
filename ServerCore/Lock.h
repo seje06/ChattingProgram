@@ -33,3 +33,35 @@ private:
 #endif
 };
 
+class ReadLockGuard
+{
+public:
+	ReadLockGuard(Lock& lock) :_lock(lock)
+	{
+		_lock.ReadLock();
+	}
+	~ReadLockGuard()
+	{
+		_lock.ReadUnLock();
+	}
+
+private:
+	Lock& _lock;
+};
+
+class WriteLockGuard
+{
+public:
+	WriteLockGuard(Lock& lock) :_lock(lock)
+	{
+		_lock.WriteLock();
+	}
+	~WriteLockGuard()
+	{
+		_lock.WriteUnLock();
+	}
+
+private:
+	Lock& _lock;
+};
+
