@@ -31,7 +31,7 @@ void Lock::WriteLock()
 		else
 		{
 			if (++spin < 100) _mm_pause(); // 100번까진 저전력으로 돌림
-			else this_thread::yield(); // 이후 쓰레드가 없을때까지 대기상태
+			else this_thread::yield(); // 이후 다른 작업가능한 다른 쓰레드가 있다면 대기상태
 		}
 	}
 }
@@ -74,7 +74,7 @@ void Lock::ReadLock()
 		if (_writerPending.load() > 0)// write를 우선으로 하기위해 write요청이 오면 read는 대기
 		{
 			if (++spin < 100) _mm_pause(); // 100번까진 저전력으로 돌림
-			else this_thread::yield(); // 이후 쓰레드가 없을때까지 대기상태
+			else this_thread::yield(); // 이후 다른 작업가능한 다른 쓰레드가 있다면 대기상태
 
 			continue;
 		}
@@ -83,7 +83,7 @@ void Lock::ReadLock()
 		if (expected == WRITE_STATE) // write중이면 대기
 		{
 			if (++spin < 100) _mm_pause(); // 100번까진 저전력으로 돌림
-			else this_thread::yield(); // 이후 쓰레드가 없을때까지 대기상태
+			else this_thread::yield(); // 이후 다른 작업가능한 다른 쓰레드가 있다면 대기상태
 
 			continue;
 		}
@@ -99,7 +99,7 @@ void Lock::ReadLock()
 		else
 		{
 			if (++spin < 500) _mm_pause(); // cas를 시도했다는건 write가 아닐 확률이 더높다 생각하기에 500번까지 늘림
-			else this_thread::yield(); // 이후 쓰레드가 없을때까지 대기상태
+			else this_thread::yield(); // 이후 다른 작업가능한 다른 쓰레드가 있다면 대기상태
 
 			continue;
 		}

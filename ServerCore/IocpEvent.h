@@ -13,7 +13,6 @@ class IocpEvent : public OVERLAPPED // iocp 결과를 식별하기 위한 구조
 {
 public:
 	IocpEvent(EEventType type);
-
 public:
 	EEventType eventType;
 	shared_ptr<class IocpObject> owner;
@@ -51,5 +50,5 @@ class SendEvent : public IocpEvent
 public:
 	SendEvent() : IocpEvent(EEventType::Send) {}
 
-	//Vector<SendBufferRef> sendBuffers;
+	vector<shared_ptr<class SendBuffer>> sendBuffers;
 };

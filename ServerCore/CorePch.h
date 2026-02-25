@@ -14,6 +14,7 @@ using namespace std;
 
 #include "CoreMacro.h"
 #include "CoreTLS.h"
+#include "Lock.h"
 
 ///// 컨테이너 /////
 

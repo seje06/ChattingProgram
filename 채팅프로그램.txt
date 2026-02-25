@@ -20,3 +20,6 @@ Server
 
 Client
 	*MFC
+
+오늘 해야할것
+ Service, Session, Listener 순으로 다시 되새기며 작성완료하기

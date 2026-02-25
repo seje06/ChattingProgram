@@ -10,7 +10,8 @@ class Lock
 		NOTTING_STATE,
 		// 0 > 은 read state
 	};
-
+public:
+	Lock() = default;
 public:
 	void WriteLock();
 	void WriteUnLock();
