@@ -14,7 +14,7 @@ Listener::~Listener()
 	}
 }
 
-bool Listener::StartAccept()
+bool Listener::StartAccept(shared_ptr<ServerService> service)
 {
 	return false;
 }

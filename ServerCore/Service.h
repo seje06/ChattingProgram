@@ -28,7 +28,7 @@ public:
 	void SetSessionFactory(SessionFactory func) { _sessionFactory = func; }
 
 	void Broadcast(shared_ptr<SendBuffer> sendBuffer);
-	shared_ptr<SendBuffer> CreateSession();
+	shared_ptr<Session> CreateSession();
 	void AddSession(shared_ptr<Session> session);
 	void ReleaseSession(shared_ptr<Session> session);
 	int32_t	GetCurrentSessionCount() { return _sessionCount; }
@@ -51,3 +51,29 @@ protected:
 	SessionFactory _sessionFactory;
 };
 
+
+////// ClientService //////
+
+class ClientService : public Service
+{
+	ClientService(NetAddress targetAddress, shared_ptr<IocpCore> core, SessionFactory factory, int32_t maxSessionCount = 1);
+	virtual ~ClientService() {}
+
+	virtual bool Start() override;
+};
+
+
+///// ServerService /////
+
+class ServerService : public Service
+{
+public:
+	ServerService(NetAddress targetAddress, shared_ptr<IocpCore> core, SessionFactory factory, int32_t maxSessionCount = 1);
+	virtual ~ServerService() {}
+
+	virtual bool Start() override;
+	virtual void CloseService() override;
+
+private:
+	shared_ptr<Listener> _listener = nullptr;
+};

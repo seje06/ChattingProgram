@@ -4,6 +4,9 @@
 #include "NetAddress.h"
 
 class AcceptEvent;
+class ServerService;
+
+class AcceptEvent;
 
 class Listener : public IocpObject
 {
@@ -12,7 +15,7 @@ public:
 	~Listener();
 
 public:
-	bool StartAccept();
+	bool StartAccept(shared_ptr<ServerService> service);
 	void CloseSocket();
 
 public:
