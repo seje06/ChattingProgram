@@ -15,7 +15,7 @@ IocpCore::~IocpCore()
 
 bool IocpCore::Register(shared_ptr<IocpObject> iocpObject)
 {
-	return ::CreateIoCompletionPort(iocpObject->GetHandle(), iocpHandle, /*key*/0, 0); // iocpObejct가 가지고있는 소켓 관찰시키기
+	return ::CreateIoCompletionPort(iocpObject->GetHandle(), iocpHandle, /*key*/0, 0); // iocpObject가 가지고있는 소켓 iocp에 바인딩
 }
 
 bool IocpCore::Dispatch(uint32_t timeoutMs)

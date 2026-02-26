@@ -29,5 +29,6 @@ private:
 protected:
 	SOCKET _socket = INVALID_SOCKET;
 	vector<AcceptEvent*> _acceptEvents;
+	shared_ptr<ServerService> _service;
 };
 

@@ -13,6 +13,7 @@ class IocpEvent : public OVERLAPPED // iocp 결과를 식별하기 위한 구조
 {
 public:
 	IocpEvent(EEventType type);
+	void Init();
 public:
 	EEventType eventType;
 	shared_ptr<class IocpObject> owner;
@@ -36,7 +37,7 @@ public:
 	AcceptEvent() : IocpEvent(EEventType::Accept) {}
 
 public:
-	//SessionRef	session = nullptr;
+	shared_ptr<class Session> session = nullptr;
 };
 
 class RecvEvent : public IocpEvent
