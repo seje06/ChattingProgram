@@ -11,7 +11,7 @@ class Session : public IocpObject
 {
 	enum
 	{
-		BUFFER_SIZE = 4096
+		BUFFER_SIZE = 0x10000 // 충분한 공간확보
 	};
 
 	friend class Listener;

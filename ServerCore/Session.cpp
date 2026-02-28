@@ -82,7 +82,7 @@ bool Session::RegisterConnect()
 
     if (SocketUtils::SetReuseAddress(_socket, true) == false) return false;
 
-    if (SocketUtils::BindAnyAddress(_socket, 0/*남는거*/) == false) return false;
+    if (SocketUtils::BindAnyAddress(_socket, 0) == false) return false;
 
     _connectEvent.Init();
     _connectEvent.owner = shared_from_this();
@@ -213,7 +213,7 @@ void Session::ProcessDisconnect()
     GetService()->ReleaseSession(GetSessionRef());
 }
 
-void Session::ProcessRecv(int32_t numOfBytes) //register 에서 process까지는 recv도 다른쓰레드에서 못하게 막아야할듯
+void Session::ProcessRecv(int32_t numOfBytes) 
 {
     _recvEvent.owner = nullptr; // RELEASE_REF 
 
@@ -259,10 +259,9 @@ void Session::ProcessSend(int32_t numOfBytes)
     OnSend(numOfBytes);
 
     WriteLockGuard lG(_lock);
-    if (_sendQueue.empty())               //보내고 보낸것을 확인할때까진 send요청을 못하게 하고(대신 queue에 적재시킴), 큐가 비어있으면 권한을 풀고, 아니면 해당 스레드가 다시 send요청을 한다.
-        _sendRegistered.store(false);
-    else
-        RegisterSend();
+    //보내고 보낸것을 확인할때까진 send요청을 못하게 하고(대신 queue에 적재시킴), 큐가 비어있으면 권한을 풀고, 아니면 해당 스레드가 다시 send요청을 한다.
+    if (_sendQueue.empty()) _sendRegistered.store(false); 
+    else RegisterSend();
 }
 
 void Session::HandleError(int32_t errorCode)
@@ -299,13 +298,11 @@ int32_t PacketSession::OnRecv(BYTE* buffer, int32_t len)
     {
         int32_t dataSize = len - processLen;
         // 최소한 헤더는 파싱할 수 있어야 한다
-        if (dataSize < sizeof(PacketHeader))
-            break;
+        if (dataSize < sizeof(PacketHeader)) break;
 
         PacketHeader header = *(reinterpret_cast<PacketHeader*>(&buffer[processLen]));
         // 헤더에 기록된 패킷 크기를 파싱할 수 있어야 한다
-        if (dataSize < header.size)
-            break;
+        if (dataSize < header.size) break;
 
         // 패킷 조립 성공
         OnRecvPacket(&buffer[processLen], header.size); // 자식 패킷세션들이 처리
@@ -315,3 +312,5 @@ int32_t PacketSession::OnRecv(BYTE* buffer, int32_t len)
 
     return processLen;
 }
+
+

@@ -1,3 +1,4 @@
 #pragma once
 
 extern thread_local int LThreadId;
+extern thread_local class JobQueue* LCurrentJobQueue;

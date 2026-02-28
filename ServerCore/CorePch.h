@@ -15,6 +15,9 @@ using namespace std;
 #include "CoreMacro.h"
 #include "CoreTLS.h"
 #include "Lock.h"
+#include "JobQueue.h"
+#include "Session.h"
+#include "SendBuffer.h"
 
 ///// 컨테이너 /////
 

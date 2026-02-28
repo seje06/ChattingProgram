@@ -25,6 +25,12 @@
     <Filter Include="헤더 파일\Network\Iocp">
       <UniqueIdentifier>{495f97aa-3a3a-44b2-8851-cd4f491b6a40}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Job">
+      <UniqueIdentifier>{1cbf6aea-0b53-4cde-a403-314f3a7fbcb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Utils">
+      <UniqueIdentifier>{1235ef77-faf0-48fe-860a-a3287b40e50c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NetAddress.h">
@@ -69,6 +75,21 @@
     <ClInclude Include="Session.h">
       <Filter>헤더 파일\Network\Iocp</Filter>
     </ClInclude>
+    <ClInclude Include="ThreadManager.h">
+      <Filter>헤더 파일\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="Job.h">
+      <Filter>헤더 파일\Job</Filter>
+    </ClInclude>
+    <ClInclude Include="LockQueue.h">
+      <Filter>헤더 파일\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="JobQueue.h">
+      <Filter>헤더 파일\Job</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreGlobal.h">
+      <Filter>헤더 파일\main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ServerCore.cpp">
@@ -111,6 +132,21 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Session.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Job.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LockQueue.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="JobQueue.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreGlobal.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
