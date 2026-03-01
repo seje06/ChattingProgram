@@ -19,12 +19,16 @@ public:
 
 	void ClearJobs() { _jobs.Clear(); _priorityJobs.Clear(); }
 
+private:
+	static void GlobalPush(shared_ptr<JobQueue> jobQueue) { GJobQueues.Push(jobQueue); }
+	static shared_ptr<JobQueue> GlobalPop() { return GJobQueues.Pop(); }
+
+public:
+	static void ExcuteGlobalJobs();
+
 public:
 	void Push(shared_ptr<Job> job);
 	void Execute();
-
-	static void GlobalPush(shared_ptr<JobQueue> jobQueue);
-	static shared_ptr<JobQueue> GlobalPop();
 
 protected:
 	LockQueue<shared_ptr<Job>> _jobs;
@@ -33,6 +37,7 @@ protected:
 	atomic<uint32_t> _jobCount = 0;
 	//atomic<uint32_t> _priorityJobCount = 0;
 
+private:
 	static LockQueue<shared_ptr<JobQueue>>  GJobQueues;
 };
 

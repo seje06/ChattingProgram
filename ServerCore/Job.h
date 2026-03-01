@@ -25,6 +25,10 @@ public:
 
 	uint64_t GetExecuteTick() { return _executeTick; }
 
+	void Execute()
+	{
+		_callBack();
+	}
 private:
 
 	uint64_t _executeTick;

@@ -53,6 +53,14 @@ public:
 		_items.push(item);
 	}
 
+	T Top()
+	{
+		WriteLockGuard guard(_lock);
+		if (_items.empty()) return T();
+
+		return _items.top();
+	}
+
 	T Pop()
 	{
 		WriteLockGuard guard(_lock);
