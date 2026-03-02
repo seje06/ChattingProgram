@@ -14,6 +14,7 @@ using namespace std;
 
 #include "CoreMacro.h"
 #include "CoreTLS.h"
+#include "CoreGlobal.h"
 #include "Lock.h"
 #include "JobQueue.h"
 #include "Session.h"

@@ -18,6 +18,6 @@ public:
 
 	~CoreGlobal()
 	{
-
+		delete GThreadManager;
 	}
 }GCoreGlobal;
