@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "SendBuffer.h"
 
-SendBuffer::SendBuffer(BYTE* buffer, uint32_t, uint32_t allocSize)
-	: _buffer(buffer), _allocSize(allocSize)
+SendBuffer::SendBuffer(shared_ptr<SendBufferChunk> owner, BYTE* buffer, uint32_t allocSize)
+	: _owner(owner), _buffer(buffer), _allocSize(allocSize)
 {
 
 }
@@ -15,4 +15,89 @@ void SendBuffer::Close(uint32_t writeSize)
 {
 	ASSERT_CRASH(_allocSize >= writeSize);
 	_writeSize = writeSize;
+	_owner->Close(writeSize);
+}
+
+
+SendBufferChunk::SendBufferChunk()
+{
+}
+
+SendBufferChunk::~SendBufferChunk()
+{
+}
+
+void SendBufferChunk::Reset()
+{
+	_open = false;
+	_usedSize = 0;
+}
+
+shared_ptr<SendBuffer> SendBufferChunk::Open(uint32_t allocSize)
+{
+	ASSERT_CRASH(allocSize <= SEND_BUFFER_CHUNK_SIZE);
+	ASSERT_CRASH(_open == false);
+
+	if (allocSize > FreeSize())
+		return nullptr;
+
+	_open = true;
+	return make_shared<SendBuffer>(shared_from_this(), Buffer(), allocSize);
+}
+
+void SendBufferChunk::Close(uint32_t writeSize)
+{
+	ASSERT_CRASH(_open == true);
+	_open = false;
+	_usedSize += writeSize;
+}
+
+///// SendBufferManager /////
+
+shared_ptr<SendBuffer> SendBufferManager::Open(uint32_t size)
+{
+	if (LSendBufferChunk == nullptr)
+	{
+		LSendBufferChunk = Pop(); // WRITE_LOCK
+		LSendBufferChunk->Reset();
+	}
+
+	ASSERT_CRASH(LSendBufferChunk->IsOpen() == false);
+
+	// 다 썼으면 버리고 새거로 교체
+	if (LSendBufferChunk->FreeSize() < size)
+	{
+		LSendBufferChunk = Pop(); // WRITE_LOCK
+		LSendBufferChunk->Reset();
+	}
+
+	return LSendBufferChunk->Open(size);
+}
+
+shared_ptr<SendBufferChunk> SendBufferManager::Pop()
+{
+	{
+		WriteLockGuard guard(_lock);
+		if (_sendBufferChunks.empty() == false)
+		{
+			shared_ptr<SendBufferChunk> sendBufferChunk = _sendBufferChunks.back();
+			_sendBufferChunks.pop_back();
+			return sendBufferChunk;
+		}
+	}
+
+	return shared_ptr<SendBufferChunk>(new SendBufferChunk(), PushGlobal);
+}
+
+void SendBufferManager::Push(shared_ptr<SendBufferChunk> buffer)
+{
+	WriteLockGuard guard(_lock);
+	_sendBufferChunks.push_back(buffer);
+}
+
+void SendBufferManager::PushGlobal(SendBufferChunk* buffer)
+{
+	cout << "PushGlobal SENDBUFFERCHUNK" << endl;
+
+	GSendBufferManager->Push(shared_ptr<SendBufferChunk>(buffer, PushGlobal));
 }

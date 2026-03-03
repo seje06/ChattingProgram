@@ -5,9 +5,9 @@ ChattingProgram Development
 -
 
 
-## 까먹지않기 위해 기록 해두는것
+## 까먹었을때 보기 위해 기록 해두는것
 
-- ### Proto
+- ### Protobuf
     1. Proto compiler 다운 ([경로](https://github.com/protocolbuffers/protobuf/releases))
     2. 압축해제 후, 본인 프로젝트 적당한 위치에 추가
     3. proto, bat(자동화) 등 팔요한 생성 후 작성

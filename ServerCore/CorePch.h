@@ -12,14 +12,6 @@ using namespace std;
 #include <WS2tcpip.h>
 #pragma comment(lib, "ws2_32.lib")
 
-#include "CoreMacro.h"
-#include "CoreTLS.h"
-#include "CoreGlobal.h"
-#include "Lock.h"
-#include "JobQueue.h"
-#include "Session.h"
-#include "SendBuffer.h"
-
 ///// 컨테이너 /////
 
 #include <array>
@@ -31,3 +23,12 @@ using namespace std;
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
+
+#include "CoreMacro.h"
+#include "CoreTLS.h"
+#include "CoreGlobal.h"
+#include "Lock.h"
+#include "JobQueue.h"
+#include "Session.h"
+#include "SendBuffer.h"
+
