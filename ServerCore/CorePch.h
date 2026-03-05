@@ -11,7 +11,7 @@ using namespace std;
 #include <MSWSock.h>
 #include <WS2tcpip.h>
 #pragma comment(lib, "ws2_32.lib")
-
+#pragma comment(lib, "odbc32.lib")
 ///// 컨테이너 /////
 
 #include <array>
@@ -28,6 +28,7 @@ using namespace std;
 #include "CoreTLS.h"
 #include "CoreGlobal.h"
 #include "Lock.h"
+#include "Job.h"
 #include "JobQueue.h"
 #include "Session.h"
 #include "SendBuffer.h"

@@ -1,7 +1,7 @@
 # ChattingProgram
 ChattingProgram Development
 
-### 현재 서버코어 진행중
+### 서버코어 완료, mfc진행중
 -
 
 
@@ -23,7 +23,7 @@ ChattingProgram Development
          - ![alt text](Images/image3.png)
 
     6. 이후 라이브러리로 빌드 해주기위해 cmake,또는 vcpkg를 활용해야한다.([참고](https://minttea25.tistory.com/128))
-    7. 버전마다 조금 다를 순 있는데 생성된 파일들중 아래 이미지에 해당하는 파일들을 찾아 본인 프로젝트의 라이브러리 폴더에 추가해준다.
+    7. 버전마다 조금 다를 순 있는데 생성된 파일들중 아래 이미지에 해당하는 파일들을 찾아 본인 프로젝트의 라이브러리 폴더에 추가해준다(dll파일들은 exe파일이 있는 폴더에 추가).
         - ![alt text](Images/image-2.png)
     
     8. 디렉터리참조 설정이랑 라이브러리참조 설정은 알아서하기

@@ -56,6 +56,7 @@ protected:
 
 class ClientService : public Service
 {
+public:
 	ClientService(NetAddress targetAddress, shared_ptr<IocpCore> core, SessionFactory factory, int32_t maxSessionCount = 1);
 	virtual ~ClientService() {}
 

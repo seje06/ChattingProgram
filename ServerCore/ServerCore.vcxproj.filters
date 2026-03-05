@@ -31,6 +31,9 @@
     <Filter Include="헤더 파일\Utils">
       <UniqueIdentifier>{1235ef77-faf0-48fe-860a-a3287b40e50c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\DB">
+      <UniqueIdentifier>{5bdacb4a-c958-41c8-95aa-5fc6ff298d8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NetAddress.h">
@@ -90,6 +93,21 @@
     <ClInclude Include="CoreGlobal.h">
       <Filter>헤더 파일\main</Filter>
     </ClInclude>
+    <ClInclude Include="DBBind.h">
+      <Filter>헤더 파일\DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DBConnection.h">
+      <Filter>헤더 파일\DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DBConnectionPool.h">
+      <Filter>헤더 파일\DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DBModel.h">
+      <Filter>헤더 파일\DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DBSynchronizer.h">
+      <Filter>헤더 파일\DB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -144,6 +162,21 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CoreGlobal.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DBConnectionPool.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DBModel.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DBSynchronizer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DBBind.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DBConnection.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

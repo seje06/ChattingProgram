@@ -3,3 +3,4 @@ mfc 공부할때 참고할 블로그 : https://m.blog.naver.com/PostList.naver?b
 
 3/3일 할것 : mfc 공부 및 python을 활용한 proto패킷 자동화 하기
 
+3/6일 할것 : client 개발 및 client측 iocp에서 세션에서 터지는게 있으니 고쳐야함

@@ -2,6 +2,9 @@
 
 #define THREAD_COUNT 20
 
+#define NAMESPACE_BEGIN(name) namespace name{
+#define NAMESPACE_END		  }
+
 ///// Crash /////
 
 #define CRASH(cause)						\

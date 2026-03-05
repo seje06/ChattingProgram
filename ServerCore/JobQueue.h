@@ -19,7 +19,7 @@ public:
 
 	void ClearJobs() { _jobs.Clear(); _priorityJobs.Clear(); }
 
-private:
+public:
 	static void GlobalPush(shared_ptr<JobQueue> jobQueue) { GJobQueues.Push(jobQueue); }
 	static shared_ptr<JobQueue> GlobalPop() { return GJobQueues.Pop(); }
 

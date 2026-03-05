@@ -1,4 +1,4 @@
-﻿
+
 // Client.cpp: 애플리케이션에 대한 클래스 동작을 정의합니다.
 //
 
@@ -7,16 +7,60 @@
 #include "Client.h"
 #include "ClientDlg.h"
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
+//#ifdef _DEBUG
+//#define new DEBUG_NEW
+//#endif
 
+
+//////////////////////// 통신테스트 ////////////////////////////
+#include "ServerPacketHandler.h"
+#include "Service.h"
+#include "ThreadManager.h"
+class ServerSession : public PacketSession
+{
+public:
+	~ServerSession()
+	{
+		cout << "~ServerSession" << endl;
+	}
+
+	virtual void OnConnected() override
+	{
+		Protocol::C_TEST pkt;
+		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(pkt);
+		Send(sendBuffer);
+	}
+
+	virtual void OnRecvPacket(BYTE* buffer, int32_t len) override
+	{
+		shared_ptr<PacketSession> session = shared_ptr<PacketSession>();
+		PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
+
+		ServerPacketHandler::HandlePacket(session, buffer, len);
+
+	}
+
+	virtual void OnSend(int32_t len) override
+	{
+		//cout << "OnSend Len = " << len << endl;
+	}
+
+	virtual void OnDisconnected() override
+	{
+		// cout << "Disconnected" << endl;
+	}
+};
+//////////////////////////////////////////////////////
 
 // CClientApp
 
 BEGIN_MESSAGE_MAP(CClientApp, CWinApp)
 	ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
 END_MESSAGE_MAP()
+
+
+
+
 
 
 // CClientApp 생성
@@ -28,6 +72,35 @@ CClientApp::CClientApp()
 
 	// TODO: 여기에 생성 코드를 추가합니다.
 	// InitInstance에 모든 중요한 초기화 작업을 배치합니다.
+	ServerPacketHandler::Init();
+
+	this_thread::sleep_for(1s);
+
+	shared_ptr<ClientService> service = make_shared<ClientService>(
+		NetAddress(L"127.0.0.1", 7777),
+		make_shared<IocpCore>(),
+		make_shared<ServerSession>, //TODO : SessionManager 등
+		1
+	);
+
+	ASSERT_CRASH(service->Start());
+	for (int32_t i = 0; i < 2; i++)
+	{
+		GThreadManager->Launch([=]()
+			{
+				while (true)
+				{
+					service->GetIocpCore()->Dispatch();
+				}
+			});
+	}
+
+	while (true)
+	{
+		this_thread::sleep_for(1s);
+	}
+
+	GThreadManager->Join();
 }
 
 
