@@ -149,6 +149,7 @@ void Session::RegisterSend()
 {
     if (IsConnected() == false) return;
 
+    _sendEvent.Init();
     _sendEvent.owner = shared_from_this(); // disk driver로부터 완료패킷 받았을때, send완료 후 로직을 처리해줄 IocpObject인 자신을 owner로 넣어줌
 
     

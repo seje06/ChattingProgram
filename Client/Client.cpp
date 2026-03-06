@@ -33,7 +33,7 @@ public:
 
 	virtual void OnRecvPacket(BYTE* buffer, int32_t len) override
 	{
-		shared_ptr<PacketSession> session = shared_ptr<PacketSession>();
+		shared_ptr<PacketSession> session = GetPacketSession();
 		PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
 
 		ServerPacketHandler::HandlePacket(session, buffer, len);
