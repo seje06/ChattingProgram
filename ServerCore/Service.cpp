@@ -32,8 +32,11 @@ shared_ptr<Session> Service::CreateSession()
 	shared_ptr<Session> session = _sessionFactory(); // 해당 서비스에 설정해준 세션생성
 	session->SetService(shared_from_this());
 
-	if (_iocpCore->Register(session) == false) return nullptr; //세션이 보유중인 소켓 관찰시키기
-
+	if (_iocpCore->Register(session) == false)
+	{
+		cout << GetLastError() << endl;
+		return nullptr; //세션이 보유중인 소켓 관찰시키기
+	}
 	return session;
 }
 

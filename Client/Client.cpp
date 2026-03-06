@@ -16,6 +16,8 @@
 #include "ServerPacketHandler.h"
 #include "Service.h"
 #include "ThreadManager.h"
+
+
 class ServerSession : public PacketSession
 {
 public:
@@ -27,6 +29,7 @@ public:
 	virtual void OnConnected() override
 	{
 		Protocol::C_TEST pkt;
+		pkt.set_testnum(1);
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(pkt);
 		Send(sendBuffer);
 	}
@@ -72,6 +75,8 @@ CClientApp::CClientApp()
 
 	// TODO: 여기에 생성 코드를 추가합니다.
 	// InitInstance에 모든 중요한 초기화 작업을 배치합니다.
+
+	GCoreGlobal = new CoreGlobal();
 	ServerPacketHandler::Init();
 
 	this_thread::sleep_for(1s);
@@ -80,11 +85,11 @@ CClientApp::CClientApp()
 		NetAddress(L"127.0.0.1", 7777),
 		make_shared<IocpCore>(),
 		make_shared<ServerSession>, //TODO : SessionManager 등
-		1
+		100
 	);
 
 	ASSERT_CRASH(service->Start());
-	for (int32_t i = 0; i < 2; i++)
+	for (int32_t i = 0; i < 3; i++)
 	{
 		GThreadManager->Launch([=]()
 			{
@@ -101,6 +106,8 @@ CClientApp::CClientApp()
 	}
 
 	GThreadManager->Join();
+
+	delete GCoreGlobal;
 }
 
 

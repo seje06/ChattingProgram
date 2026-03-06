@@ -6,3 +6,13 @@ extern class DBConnectionPool* GDBConnectionPool;
 
 extern set<wstring> GTestSep;
 extern class Lock GTestLock;
+
+
+class CoreGlobal
+{
+public:
+	CoreGlobal();
+
+	~CoreGlobal();
+};
+extern CoreGlobal* GCoreGlobal;

@@ -148,6 +148,18 @@ bool DBConnection::BindParam(int32_t paramIndex, TIMESTAMP_STRUCT* value, SQLLEN
 
 bool DBConnection::BindParam(int32_t paramIndex, const WCHAR* str, SQLLEN* index)
 {
+	//SQLULEN numChars = static_cast<SQLULEN>(::wcslen(str));
+	//*index = SQL_NTSL;
+
+	//// 2. size 대신 numChars를 전달
+	//if (numChars > WVARCHAR_MAX)
+	//{
+	//	return BindParam(paramIndex, SQL_C_WCHAR, SQL_WLONGVARCHAR, numChars, (SQLPOINTER)str, index);
+	//}
+	//else
+	//{
+	//	return BindParam(paramIndex, SQL_C_WCHAR, SQL_WVARCHAR, numChars, (SQLPOINTER)str, index);
+	//}
 	SQLULEN size = static_cast<SQLULEN>((::wcslen(str) + 1) * 2);
 	*index = SQL_NTSL;
 
@@ -238,6 +250,11 @@ bool DBConnection::BindCol(int32_t columnIndex, BYTE* bin, int32_t size, SQLLEN*
 
 bool DBConnection::BindParam(SQLUSMALLINT paramIndex, SQLSMALLINT cType, SQLSMALLINT sqlType, SQLULEN len, SQLPOINTER ptr, SQLLEN* index)
 {
+	/*SQLLEN bufferLen = (cType == SQL_C_WCHAR) ? (len + 1) * sizeof(WCHAR) : 0;
+
+	SQLRETURN ret = ::SQLBindParameter(_statement, paramIndex, SQL_PARAM_INPUT, cType, sqlType, len, 0, ptr, bufferLen, index);*/
+
+
 	SQLRETURN ret = ::SQLBindParameter(_statement, paramIndex, SQL_PARAM_INPUT, cType, sqlType, len, 0, ptr, 0, index);
 	if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO)
 	{

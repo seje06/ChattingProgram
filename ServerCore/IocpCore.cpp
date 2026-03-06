@@ -4,18 +4,18 @@
 
 IocpCore::IocpCore()
 {
-	iocpHandle = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, 0, 0, 0); // iocp 생성
-	ASSERT_CRASH(iocpHandle != INVALID_HANDLE_VALUE);
+	_iocpHandle = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, 0, 0, 0); // iocp 생성
+	ASSERT_CRASH(_iocpHandle != INVALID_HANDLE_VALUE);
 }
 
 IocpCore::~IocpCore()
 {
-	::CloseHandle(iocpHandle);
+	::CloseHandle(_iocpHandle);
 }
 
 bool IocpCore::Register(shared_ptr<IocpObject> iocpObject)
 {
-	return ::CreateIoCompletionPort(iocpObject->GetHandle(), iocpHandle, /*key*/0, 0); // iocpObject가 가지고있는 소켓 iocp에 바인딩
+	return ::CreateIoCompletionPort(iocpObject->GetHandle(), _iocpHandle, /*key*/0, 0); // iocpObject가 가지고있는 소켓 iocp에 바인딩
 }
 
 bool IocpCore::Dispatch(uint32_t timeoutMs)
@@ -24,7 +24,7 @@ bool IocpCore::Dispatch(uint32_t timeoutMs)
 	ULONG_PTR key = 0;
 	IocpEvent* iocpEvent = nullptr;
 
-	if (::GetQueuedCompletionStatus(iocpHandle, OUT & numOfBytes, OUT & key, OUT reinterpret_cast<LPOVERLAPPED*>(&iocpEvent), timeoutMs))
+	if (::GetQueuedCompletionStatus(_iocpHandle, OUT & numOfBytes, OUT & key, OUT reinterpret_cast<LPOVERLAPPED*>(&iocpEvent), timeoutMs))
 	{
 		shared_ptr<IocpObject> iocpObject = iocpEvent->owner;
 		iocpObject->Dispatch(iocpEvent, numOfBytes);

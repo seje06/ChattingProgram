@@ -10,25 +10,25 @@ ThreadManager* GThreadManager = nullptr;
 SendBufferManager* GSendBufferManager = nullptr;
 DBConnectionPool* GDBConnectionPool = nullptr;
 
+CoreGlobal* GCoreGlobal = nullptr;
+
 set<wstring> GTestSep;
 Lock GTestLock;
 
-class CoreGlobal
+CoreGlobal::CoreGlobal()
 {
-public:
-	CoreGlobal()
-	{
-		GThreadManager = new ThreadManager();
-		GSendBufferManager = new SendBufferManager();
-		GDBConnectionPool = new DBConnectionPool();
+	GThreadManager = new ThreadManager();
+	GSendBufferManager = new SendBufferManager();
+	GDBConnectionPool = new DBConnectionPool();
 
-		SocketUtils::Init();
-	}
+	SocketUtils::Init();
+}
 
-	~CoreGlobal()
-	{
-		delete GThreadManager;
-		delete GSendBufferManager;
-		delete GDBConnectionPool;
-	}
-}GCoreGlobal;
+CoreGlobal::~CoreGlobal()
+{
+	delete GThreadManager;
+	delete GSendBufferManager;
+	delete GDBConnectionPool;
+
+	SocketUtils::Clear();
+}

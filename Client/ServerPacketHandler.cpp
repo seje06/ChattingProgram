@@ -10,5 +10,10 @@ bool Handle_INVALD(shared_ptr<PacketSession>& session, BYTE* buffer, int32_t len
 
 bool Handle_S_TEST(shared_ptr<PacketSession>& session, Protocol::S_TEST& pkt)
 {
+	if (pkt.testnum() == 2)
+	{
+		cout << "success login!!"<<endl;
+	}
+
 	return true;
 }
