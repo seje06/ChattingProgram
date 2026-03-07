@@ -21,5 +21,6 @@
 #endif
 
 #include "CorePch.h"
+#include "UIEvent.h"
 
 #endif //PCH_H

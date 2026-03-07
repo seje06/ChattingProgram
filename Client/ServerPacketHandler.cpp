@@ -17,3 +17,15 @@ bool Handle_S_TEST(shared_ptr<PacketSession>& session, Protocol::S_TEST& pkt)
 
 	return true;
 }
+
+bool Handle_S_LOGIN(shared_ptr<PacketSession>& session, Protocol::S_LOGIN& pkt)
+{
+
+	return true;
+}
+
+bool Handle_S_REGISTER(shared_ptr<PacketSession>& session, Protocol::S_REGISTER& pkt)
+{
+
+	return true;
+}

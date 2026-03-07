@@ -13,38 +13,83 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="헤더 파일\Handler">
+      <UniqueIdentifier>{7fc351b8-6ef9-4fb9-8504-28131b7d3551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Page">
+      <UniqueIdentifier>{f37c23dd-a1e9-4546-95a4-5527ecfd8108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Util">
+      <UniqueIdentifier>{4d08ad02-d93b-46a2-b049-91d23e158e00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Main">
+      <UniqueIdentifier>{a88e50b2-4073-45db-b3a7-f466ea9f82f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Model">
+      <UniqueIdentifier>{d97d411a-04b0-4a26-8488-c8bb54e318bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Service">
+      <UniqueIdentifier>{72eed5ef-cbb6-4e2c-94ec-b03b2e3a0f9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ICommandHandler.h">
+      <Filter>헤더 파일\Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="LobbyHandler.h">
+      <Filter>헤더 파일\Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginHandler.h">
+      <Filter>헤더 파일\Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomHandler.h">
+      <Filter>헤더 파일\Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="CMainDialog.h">
+      <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="CPageLobby.h">
+      <Filter>헤더 파일\Page</Filter>
+    </ClInclude>
+    <ClInclude Include="CPageRoom.h">
+      <Filter>헤더 파일\Page</Filter>
+    </ClInclude>
+    <ClInclude Include="CPageLogin.h">
+      <Filter>헤더 파일\Page</Filter>
+    </ClInclude>
     <ClInclude Include="Client.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="ClientDlg.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Main</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Main</Filter>
     </ClInclude>
     <ClInclude Include="ServerPacketHandler.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Main</Filter>
     </ClInclude>
     <ClInclude Include="Protocol.pb.h">
+      <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandMapper.h">
+      <Filter>헤더 파일\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="UIEvent.h">
+      <Filter>헤더 파일\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerSession.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="ClientDlg.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
@@ -54,6 +99,36 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Protocol.pb.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CMainDialog.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CPageLogin.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CPageLobby.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CPageRoom.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LobbyHandler.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomHandler.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginHandler.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandMapper.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ICommandHandler.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerSession.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

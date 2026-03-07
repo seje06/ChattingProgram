@@ -5,7 +5,7 @@
 #include "pch.h"
 #include "framework.h"
 #include "Client.h"
-#include "ClientDlg.h"
+#include "CMainDialog.h"
 
 //#ifdef _DEBUG
 //#define new DEBUG_NEW
@@ -13,46 +13,11 @@
 
 
 //////////////////////// 통신테스트 ////////////////////////////
-#include "ServerPacketHandler.h"
 #include "Service.h"
 #include "ThreadManager.h"
+#include "ServerSession.h"
+#include "ServerPacketHandler.h"
 
-
-class ServerSession : public PacketSession
-{
-public:
-	~ServerSession()
-	{
-		cout << "~ServerSession" << endl;
-	}
-
-	virtual void OnConnected() override
-	{
-		Protocol::C_TEST pkt;
-		pkt.set_testnum(1);
-		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(pkt);
-		Send(sendBuffer);
-	}
-
-	virtual void OnRecvPacket(BYTE* buffer, int32_t len) override
-	{
-		shared_ptr<PacketSession> session = GetPacketSession();
-		PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
-
-		ServerPacketHandler::HandlePacket(session, buffer, len);
-
-	}
-
-	virtual void OnSend(int32_t len) override
-	{
-		//cout << "OnSend Len = " << len << endl;
-	}
-
-	virtual void OnDisconnected() override
-	{
-		// cout << "Disconnected" << endl;
-	}
-};
 //////////////////////////////////////////////////////
 
 // CClientApp
@@ -76,38 +41,7 @@ CClientApp::CClientApp()
 	// TODO: 여기에 생성 코드를 추가합니다.
 	// InitInstance에 모든 중요한 초기화 작업을 배치합니다.
 
-	GCoreGlobal = new CoreGlobal();
-	ServerPacketHandler::Init();
 
-	this_thread::sleep_for(1s);
-
-	shared_ptr<ClientService> service = make_shared<ClientService>(
-		NetAddress(L"127.0.0.1", 7777),
-		make_shared<IocpCore>(),
-		make_shared<ServerSession>, //TODO : SessionManager 등
-		100
-	);
-
-	ASSERT_CRASH(service->Start());
-	for (int32_t i = 0; i < 3; i++)
-	{
-		GThreadManager->Launch([=]()
-			{
-				while (true)
-				{
-					service->GetIocpCore()->Dispatch();
-				}
-			});
-	}
-
-	while (true)
-	{
-		this_thread::sleep_for(1s);
-	}
-
-	GThreadManager->Join();
-
-	delete GCoreGlobal;
 }
 
 
@@ -120,6 +54,33 @@ CClientApp theApp;
 
 BOOL CClientApp::InitInstance()
 {
+#pragma region Iocp Start
+	GCoreGlobal = new CoreGlobal();
+	ServerPacketHandler::Init();
+	
+	this_thread::sleep_for(1s);
+	
+	shared_ptr<ClientService> service = make_shared<ClientService>(
+		NetAddress(L"127.0.0.1", 7777),
+		make_shared<IocpCore>(),
+		make_shared<ServerSession>, //TODO : SessionManager 등
+		1
+	);
+	
+	ASSERT_CRASH(service->Start());
+	for (int32_t i = 0; i < 3; i++)
+	{
+		GThreadManager->Launch([=]()
+			{
+				while (true)
+				{
+					service->GetIocpCore()->Dispatch();
+				}
+			});
+	}
+	
+#pragma endregion
+
 	// Windows XP에서는 InitCommonControlsEx()를 필요로 합니다.
 	// 사용하도록 지정하는 경우, Windows XP 상에서 반드시 InitCommonControlsEx()가 필요합니다.
 	// InitCommonControlsEx()를 사용하지 않으면 창을 만들 수 없습니다.
@@ -151,7 +112,7 @@ BOOL CClientApp::InitInstance()
 	// 적절한 내용으로 수정해야 합니다.
 	SetRegistryKey(_T("로컬 애플리케이션 마법사에서 생성된 애플리케이션"));
 
-	CClientDlg dlg;
+	CMainDialog dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
 	if (nResponse == IDOK)
@@ -183,5 +144,14 @@ BOOL CClientApp::InitInstance()
 	// 대화 상자가 닫혔으므로 응용 프로그램의 메시지 펌프를 시작하지 않고 응용 프로그램을 끝낼 수 있도록 FALSE를
 	// 반환합니다.
 	return FALSE;
+}
+
+int CClientApp::ExitInstance()
+{
+	GThreadManager->Join();
+
+	delete GCoreGlobal;
+
+	return 0;
 }
 

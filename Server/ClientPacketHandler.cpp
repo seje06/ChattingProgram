@@ -52,3 +52,13 @@ bool Handle_C_TEST(shared_ptr<PacketSession>& session, Protocol::C_TEST& pkt)
 
     return true;
 }
+
+bool Handle_C_LOGIN(shared_ptr<PacketSession>& session, Protocol::C_LOGIN& pkt)
+{
+    return false;
+}
+
+bool Handle_C_REGISTER(shared_ptr<PacketSession>& session, Protocol::C_REGISTER& pkt)
+{
+    return false;
+}
