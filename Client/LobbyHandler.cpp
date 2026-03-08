@@ -12,7 +12,10 @@ void LobbyHandler::Execute(UIEvent ev, CDialogEx* page)
 	case UIEvent::LoginCompleted_Lobby:
 		page->ShowWindow(SW_SHOW);
 		lobbyPg->AddRoomRow(L"로그인완료후 로비", 1 , 1);
-		
+		break;
+	case UIEvent::RegisterCompleted_Lobby:
+		page->ShowWindow(SW_SHOW);
+		lobbyPg->AddRoomRow(L"회원가입 완료 후 로비", 1, 1);
 		break;
 	case UIEvent::CreateRoomCompleted_Lobby:
 		page->ShowWindow(SW_HIDE);

@@ -1,6 +1,6 @@
 #pragma once
 #include "Job.h"
-#include "LockQueue.h"
+
 
 class JobQueue : public enable_shared_from_this<JobQueue>
 {

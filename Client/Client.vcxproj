@@ -200,8 +200,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Client.h" />
+    <ClInclude Include="ClientGlobal.h" />
     <ClInclude Include="CMainDialog.h" />
     <ClInclude Include="CommandMapper.h" />
+    <ClInclude Include="ContentsService.h" />
     <ClInclude Include="CPageLobby.h" />
     <ClInclude Include="CPageLogin.h" />
     <ClInclude Include="CPageRoom.h" />
@@ -209,6 +211,7 @@
     <ClInclude Include="ICommandHandler.h" />
     <ClInclude Include="LobbyHandler.h" />
     <ClInclude Include="LoginHandler.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Protocol.pb.h" />
     <ClInclude Include="Resource.h" />
@@ -225,14 +228,17 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ClientGlobal.cpp" />
     <ClCompile Include="CMainDialog.cpp" />
     <ClCompile Include="CommandMapper.cpp" />
+    <ClCompile Include="ContentsService.cpp" />
     <ClCompile Include="CPageLobby.cpp" />
     <ClCompile Include="CPageLogin.cpp" />
     <ClCompile Include="CPageRoom.cpp" />
     <ClCompile Include="ICommandHandler.cpp" />
     <ClCompile Include="LobbyHandler.cpp" />
     <ClCompile Include="LoginHandler.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

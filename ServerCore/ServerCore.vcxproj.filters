@@ -108,6 +108,12 @@
     <ClInclude Include="DBSynchronizer.h">
       <Filter>헤더 파일\DB</Filter>
     </ClInclude>
+    <ClInclude Include="StringUtil.h">
+      <Filter>헤더 파일\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeUtil.h">
+      <Filter>헤더 파일\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -177,6 +183,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="DBConnection.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="StringUtil.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeUtil.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

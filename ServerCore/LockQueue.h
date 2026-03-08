@@ -21,13 +21,26 @@ public:
 		T ret = _items.front();
 		_items.pop();													
 		return ret;														
-	}																	
+	}
+
+	T Pop(OUT bool &isEmpty)
+	{
+		WriteLockGuard guard(_lock);
+		if (isEmpty = _items.empty()) return T();
+
+
+		T ret = _items.front();
+		_items.pop();
+		return ret;
+	}
 																		
 	void PopAll(OUT vector<T>& items)									
 	{																	
-		WriteLockGuard guard(_lock);									
-		while (T item = Pop())											
-		{																
+		WriteLockGuard guard(_lock);
+		bool isEmpty;
+		while (T item = Pop(OUT isEmpty))
+		{				
+			if (isEmpty) return;
 			items.push_back(item);										
 		}																
 	}																	

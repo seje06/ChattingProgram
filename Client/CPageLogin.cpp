@@ -62,9 +62,28 @@ void CPageLogin::OnBnClickedLogin()
 	}
 }
 
+void CPageLogin::OnBnClickedLegister()
+{
+	UpdateData(TRUE);
+
+	//최소 검증
+	if (_id.IsEmpty() || _pw.IsEmpty())
+	{
+		SetStatusText(L"ID/PW를 입력하세요.");
+		return;
+	}
+
+	// 메인에게 로그인 이벤트 전달
+	if (GetParent())
+	{
+		GetParent()->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::RegisterClicked_Register, 0);
+	}
+}
+
 
 BEGIN_MESSAGE_MAP(CPageLogin, CDialogEx)
 	ON_BN_CLICKED(IDC_BTN_LOGIN, &CPageLogin::OnBnClickedLogin)
+	ON_BN_CLICKED(IDC_BTN_REGISTER, &CPageLogin::OnBnClickedLegister)
 END_MESSAGE_MAP()
 
 

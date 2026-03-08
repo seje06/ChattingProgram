@@ -84,7 +84,16 @@
     <ClInclude Include="UIEvent.h">
       <Filter>헤더 파일\Util</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsService.h">
+      <Filter>헤더 파일\Service</Filter>
+    </ClInclude>
     <ClInclude Include="ServerSession.h">
+      <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>헤더 파일\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientGlobal.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -129,6 +138,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ServerSession.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsService.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientGlobal.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

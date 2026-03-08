@@ -40,6 +40,10 @@ void CommandMapper::Mapping(std::map<UIEvent, std::pair<class CDialogEx*, class 
 	map[UIEvent::LoginCompleted_Login] = { loginPage, loginHandler };
 	map[UIEvent::LoginCompleted_Lobby] = { lobbyPage, lobbyHandler };
 
+	map[UIEvent::RegisterClicked_Register] = { loginPage, loginHandler };
+	map[UIEvent::RegisterCompleted_Register] = { loginPage, loginHandler };
+	map[UIEvent::RegisterCompleted_Lobby] = { lobbyPage, lobbyHandler };
+
 	map[UIEvent::CreateRoomClicked_Lobby] = { lobbyPage, lobbyHandler };
 	map[UIEvent::CreateRoomCompleted_Lobby] = { lobbyPage, lobbyHandler };
 	map[UIEvent::CreateRoomCompleted_Room] = { roomPage, roomHandler };

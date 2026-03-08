@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "afxdialogex.h"
 
 
@@ -28,7 +28,7 @@ protected:
 
 	//afx_msg란 메시지에 함수를 연결시키려면 붙여줘야하는 매크로
 	afx_msg void OnBnClickedLogin();
-
+	afx_msg void OnBnClickedLegister();
 
 	DECLARE_MESSAGE_MAP()
 

@@ -14,7 +14,7 @@ enum : uint16_t
 	PKT_S_REGISTER = 1005,
 };
 
-//TODO : 자동화
+//TODO : �ڵ�ȭ
 // Custom Handlers
 bool Handle_INVALD(shared_ptr<PacketSession>& session, BYTE* buffer, int32_t len);
 bool Handle_C_TEST(shared_ptr<PacketSession>& session, Protocol::C_TEST& pkt);
@@ -24,7 +24,7 @@ bool Handle_C_REGISTER(shared_ptr<PacketSession>& session, Protocol::C_REGISTER&
 class ClientPacketHandler
 {
 public:
-	//TODO : 초기화
+	//TODO : �ʱ�ȭ
 	static void Init()
 	{
 		for (int32_t i = 0; i < UINT16_MAX; i++)

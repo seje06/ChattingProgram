@@ -446,10 +446,11 @@ class S_REGISTER final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kIdFieldNumber = 1,
-    kPssdFieldNumber = 2,
+    kIdFieldNumber = 2,
+    kPssdFieldNumber = 3,
+    kIsSuccessFieldNumber = 1,
   };
-  // string id = 1;
+  // string id = 2;
   void clear_id() ;
   const ::std::string& id() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -464,7 +465,7 @@ class S_REGISTER final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_id();
 
   public:
-  // string pssd = 2;
+  // string pssd = 3;
   void clear_pssd() ;
   const ::std::string& pssd() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -479,11 +480,21 @@ class S_REGISTER final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_pssd();
 
   public:
+  // bool isSuccess = 1;
+  void clear_issuccess() ;
+  bool issuccess() const;
+  void set_issuccess(bool value);
+
+  private:
+  bool _internal_issuccess() const;
+  void _internal_set_issuccess(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Protocol.S_REGISTER)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2,
+  static const ::google::protobuf::internal::TcParseTable<2, 3,
                                    0, 34,
                                    2>
       _table_;
@@ -507,6 +518,7 @@ class S_REGISTER final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr id_;
     ::google::protobuf::internal::ArenaStringPtr pssd_;
+    bool issuccess_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -658,10 +670,11 @@ class S_LOGIN final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kIdFieldNumber = 1,
-    kPssdFieldNumber = 2,
+    kIdFieldNumber = 2,
+    kPssdFieldNumber = 3,
+    kIsSuccessFieldNumber = 1,
   };
-  // string id = 1;
+  // string id = 2;
   void clear_id() ;
   const ::std::string& id() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -676,7 +689,7 @@ class S_LOGIN final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_id();
 
   public:
-  // string pssd = 2;
+  // string pssd = 3;
   void clear_pssd() ;
   const ::std::string& pssd() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -691,11 +704,21 @@ class S_LOGIN final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_pssd();
 
   public:
+  // bool isSuccess = 1;
+  void clear_issuccess() ;
+  bool issuccess() const;
+  void set_issuccess(bool value);
+
+  private:
+  bool _internal_issuccess() const;
+  void _internal_set_issuccess(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Protocol.S_LOGIN)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2,
+  static const ::google::protobuf::internal::TcParseTable<2, 3,
                                    0, 31,
                                    2>
       _table_;
@@ -719,6 +742,7 @@ class S_LOGIN final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr id_;
     ::google::protobuf::internal::ArenaStringPtr pssd_;
+    bool issuccess_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1673,7 +1697,32 @@ inline void C_LOGIN::set_allocated_pssd(::std::string* PROTOBUF_NULLABLE value) 
 
 // S_LOGIN
 
-// string id = 1;
+// bool isSuccess = 1;
+inline void S_LOGIN::clear_issuccess() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.issuccess_ = false;
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000004U);
+}
+inline bool S_LOGIN::issuccess() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN.isSuccess)
+  return _internal_issuccess();
+}
+inline void S_LOGIN::set_issuccess(bool value) {
+  _internal_set_issuccess(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.isSuccess)
+}
+inline bool S_LOGIN::_internal_issuccess() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.issuccess_;
+}
+inline void S_LOGIN::_internal_set_issuccess(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.issuccess_ = value;
+}
+
+// string id = 2;
 inline void S_LOGIN::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.id_.ClearToEmpty();
@@ -1738,7 +1787,7 @@ inline void S_LOGIN::set_allocated_id(::std::string* PROTOBUF_NULLABLE value) {
   // @@protoc_insertion_point(field_set_allocated:Protocol.S_LOGIN.id)
 }
 
-// string pssd = 2;
+// string pssd = 3;
 inline void S_LOGIN::clear_pssd() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.pssd_.ClearToEmpty();
@@ -1941,7 +1990,32 @@ inline void C_REGISTER::set_allocated_pssd(::std::string* PROTOBUF_NULLABLE valu
 
 // S_REGISTER
 
-// string id = 1;
+// bool isSuccess = 1;
+inline void S_REGISTER::clear_issuccess() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.issuccess_ = false;
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000004U);
+}
+inline bool S_REGISTER::issuccess() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_REGISTER.isSuccess)
+  return _internal_issuccess();
+}
+inline void S_REGISTER::set_issuccess(bool value) {
+  _internal_set_issuccess(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  // @@protoc_insertion_point(field_set:Protocol.S_REGISTER.isSuccess)
+}
+inline bool S_REGISTER::_internal_issuccess() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.issuccess_;
+}
+inline void S_REGISTER::_internal_set_issuccess(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.issuccess_ = value;
+}
+
+// string id = 2;
 inline void S_REGISTER::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.id_.ClearToEmpty();
@@ -2006,7 +2080,7 @@ inline void S_REGISTER::set_allocated_id(::std::string* PROTOBUF_NULLABLE value)
   // @@protoc_insertion_point(field_set_allocated:Protocol.S_REGISTER.id)
 }
 
-// string pssd = 2;
+// string pssd = 3;
 inline void S_REGISTER::clear_pssd() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.pssd_.ClearToEmpty();

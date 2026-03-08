@@ -22,5 +22,5 @@
 
 #include "CorePch.h"
 #include "UIEvent.h"
-
+#include "ClientGlobal.h"
 #endif //PCH_H

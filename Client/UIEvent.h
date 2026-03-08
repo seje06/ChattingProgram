@@ -13,6 +13,11 @@ enum class UIEvent : WPARAM
     LoginCompleted_Login, // 뒤 접미사는 해당 핸들러에서 처리함을 의미
     LoginCompleted_Lobby,
 
+    //회원가입
+    RegisterClicked_Register,
+    RegisterCompleted_Register,
+    RegisterCompleted_Lobby,
+
     //로비
     CreateRoomClicked_Lobby,
     CreateRoomCompleted_Lobby,

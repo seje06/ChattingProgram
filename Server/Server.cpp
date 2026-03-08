@@ -40,8 +40,8 @@ int main()
     CREATE TABLE `chat`.`account` (
         `id` VARCHAR(30) NOT NULL,
         `password` VARCHAR(255) NOT NULL,
-        `nickname` VARCHAR(30) NOT NULL,
         `create_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `is_online` BOOL NOT NULL DEFAULT 0,
         PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 )";

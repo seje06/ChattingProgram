@@ -61,7 +61,8 @@ inline constexpr S_REGISTER::Impl_::Impl_(
             ::_pbi::ConstantInitialized()),
         pssd_(
             &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()) {}
+            ::_pbi::ConstantInitialized()),
+        issuccess_{false} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR S_REGISTER::S_REGISTER(::_pbi::ConstantInitialized)
@@ -91,7 +92,8 @@ inline constexpr S_LOGIN::Impl_::Impl_(
             ::_pbi::ConstantInitialized()),
         pssd_(
             &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()) {}
+            ::_pbi::ConstantInitialized()),
+        issuccess_{false} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR S_LOGIN::S_LOGIN(::_pbi::ConstantInitialized)
@@ -234,9 +236,11 @@ const ::uint32_t
         1,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::Protocol::S_LOGIN, _impl_._has_bits_),
-        5, // hasbit index offset
+        6, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_LOGIN, _impl_.issuccess_),
         PROTOBUF_FIELD_OFFSET(::Protocol::S_LOGIN, _impl_.id_),
         PROTOBUF_FIELD_OFFSET(::Protocol::S_LOGIN, _impl_.pssd_),
+        2,
         0,
         1,
         0x081, // bitmap
@@ -248,9 +252,11 @@ const ::uint32_t
         1,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::Protocol::S_REGISTER, _impl_._has_bits_),
-        5, // hasbit index offset
+        6, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_REGISTER, _impl_.issuccess_),
         PROTOBUF_FIELD_OFFSET(::Protocol::S_REGISTER, _impl_.id_),
         PROTOBUF_FIELD_OFFSET(::Protocol::S_REGISTER, _impl_.pssd_),
+        2,
         0,
         1,
 };
@@ -261,8 +267,8 @@ static const ::_pbi::MigrationSchema
         {9, sizeof(::Protocol::S_TEST)},
         {18, sizeof(::Protocol::C_LOGIN)},
         {25, sizeof(::Protocol::S_LOGIN)},
-        {32, sizeof(::Protocol::C_REGISTER)},
-        {39, sizeof(::Protocol::S_REGISTER)},
+        {34, sizeof(::Protocol::C_REGISTER)},
+        {41, sizeof(::Protocol::S_REGISTER)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::Protocol::_C_TEST_default_instance_._instance,
@@ -278,16 +284,17 @@ const char descriptor_table_protodef_Protocol_2eproto[] ABSL_ATTRIBUTE_SECTION_V
     "isTest\030\001 \001(\010\022\017\n\007testNum\030\002 \001(\004\022\017\n\007isLogin"
     "\030\003 \001(\010\":\n\006S_TEST\022\016\n\006isTest\030\001 \001(\010\022\017\n\007test"
     "Num\030\002 \001(\004\022\017\n\007isLogin\030\003 \001(\010\"#\n\007C_LOGIN\022\n\n"
-    "\002id\030\001 \001(\t\022\014\n\004pssd\030\002 \001(\t\"#\n\007S_LOGIN\022\n\n\002id"
-    "\030\001 \001(\t\022\014\n\004pssd\030\002 \001(\t\"&\n\nC_REGISTER\022\n\n\002id"
-    "\030\001 \001(\t\022\014\n\004pssd\030\002 \001(\t\"&\n\nS_REGISTER\022\n\n\002id"
-    "\030\001 \001(\t\022\014\n\004pssd\030\002 \001(\tb\006proto3"
+    "\002id\030\001 \001(\t\022\014\n\004pssd\030\002 \001(\t\"6\n\007S_LOGIN\022\021\n\tis"
+    "Success\030\001 \001(\010\022\n\n\002id\030\002 \001(\t\022\014\n\004pssd\030\003 \001(\t\""
+    "&\n\nC_REGISTER\022\n\n\002id\030\001 \001(\t\022\014\n\004pssd\030\002 \001(\t\""
+    "9\n\nS_REGISTER\022\021\n\tisSuccess\030\001 \001(\010\022\n\n\002id\030\002"
+    " \001(\t\022\014\n\004pssd\030\003 \001(\tb\006proto3"
 };
 static ::absl::once_flag descriptor_table_Protocol_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
     false,
     false,
-    308,
+    346,
     descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once,
@@ -1300,6 +1307,7 @@ S_LOGIN::S_LOGIN(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.issuccess_ = from._impl_.issuccess_;
 
   // @@protoc_insertion_point(copy_constructor:Protocol.S_LOGIN)
 }
@@ -1312,6 +1320,7 @@ PROTOBUF_NDEBUG_INLINE S_LOGIN::Impl_::Impl_(
 
 inline void S_LOGIN::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.issuccess_ = {};
 }
 S_LOGIN::~S_LOGIN() {
   // @@protoc_insertion_point(destructor:Protocol.S_LOGIN)
@@ -1372,16 +1381,16 @@ S_LOGIN::GetClassData() const {
   return S_LOGIN_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 31, 2>
+const ::_pbi::TcParseTable<2, 3, 0, 31, 2>
 S_LOGIN::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(S_LOGIN, _impl_._has_bits_),
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     S_LOGIN_class_data_.base(),
@@ -1391,25 +1400,32 @@ S_LOGIN::_table_ = {
     ::_pbi::TcParser::GetTable<::Protocol::S_LOGIN>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string pssd = 2;
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool isSuccess = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(S_LOGIN, _impl_.issuccess_), 2>(),
+     {8, 2, 0,
+      PROTOBUF_FIELD_OFFSET(S_LOGIN, _impl_.issuccess_)}},
+    // string id = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 1, 0,
-      PROTOBUF_FIELD_OFFSET(S_LOGIN, _impl_.pssd_)}},
-    // string id = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 0, 0,
+     {18, 0, 0,
       PROTOBUF_FIELD_OFFSET(S_LOGIN, _impl_.id_)}},
+    // string pssd = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 1, 0,
+      PROTOBUF_FIELD_OFFSET(S_LOGIN, _impl_.pssd_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string id = 1;
+    // bool isSuccess = 1;
+    {PROTOBUF_FIELD_OFFSET(S_LOGIN, _impl_.issuccess_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+    // string id = 2;
     {PROTOBUF_FIELD_OFFSET(S_LOGIN, _impl_.id_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string pssd = 2;
+    // string pssd = 3;
     {PROTOBUF_FIELD_OFFSET(S_LOGIN, _impl_.pssd_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\20\2\4\0\0\0\0\0"
+    "\20\0\2\4\0\0\0\0"
     "Protocol.S_LOGIN"
     "id"
     "pssd"
@@ -1431,6 +1447,7 @@ PROTOBUF_NOINLINE void S_LOGIN::Clear() {
       _impl_.pssd_.ClearNonDefaultToEmpty();
     }
   }
+  _impl_.issuccess_ = false;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -1454,23 +1471,32 @@ PROTOBUF_NOINLINE void S_LOGIN::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // string id = 1;
+  // bool isSuccess = 1;
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (this_._internal_issuccess() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteBoolToArray(
+          1, this_._internal_issuccess(), target);
+    }
+  }
+
+  // string id = 2;
   if (CheckHasBit(cached_has_bits, 0x00000001U)) {
     if (!this_._internal_id().empty()) {
       const ::std::string& _s = this_._internal_id();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
           _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.S_LOGIN.id");
-      target = stream->WriteStringMaybeAliased(1, _s, target);
+      target = stream->WriteStringMaybeAliased(2, _s, target);
     }
   }
 
-  // string pssd = 2;
+  // string pssd = 3;
   if (CheckHasBit(cached_has_bits, 0x00000002U)) {
     if (!this_._internal_pssd().empty()) {
       const ::std::string& _s = this_._internal_pssd();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
           _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.S_LOGIN.pssd");
-      target = stream->WriteStringMaybeAliased(2, _s, target);
+      target = stream->WriteStringMaybeAliased(3, _s, target);
     }
   }
 
@@ -1499,19 +1525,25 @@ PROTOBUF_NOINLINE void S_LOGIN::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
-    // string id = 1;
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    // string id = 2;
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       if (!this_._internal_id().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                         this_._internal_id());
       }
     }
-    // string pssd = 2;
+    // string pssd = 3;
     if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       if (!this_._internal_pssd().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                         this_._internal_pssd());
+      }
+    }
+    // bool isSuccess = 1;
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (this_._internal_issuccess() != 0) {
+        total_size += 2;
       }
     }
   }
@@ -1533,7 +1565,7 @@ void S_LOGIN::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       if (!from._internal_id().empty()) {
         _this->_internal_set_id(from._internal_id());
@@ -1550,6 +1582,11 @@ void S_LOGIN::MergeImpl(::google::protobuf::MessageLite& to_msg,
         if (_this->_impl_.pssd_.IsDefault()) {
           _this->_internal_set_pssd("");
         }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (from._internal_issuccess() != 0) {
+        _this->_impl_.issuccess_ = from._impl_.issuccess_;
       }
     }
   }
@@ -1574,6 +1611,7 @@ void S_LOGIN::InternalSwap(S_LOGIN* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.pssd_, &other->_impl_.pssd_, arena);
+  swap(_impl_.issuccess_, other->_impl_.issuccess_);
 }
 
 ::google::protobuf::Metadata S_LOGIN::GetMetadata() const {
@@ -1940,6 +1978,7 @@ S_REGISTER::S_REGISTER(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.issuccess_ = from._impl_.issuccess_;
 
   // @@protoc_insertion_point(copy_constructor:Protocol.S_REGISTER)
 }
@@ -1952,6 +1991,7 @@ PROTOBUF_NDEBUG_INLINE S_REGISTER::Impl_::Impl_(
 
 inline void S_REGISTER::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.issuccess_ = {};
 }
 S_REGISTER::~S_REGISTER() {
   // @@protoc_insertion_point(destructor:Protocol.S_REGISTER)
@@ -2012,16 +2052,16 @@ S_REGISTER::GetClassData() const {
   return S_REGISTER_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 34, 2>
+const ::_pbi::TcParseTable<2, 3, 0, 34, 2>
 S_REGISTER::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(S_REGISTER, _impl_._has_bits_),
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     S_REGISTER_class_data_.base(),
@@ -2031,25 +2071,32 @@ S_REGISTER::_table_ = {
     ::_pbi::TcParser::GetTable<::Protocol::S_REGISTER>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string pssd = 2;
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool isSuccess = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(S_REGISTER, _impl_.issuccess_), 2>(),
+     {8, 2, 0,
+      PROTOBUF_FIELD_OFFSET(S_REGISTER, _impl_.issuccess_)}},
+    // string id = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 1, 0,
-      PROTOBUF_FIELD_OFFSET(S_REGISTER, _impl_.pssd_)}},
-    // string id = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 0, 0,
+     {18, 0, 0,
       PROTOBUF_FIELD_OFFSET(S_REGISTER, _impl_.id_)}},
+    // string pssd = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 1, 0,
+      PROTOBUF_FIELD_OFFSET(S_REGISTER, _impl_.pssd_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string id = 1;
+    // bool isSuccess = 1;
+    {PROTOBUF_FIELD_OFFSET(S_REGISTER, _impl_.issuccess_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+    // string id = 2;
     {PROTOBUF_FIELD_OFFSET(S_REGISTER, _impl_.id_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string pssd = 2;
+    // string pssd = 3;
     {PROTOBUF_FIELD_OFFSET(S_REGISTER, _impl_.pssd_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\23\2\4\0\0\0\0\0"
+    "\23\0\2\4\0\0\0\0"
     "Protocol.S_REGISTER"
     "id"
     "pssd"
@@ -2071,6 +2118,7 @@ PROTOBUF_NOINLINE void S_REGISTER::Clear() {
       _impl_.pssd_.ClearNonDefaultToEmpty();
     }
   }
+  _impl_.issuccess_ = false;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -2094,23 +2142,32 @@ PROTOBUF_NOINLINE void S_REGISTER::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // string id = 1;
+  // bool isSuccess = 1;
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (this_._internal_issuccess() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteBoolToArray(
+          1, this_._internal_issuccess(), target);
+    }
+  }
+
+  // string id = 2;
   if (CheckHasBit(cached_has_bits, 0x00000001U)) {
     if (!this_._internal_id().empty()) {
       const ::std::string& _s = this_._internal_id();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
           _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.S_REGISTER.id");
-      target = stream->WriteStringMaybeAliased(1, _s, target);
+      target = stream->WriteStringMaybeAliased(2, _s, target);
     }
   }
 
-  // string pssd = 2;
+  // string pssd = 3;
   if (CheckHasBit(cached_has_bits, 0x00000002U)) {
     if (!this_._internal_pssd().empty()) {
       const ::std::string& _s = this_._internal_pssd();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
           _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.S_REGISTER.pssd");
-      target = stream->WriteStringMaybeAliased(2, _s, target);
+      target = stream->WriteStringMaybeAliased(3, _s, target);
     }
   }
 
@@ -2139,19 +2196,25 @@ PROTOBUF_NOINLINE void S_REGISTER::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
-    // string id = 1;
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    // string id = 2;
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       if (!this_._internal_id().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                         this_._internal_id());
       }
     }
-    // string pssd = 2;
+    // string pssd = 3;
     if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       if (!this_._internal_pssd().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                         this_._internal_pssd());
+      }
+    }
+    // bool isSuccess = 1;
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (this_._internal_issuccess() != 0) {
+        total_size += 2;
       }
     }
   }
@@ -2173,7 +2236,7 @@ void S_REGISTER::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       if (!from._internal_id().empty()) {
         _this->_internal_set_id(from._internal_id());
@@ -2190,6 +2253,11 @@ void S_REGISTER::MergeImpl(::google::protobuf::MessageLite& to_msg,
         if (_this->_impl_.pssd_.IsDefault()) {
           _this->_internal_set_pssd("");
         }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (from._internal_issuccess() != 0) {
+        _this->_impl_.issuccess_ = from._impl_.issuccess_;
       }
     }
   }
@@ -2214,6 +2282,7 @@ void S_REGISTER::InternalSwap(S_REGISTER* PROTOBUF_RESTRICT PROTOBUF_NONNULL oth
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.pssd_, &other->_impl_.pssd_, arena);
+  swap(_impl_.issuccess_, other->_impl_.issuccess_);
 }
 
 ::google::protobuf::Metadata S_REGISTER::GetMetadata() const {

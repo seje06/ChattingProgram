@@ -174,7 +174,9 @@
     <ClInclude Include="Service.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="SocketUtils.h" />
+    <ClInclude Include="StringUtil.h" />
     <ClInclude Include="ThreadManager.h" />
+    <ClInclude Include="TimeUtil.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CoreGlobal.cpp" />
@@ -204,7 +206,9 @@
     <ClCompile Include="Service.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="SocketUtils.cpp" />
+    <ClCompile Include="StringUtil.cpp" />
     <ClCompile Include="ThreadManager.cpp" />
+    <ClCompile Include="TimeUtil.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
