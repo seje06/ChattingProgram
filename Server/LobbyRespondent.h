@@ -1,55 +1,30 @@
 #pragma once
-
-// 임시
-namespace Protocol
-{
-	class C_REFRESH
-	{
-	public:
-	};
-	class C_CREATE_ROOM
-	{
-	public:
-		const string& roomname() const { return string(); }
-		void set_roomname(const string& name) {}
-	};
-	class S_CREATE_ROOM
-	{
-	public:
-		bool issuccess() { return true; }
-		void set_issuccess(bool isSuccess) { ; }
-
-		const string& roomname() const { return string(); }
-		void set_roomname(const string& name) {}
-	};
-	class C_JOIN_ROOM
-	{
-	public:
-		const string& id() const { return string(); }
-		void set_id(const string& name){}
-		const string& roomname() const { return string(); }
-		void set_roomname(const string& name) {}
-	};
-	class S_JOIN_ROOM
-	{
-	public:
-		bool issuccess() { return true; }
-		void set_issuccess(bool isSuccess) { ; }
-
-		const string& roomname() const { return string(); }
-		void set_roomname(const string& name) {}
-	};
-}
+#include "PacketRespondent.h"
 
 template<>
-class PacketRespondent<Protocol::C_REFRESH>
+class PacketRespondent<Protocol::C_REFRESH_LOBBY>
 {
 public:
 
-	PacketRespondent(shared_ptr<PacketSession>& session, Protocol::C_REFRESH& pkt, OUT bool& isSuccess) 
+	PacketRespondent(shared_ptr<PacketSession>& session, Protocol::C_REFRESH_LOBBY& pkt, OUT bool& isSuccess)
 	{
 		RESPONSE_START(session, pkt)
-			
+			Protocol::S_REFRESH_LOBBY pktS;
+			pktS.set_issuccess(true);
+			DBBind<0, 2> dbBind(*dbConn, L"SELECT room_name, user_count FROM chat.room;");
+			WCHAR outRoomName[14];
+			int64_t outUser;
+			dbBind.BindCol(0, outRoomName);
+			dbBind.BindCol(1, outUser);
+			ASSERT_CRASH(dbBind.Execute());
+
+			while (dbBind.Fetch())
+			{
+				pktS.add_roomnames(WCHARToUTF8(outRoomName));
+				pktS.add_usercounts(outUser);
+			}
+			auto sendBuffer = ClientPacketHandler::MakeSendBuffer(pktS);
+			session->Send(sendBuffer);
 
 		RESPONSE_END()
 	}
@@ -78,12 +53,22 @@ public:
 			if (canCreate)
 			{
 				//룸 생성
-				DBBind<1, 0> dbBind(*dbConn, L"INSERT INTO chat.room (room_name) VALUES(?);");
-				dbBind.BindParam(0, (WCHAR*)roomName.data());
+				DBBind<1, 0> dbBind1(*dbConn, L"INSERT INTO chat.room (room_name) VALUES(?);");
+				dbBind1.BindParam(0, (WCHAR*)roomName.data());
+				ASSERT_CRASH(dbBind.Execute());
+				//유저 정보 업데이트
+				DBBind<2, 0> dbBind2(*dbConn, L"UPDATE chat.account SET current_room_id = ? WHERE id = ?;");
+				dbBind2.BindParam(0, outRoomId);
+				wstring id = Utf8ToWstring(pkt.id());
+				dbBind2.BindParam(1, (WCHAR*)id.data());
+				ASSERT_CRASH(dbBind2.Execute());
+
+				shared_ptr<Room> room = make_shared<Room>(pkt.roomname(), pkt.id(), session);
+				RoomHandler::AddRoom(room);
 			}
 
-			//auto sendBuffer = ClientPacketHandler::MakeSendBuffer(pktS);
-			//session->Send(sendBuffer);
+			auto sendBuffer = ClientPacketHandler::MakeSendBuffer(pktS);
+			session->Send(sendBuffer);
 
 		RESPONSE_END()
 	}
@@ -107,26 +92,45 @@ public:
 
 			ASSERT_CRASH(dbBind.Execute());
 
-			Protocol::S_CREATE_ROOM pktS;
+			Protocol::S_JOIN_ROOM pktS;
 			pktS.set_roomname(pkt.roomname());
-			bool canEnter = dbBind.Fetch(); // 같은 이름의 방이 존재해야 입장가능 
-			pktS.set_issuccess(canEnter);
-			if (canEnter)
+			bool canJoin = dbBind.Fetch(); // 같은 이름의 방이 존재해야 입장가능 
+			pktS.set_issuccess(canJoin);
+			if (canJoin)
 			{
+				Protocol::S_REFRESH_ROOM multiPktS;
+
+
 				// 유저 정보 업데이트
-				DBBind<2, 0> dbBind(*dbConn, L"UPDATE chat.account SET current_room_id = ? WHERE id = ?;");
-				dbBind.BindParam(0, outRoomId);
+				DBBind<2, 0> dbBind1(*dbConn, L"UPDATE chat.account SET current_room_id = ? WHERE id = ?;");
+				dbBind1.BindParam(0, outRoomId);
 				wstring id = Utf8ToWstring(pkt.id());
-				dbBind.BindParam(1, (WCHAR*)id.data());
-				ASSERT_CRASH(dbBind.Execute());
+				dbBind1.BindParam(1, (WCHAR*)id.data());
+				ASSERT_CRASH(dbBind1.Execute());
 				// 룸 업데이트
-				DBBind<1, 0> dbBind(*dbConn, L"UPDATE chat.room SET user_count = `user_count` + 1 WHERE room_id = ?;");
-				dbBind.BindParam(0, outRoomId);
-				ASSERT_CRASH(dbBind.Execute());
+				DBBind<1, 0> dbBind2(*dbConn, L"UPDATE chat.room SET user_count = `user_count` + 1 WHERE room_id = ?;");
+				dbBind2.BindParam(0, outRoomId);
+				ASSERT_CRASH(dbBind2.Execute());
+				// 방에들어갈테니 유저 이름들 pktS에 넣어주기
+				DBBind<1, 1> dbBind3(*dbConn, L"SELECT id FROM chat.account WHERE current_room_id = ?;");
+				dbBind3.BindParam(0, outRoomId);
+				WCHAR outId[14];
+				dbBind3.BindCol(0, outId);
+				ASSERT_CRASH(dbBind3.Execute());
+				while (dbBind3.Fetch())
+				{
+					pktS.add_userids(WCHARToUTF8(outId));
+					multiPktS.add_userids(WCHARToUTF8(outId)); //브로드캐스트 pkt
+				}
+				// 룸에 세션을 추가해주고, 룸정보 업데이트되었으니까 브로드캐스트해주기
+				shared_ptr<Room> room = RoomHandler::GetRoom(pkt.roomname());
+				ASSERT_CRASH(room);
+				room->AddUser(pkt.id(), session);
+				room->BroadCast(multiPktS, session);
 			}
 
-		//auto sendBuffer = ClientPacketHandler::MakeSendBuffer(pktS);
-		//session->Send(sendBuffer);
+		auto sendBuffer = ClientPacketHandler::MakeSendBuffer(pktS);
+		session->Send(sendBuffer);
 
 		RESPONSE_END()
 	}

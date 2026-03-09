@@ -4,6 +4,7 @@
 #include "ClientPacketHandler.h"
 #include "DBConnectionPool.h"
 #include "DBBind.h"
+#include "RoomHandler.h"
 
 //DB 바인드 부터 하면 된다.
 #define RESPONSE_START(session, pkt)						\
@@ -30,9 +31,6 @@ public:
 
 	PacketRespondent(shared_ptr<PacketSession>& session, T& pkt, OUT bool& isSuccess) {}
 };
-
-#include "AuthRespondent.h"
-#include "LobbyRespondent.h"
 
 										  
 	

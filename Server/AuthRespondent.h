@@ -1,4 +1,5 @@
 #pragma once
+#include "PacketRespondent.h"
 
 template<>
 class PacketRespondent<Protocol::C_LOGIN>
@@ -7,10 +8,7 @@ public:
 
     PacketRespondent(shared_ptr<PacketSession>& session, Protocol::C_LOGIN& pkt, OUT bool& isSuccess)
 	{
-        isSuccess = false;
-
-        function<void()> func = [session, pkt]() {
-            DBConnection* dbConn = GDBConnectionPool->Pop();
+        RESPONSE_START(session, pkt)
             DBBind<3, 1> dbBind(*dbConn, L"SELECT id FROM chat.account WHERE id = ? And password = ? And is_online = ?;");
 
             wstring id = Utf8ToWstring(pkt.id());
@@ -46,16 +44,7 @@ public:
             auto sendBuffer = ClientPacketHandler::MakeSendBuffer(pktS);
             session->Send(sendBuffer);
 
-            GDBConnectionPool->Push(dbConn);
-            };
-
-        shared_ptr<Job> job = make_shared<Job>(0, std::move(func));
-        shared_ptr<JobQueue> jobQueue = make_shared<JobQueue>();
-
-        jobQueue->Push(job);
-        JobQueue::GlobalPush(jobQueue);
-
-        isSuccess = true;
+            RESPONSE_END()
 	}
 };
 
@@ -67,10 +56,7 @@ public:
 
 	PacketRespondent(shared_ptr<PacketSession>& session, Protocol::C_REGISTER& pkt, OUT bool& isSuccess)
 	{
-        isSuccess = false;
-
-        function<void()> func = [session, pkt]() {
-            DBConnection* dbConn = GDBConnectionPool->Pop();
+        RESPONSE_START(session, pkt)
             DBBind<1, 1> dbBind(*dbConn, L"SELECT id FROM chat.account WHERE id = ?;");
 
             wstring id = Utf8ToWstring(pkt.id());
@@ -109,15 +95,6 @@ public:
             auto sendBuffer = ClientPacketHandler::MakeSendBuffer(pktS);
             session->Send(sendBuffer);
 
-            GDBConnectionPool->Push(dbConn);
-            };
-
-        shared_ptr<Job> job = make_shared<Job>(0, std::move(func));
-        shared_ptr<JobQueue> jobQueue = make_shared<JobQueue>();
-
-        jobQueue->Push(job);
-        JobQueue::GlobalPush(jobQueue);
-
-        isSuccess = true;
+            RESPONSE_END()
 	}
 };

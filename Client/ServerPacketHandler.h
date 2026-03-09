@@ -6,20 +6,34 @@ extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
 enum : uint16_t
 {
-	PKT_C_TEST = 1000,
-	PKT_S_TEST = 1001,
-	PKT_C_LOGIN = 1002,
-	PKT_S_LOGIN = 1003,
-	PKT_C_REGISTER = 1004,
-	PKT_S_REGISTER = 1005,
+	PKT_C_LOGIN = 1000,
+	PKT_S_LOGIN = 1001,
+	PKT_C_REGISTER = 1002,
+	PKT_S_REGISTER = 1003,
+	PKT_C_REFRESH_LOBBY = 1004,
+	PKT_S_REFRESH_LOBBY = 1005,
+	PKT_C_CREATE_ROOM = 1006,
+	PKT_S_CREATE_ROOM = 1007,
+	PKT_C_JOIN_ROOM = 1008,
+	PKT_S_JOIN_ROOM = 1009,
+	PKT_S_REFRESH_ROOM = 1010,
+	PKT_C_CHAT_LOG = 1011,
+	PKT_S_CHAT_LOG = 1012,
+	PKT_C_ROOM_OUT = 1013,
+	PKT_S_ROOM_OUT = 1014,
 };
 
 //TODO : ÀÚµ¿È­
 // Custom Handlers
 bool Handle_INVALD(shared_ptr<PacketSession>& session, BYTE* buffer, int32_t len);
-bool Handle_S_TEST(shared_ptr<PacketSession>& session, Protocol::S_TEST& pkt);
 bool Handle_S_LOGIN(shared_ptr<PacketSession>& session, Protocol::S_LOGIN& pkt);
 bool Handle_S_REGISTER(shared_ptr<PacketSession>& session, Protocol::S_REGISTER& pkt);
+bool Handle_S_REFRESH_LOBBY(shared_ptr<PacketSession>& session, Protocol::S_REFRESH_LOBBY& pkt);
+bool Handle_S_CREATE_ROOM(shared_ptr<PacketSession>& session, Protocol::S_CREATE_ROOM& pkt);
+bool Handle_S_JOIN_ROOM(shared_ptr<PacketSession>& session, Protocol::S_JOIN_ROOM& pkt);
+bool Handle_S_REFRESH_ROOM(shared_ptr<PacketSession>& session, Protocol::S_REFRESH_ROOM& pkt);
+bool Handle_S_CHAT_LOG(shared_ptr<PacketSession>& session, Protocol::S_CHAT_LOG& pkt);
+bool Handle_S_ROOM_OUT(shared_ptr<PacketSession>& session, Protocol::S_ROOM_OUT& pkt);
 
 class ServerPacketHandler
 {
@@ -31,9 +45,14 @@ public:
 		{
 			GPacketHandler[0] = Handle_INVALD;
 		}
-		GPacketHandler[PKT_S_TEST] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int32_t len) {return HandlePacket<Protocol::S_TEST>(Handle_S_TEST, session, buffer, len); };
 		GPacketHandler[PKT_S_LOGIN] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int32_t len) {return HandlePacket<Protocol::S_LOGIN>(Handle_S_LOGIN, session, buffer, len); };
 		GPacketHandler[PKT_S_REGISTER] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int32_t len) {return HandlePacket<Protocol::S_REGISTER>(Handle_S_REGISTER, session, buffer, len); };
+		GPacketHandler[PKT_S_REFRESH_LOBBY] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int32_t len) {return HandlePacket<Protocol::S_REFRESH_LOBBY>(Handle_S_REFRESH_LOBBY, session, buffer, len); };
+		GPacketHandler[PKT_S_CREATE_ROOM] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int32_t len) {return HandlePacket<Protocol::S_CREATE_ROOM>(Handle_S_CREATE_ROOM, session, buffer, len); };
+		GPacketHandler[PKT_S_JOIN_ROOM] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int32_t len) {return HandlePacket<Protocol::S_JOIN_ROOM>(Handle_S_JOIN_ROOM, session, buffer, len); };
+		GPacketHandler[PKT_S_REFRESH_ROOM] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int32_t len) {return HandlePacket<Protocol::S_REFRESH_ROOM>(Handle_S_REFRESH_ROOM, session, buffer, len); };
+		GPacketHandler[PKT_S_CHAT_LOG] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int32_t len) {return HandlePacket<Protocol::S_CHAT_LOG>(Handle_S_CHAT_LOG, session, buffer, len); };
+		GPacketHandler[PKT_S_ROOM_OUT] = [](shared_ptr<PacketSession>& session, BYTE* buffer, int32_t len) {return HandlePacket<Protocol::S_ROOM_OUT>(Handle_S_ROOM_OUT, session, buffer, len); };
 		}
 
 	static bool HandlePacket(shared_ptr<PacketSession>& session, BYTE* buffer, int32_t len)
@@ -41,9 +60,13 @@ public:
 		PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
 		return GPacketHandler[header->id](session, buffer, len);
 	}
-	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::C_TEST&pkt) { return MakeSendBuffer(pkt, PKT_C_TEST); }
 	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::C_LOGIN&pkt) { return MakeSendBuffer(pkt, PKT_C_LOGIN); }
 	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::C_REGISTER&pkt) { return MakeSendBuffer(pkt, PKT_C_REGISTER); }
+	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::C_REFRESH_LOBBY&pkt) { return MakeSendBuffer(pkt, PKT_C_REFRESH_LOBBY); }
+	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::C_CREATE_ROOM&pkt) { return MakeSendBuffer(pkt, PKT_C_CREATE_ROOM); }
+	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::C_JOIN_ROOM&pkt) { return MakeSendBuffer(pkt, PKT_C_JOIN_ROOM); }
+	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::C_CHAT_LOG&pkt) { return MakeSendBuffer(pkt, PKT_C_CHAT_LOG); }
+	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::C_ROOM_OUT&pkt) { return MakeSendBuffer(pkt, PKT_C_ROOM_OUT); }
 
 private:
 

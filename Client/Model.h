@@ -37,7 +37,6 @@ struct AuthData
 	CString id;
 	CString pasd;
 };
-
 class AuthModel : public Model<AuthData>
 {
 public:
@@ -49,16 +48,74 @@ public:
 
 
 //////////// Lobby /////////////
-struct RoomCreateData
+struct CreateRoomData
 {
-	CString id;
+	bool isSuccess;
 	CString roomName;
 };
-
-class RoomCreateModel : public Model<RoomCreateData>
+class CreateRoomModel : public Model<CreateRoomData>
 {
 public:
-	RoomCreateModel(RoomCreateData data) : Model(data)
+	CreateRoomModel(CreateRoomData data) : Model(data)
+	{
+
+	}
+};
+
+struct JoinRoomData
+{
+	bool isSuccess;
+	CString roomName;
+	queue<CString> userIds;
+};
+class JoinRoomModel : public Model<JoinRoomData>
+{
+public:
+	JoinRoomModel(JoinRoomData data) : Model(data)
+	{
+
+	}
+};
+
+struct RefreshLobbyData
+{
+	bool isSuccess;
+	queue<CString> roomNames;
+	queue<int> userCounts;
+};
+class RefreshLobbyModel : public Model<RefreshLobbyData>
+{
+public:
+	RefreshLobbyModel(RefreshLobbyData data) : Model(data)
+	{
+
+	}
+};
+
+struct RefreshRoomData
+{
+	queue<CString> userIds;
+};
+class RefreshRoomModel : public Model<RefreshRoomData>
+{
+public:
+	RefreshRoomModel(RefreshRoomData data) : Model(data)
+	{
+
+	}
+};
+
+//////////// Room //////////////////
+
+struct ChatLogData
+{
+	CString id;
+	CString log;
+};
+class ChatLogModel : public Model<ChatLogData>
+{
+public:
+	ChatLogModel(ChatLogData data) : Model(data)
 	{
 
 	}

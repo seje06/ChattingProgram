@@ -34,9 +34,15 @@ int main()
     ASSERT_CRASH(GDBConnectionPool->Connect(20, L"DRIVER={MySQL ODBC 8.0 Unicode Driver};SERVER=localhost;PORT=3306;DATABASE=chat;UID=root;PWD=1234;"));
 
     DBConnection* dbConn = GDBConnectionPool->Pop();
+    const wchar_t * query;
 
-    auto query = L"DROP TABLE IF EXISTS `chat`.`room`;";
+    query = L"DROP TABLE IF EXISTS `chat`.`log`;";
     ASSERT_CRASH(dbConn->Execute(query));
+    query = L"DROP TABLE IF EXISTS `chat`.`account`;";
+    ASSERT_CRASH(dbConn->Execute(query));
+    query = L"DROP TABLE IF EXISTS `chat`.`room`;";
+    ASSERT_CRASH(dbConn->Execute(query));
+    
     // 룸 테이블 생성
     query = LR"(
     CREATE TABLE IF NOT EXISTS `chat`.`room` (
@@ -48,8 +54,6 @@ int main()
 )";
     ASSERT_CRASH(dbConn->Execute(query));
 
-    query = L"DROP TABLE IF EXISTS `chat`.`account`;";
-    ASSERT_CRASH(dbConn->Execute(query));
     // 계정 테이블 생성
     query = LR"(
     CREATE TABLE `chat`.`account` (
@@ -68,11 +72,9 @@ int main()
 )";
     ASSERT_CRASH(dbConn->Execute(query));
 
-    auto query = L"DROP TABLE IF EXISTS `chat`.`room`;";
-    ASSERT_CRASH(dbConn->Execute(query));
     //채팅 기록 테이블 생성
     query = LR"(
-    CREATE TABLE `chat`.`chat_log` (
+    CREATE TABLE `chat`.`log` (
         `log_id` INT NOT NULL AUTO_INCREMENT,
         `account_id` VARCHAR(30),
         `room_id` INT,

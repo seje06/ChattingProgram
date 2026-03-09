@@ -25,33 +25,24 @@ namespace _pb = ::google::protobuf;
 namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace Protocol {
-
-inline constexpr S_TEST::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        testnum_{::uint64_t{0u}},
-        istest_{false},
-        islogin_{false} {}
-
 template <typename>
-PROTOBUF_CONSTEXPR S_TEST::S_TEST(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR S_ROOM_OUT::S_ROOM_OUT(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(S_TEST_class_data_.base()),
+    : ::google::protobuf::internal::ZeroFieldsBase(S_ROOM_OUT_class_data_.base()){}
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
+    : ::google::protobuf::internal::ZeroFieldsBase() {
 }
-struct S_TESTDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR S_TESTDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~S_TESTDefaultTypeInternal() {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct S_ROOM_OUTDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR S_ROOM_OUTDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~S_ROOM_OUTDefaultTypeInternal() {}
   union {
-    S_TEST _instance;
+    S_ROOM_OUT _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_TESTDefaultTypeInternal _S_TEST_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_ROOM_OUTDefaultTypeInternal _S_ROOM_OUT_default_instance_;
 
 inline constexpr S_REGISTER::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -84,6 +75,59 @@ struct S_REGISTERDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_REGISTERDefaultTypeInternal _S_REGISTER_default_instance_;
 
+inline constexpr S_REFRESH_ROOM::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        userids_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR S_REFRESH_ROOM::S_REFRESH_ROOM(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(S_REFRESH_ROOM_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct S_REFRESH_ROOMDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR S_REFRESH_ROOMDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~S_REFRESH_ROOMDefaultTypeInternal() {}
+  union {
+    S_REFRESH_ROOM _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_REFRESH_ROOMDefaultTypeInternal _S_REFRESH_ROOM_default_instance_;
+
+inline constexpr S_REFRESH_LOBBY::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        roomnames_{},
+        usercounts_{},
+        _usercounts_cached_byte_size_{0},
+        issuccess_{false} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR S_REFRESH_LOBBY::S_REFRESH_LOBBY(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(S_REFRESH_LOBBY_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct S_REFRESH_LOBBYDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR S_REFRESH_LOBBYDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~S_REFRESH_LOBBYDefaultTypeInternal() {}
+  union {
+    S_REFRESH_LOBBY _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_REFRESH_LOBBYDefaultTypeInternal _S_REFRESH_LOBBY_default_instance_;
+
 inline constexpr S_LOGIN::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -115,32 +159,110 @@ struct S_LOGINDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_LOGINDefaultTypeInternal _S_LOGIN_default_instance_;
 
-inline constexpr C_TEST::Impl_::Impl_(
+inline constexpr S_JOIN_ROOM::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        testnum_{::uint64_t{0u}},
-        istest_{false},
-        islogin_{false} {}
+        userids_{},
+        roomname_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        issuccess_{false} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR C_TEST::C_TEST(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR S_JOIN_ROOM::S_JOIN_ROOM(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(C_TEST_class_data_.base()),
+    : ::google::protobuf::Message(S_JOIN_ROOM_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct C_TESTDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR C_TESTDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~C_TESTDefaultTypeInternal() {}
+struct S_JOIN_ROOMDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR S_JOIN_ROOMDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~S_JOIN_ROOMDefaultTypeInternal() {}
   union {
-    C_TEST _instance;
+    S_JOIN_ROOM _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_TESTDefaultTypeInternal _C_TEST_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_JOIN_ROOMDefaultTypeInternal _S_JOIN_ROOM_default_instance_;
+
+inline constexpr S_CREATE_ROOM::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        roomname_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        issuccess_{false} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR S_CREATE_ROOM::S_CREATE_ROOM(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(S_CREATE_ROOM_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct S_CREATE_ROOMDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR S_CREATE_ROOMDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~S_CREATE_ROOMDefaultTypeInternal() {}
+  union {
+    S_CREATE_ROOM _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_CREATE_ROOMDefaultTypeInternal _S_CREATE_ROOM_default_instance_;
+
+inline constexpr S_CHAT_LOG::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        log_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+PROTOBUF_CONSTEXPR S_CHAT_LOG::S_CHAT_LOG(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(S_CHAT_LOG_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct S_CHAT_LOGDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR S_CHAT_LOGDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~S_CHAT_LOGDefaultTypeInternal() {}
+  union {
+    S_CHAT_LOG _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_CHAT_LOGDefaultTypeInternal _S_CHAT_LOG_default_instance_;
+template <typename>
+PROTOBUF_CONSTEXPR C_ROOM_OUT::C_ROOM_OUT(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(C_ROOM_OUT_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct C_ROOM_OUTDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR C_ROOM_OUTDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~C_ROOM_OUTDefaultTypeInternal() {}
+  union {
+    C_ROOM_OUT _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_ROOM_OUTDefaultTypeInternal _C_ROOM_OUT_default_instance_;
 
 inline constexpr C_REGISTER::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -171,6 +293,24 @@ struct C_REGISTERDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_REGISTERDefaultTypeInternal _C_REGISTER_default_instance_;
+template <typename>
+PROTOBUF_CONSTEXPR C_REFRESH_LOBBY::C_REFRESH_LOBBY(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(C_REFRESH_LOBBY_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct C_REFRESH_LOBBYDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR C_REFRESH_LOBBYDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~C_REFRESH_LOBBYDefaultTypeInternal() {}
+  union {
+    C_REFRESH_LOBBY _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_REFRESH_LOBBYDefaultTypeInternal _C_REFRESH_LOBBY_default_instance_;
 
 inline constexpr C_LOGIN::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -201,6 +341,99 @@ struct C_LOGINDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_LOGINDefaultTypeInternal _C_LOGIN_default_instance_;
+
+inline constexpr C_JOIN_ROOM::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        roomname_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+PROTOBUF_CONSTEXPR C_JOIN_ROOM::C_JOIN_ROOM(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(C_JOIN_ROOM_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct C_JOIN_ROOMDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR C_JOIN_ROOMDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~C_JOIN_ROOMDefaultTypeInternal() {}
+  union {
+    C_JOIN_ROOM _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_JOIN_ROOMDefaultTypeInternal _C_JOIN_ROOM_default_instance_;
+
+inline constexpr C_CREATE_ROOM::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        roomname_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+PROTOBUF_CONSTEXPR C_CREATE_ROOM::C_CREATE_ROOM(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(C_CREATE_ROOM_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct C_CREATE_ROOMDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR C_CREATE_ROOMDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~C_CREATE_ROOMDefaultTypeInternal() {}
+  union {
+    C_CREATE_ROOM _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_CREATE_ROOMDefaultTypeInternal _C_CREATE_ROOM_default_instance_;
+
+inline constexpr C_CHAT_LOG::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        roomname_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        log_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+PROTOBUF_CONSTEXPR C_CHAT_LOG::C_CHAT_LOG(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(C_CHAT_LOG_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct C_CHAT_LOGDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR C_CHAT_LOGDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~C_CHAT_LOGDefaultTypeInternal() {}
+  union {
+    C_CHAT_LOG _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_CHAT_LOGDefaultTypeInternal _C_CHAT_LOG_default_instance_;
 }  // namespace Protocol
 static constexpr const ::_pb::EnumDescriptor* PROTOBUF_NONNULL* PROTOBUF_NULLABLE
     file_level_enum_descriptors_Protocol_2eproto = nullptr;
@@ -209,24 +442,6 @@ static constexpr const ::_pb::ServiceDescriptor* PROTOBUF_NONNULL* PROTOBUF_NULL
 const ::uint32_t
     TableStruct_Protocol_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
-        0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::Protocol::C_TEST, _impl_._has_bits_),
-        6, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::Protocol::C_TEST, _impl_.istest_),
-        PROTOBUF_FIELD_OFFSET(::Protocol::C_TEST, _impl_.testnum_),
-        PROTOBUF_FIELD_OFFSET(::Protocol::C_TEST, _impl_.islogin_),
-        1,
-        0,
-        2,
-        0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::Protocol::S_TEST, _impl_._has_bits_),
-        6, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::Protocol::S_TEST, _impl_.istest_),
-        PROTOBUF_FIELD_OFFSET(::Protocol::S_TEST, _impl_.testnum_),
-        PROTOBUF_FIELD_OFFSET(::Protocol::S_TEST, _impl_.islogin_),
-        1,
-        0,
-        2,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::Protocol::C_LOGIN, _impl_._has_bits_),
         5, // hasbit index offset
@@ -259,48 +474,138 @@ const ::uint32_t
         2,
         0,
         1,
+        0x000, // bitmap
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_REFRESH_LOBBY, _impl_._has_bits_),
+        6, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_REFRESH_LOBBY, _impl_.issuccess_),
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_REFRESH_LOBBY, _impl_.roomnames_),
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_REFRESH_LOBBY, _impl_.usercounts_),
+        2,
+        0,
+        1,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::Protocol::C_CREATE_ROOM, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::Protocol::C_CREATE_ROOM, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::Protocol::C_CREATE_ROOM, _impl_.roomname_),
+        0,
+        1,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_CREATE_ROOM, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_CREATE_ROOM, _impl_.issuccess_),
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_CREATE_ROOM, _impl_.roomname_),
+        1,
+        0,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::Protocol::C_JOIN_ROOM, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::Protocol::C_JOIN_ROOM, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::Protocol::C_JOIN_ROOM, _impl_.roomname_),
+        0,
+        1,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_JOIN_ROOM, _impl_._has_bits_),
+        6, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_JOIN_ROOM, _impl_.issuccess_),
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_JOIN_ROOM, _impl_.roomname_),
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_JOIN_ROOM, _impl_.userids_),
+        2,
+        1,
+        0,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_REFRESH_ROOM, _impl_._has_bits_),
+        4, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_REFRESH_ROOM, _impl_.userids_),
+        0,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::Protocol::C_CHAT_LOG, _impl_._has_bits_),
+        6, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::Protocol::C_CHAT_LOG, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::Protocol::C_CHAT_LOG, _impl_.roomname_),
+        PROTOBUF_FIELD_OFFSET(::Protocol::C_CHAT_LOG, _impl_.log_),
+        0,
+        1,
+        2,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_CHAT_LOG, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_CHAT_LOG, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::Protocol::S_CHAT_LOG, _impl_.log_),
+        0,
+        1,
+        0x000, // bitmap
+        0x000, // bitmap
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, sizeof(::Protocol::C_TEST)},
-        {9, sizeof(::Protocol::S_TEST)},
-        {18, sizeof(::Protocol::C_LOGIN)},
-        {25, sizeof(::Protocol::S_LOGIN)},
-        {34, sizeof(::Protocol::C_REGISTER)},
-        {41, sizeof(::Protocol::S_REGISTER)},
+        {0, sizeof(::Protocol::C_LOGIN)},
+        {7, sizeof(::Protocol::S_LOGIN)},
+        {16, sizeof(::Protocol::C_REGISTER)},
+        {23, sizeof(::Protocol::S_REGISTER)},
+        {32, sizeof(::Protocol::C_REFRESH_LOBBY)},
+        {33, sizeof(::Protocol::S_REFRESH_LOBBY)},
+        {42, sizeof(::Protocol::C_CREATE_ROOM)},
+        {49, sizeof(::Protocol::S_CREATE_ROOM)},
+        {56, sizeof(::Protocol::C_JOIN_ROOM)},
+        {63, sizeof(::Protocol::S_JOIN_ROOM)},
+        {72, sizeof(::Protocol::S_REFRESH_ROOM)},
+        {77, sizeof(::Protocol::C_CHAT_LOG)},
+        {86, sizeof(::Protocol::S_CHAT_LOG)},
+        {93, sizeof(::Protocol::C_ROOM_OUT)},
+        {94, sizeof(::Protocol::S_ROOM_OUT)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
-    &::Protocol::_C_TEST_default_instance_._instance,
-    &::Protocol::_S_TEST_default_instance_._instance,
     &::Protocol::_C_LOGIN_default_instance_._instance,
     &::Protocol::_S_LOGIN_default_instance_._instance,
     &::Protocol::_C_REGISTER_default_instance_._instance,
     &::Protocol::_S_REGISTER_default_instance_._instance,
+    &::Protocol::_C_REFRESH_LOBBY_default_instance_._instance,
+    &::Protocol::_S_REFRESH_LOBBY_default_instance_._instance,
+    &::Protocol::_C_CREATE_ROOM_default_instance_._instance,
+    &::Protocol::_S_CREATE_ROOM_default_instance_._instance,
+    &::Protocol::_C_JOIN_ROOM_default_instance_._instance,
+    &::Protocol::_S_JOIN_ROOM_default_instance_._instance,
+    &::Protocol::_S_REFRESH_ROOM_default_instance_._instance,
+    &::Protocol::_C_CHAT_LOG_default_instance_._instance,
+    &::Protocol::_S_CHAT_LOG_default_instance_._instance,
+    &::Protocol::_C_ROOM_OUT_default_instance_._instance,
+    &::Protocol::_S_ROOM_OUT_default_instance_._instance,
 };
 const char descriptor_table_protodef_Protocol_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\016Protocol.proto\022\010Protocol\":\n\006C_TEST\022\016\n\006"
-    "isTest\030\001 \001(\010\022\017\n\007testNum\030\002 \001(\004\022\017\n\007isLogin"
-    "\030\003 \001(\010\":\n\006S_TEST\022\016\n\006isTest\030\001 \001(\010\022\017\n\007test"
-    "Num\030\002 \001(\004\022\017\n\007isLogin\030\003 \001(\010\"#\n\007C_LOGIN\022\n\n"
+    "\n\016Protocol.proto\022\010Protocol\"#\n\007C_LOGIN\022\n\n"
     "\002id\030\001 \001(\t\022\014\n\004pssd\030\002 \001(\t\"6\n\007S_LOGIN\022\021\n\tis"
     "Success\030\001 \001(\010\022\n\n\002id\030\002 \001(\t\022\014\n\004pssd\030\003 \001(\t\""
     "&\n\nC_REGISTER\022\n\n\002id\030\001 \001(\t\022\014\n\004pssd\030\002 \001(\t\""
     "9\n\nS_REGISTER\022\021\n\tisSuccess\030\001 \001(\010\022\n\n\002id\030\002"
-    " \001(\t\022\014\n\004pssd\030\003 \001(\tb\006proto3"
+    " \001(\t\022\014\n\004pssd\030\003 \001(\t\"\021\n\017C_REFRESH_LOBBY\"K\n"
+    "\017S_REFRESH_LOBBY\022\021\n\tisSuccess\030\001 \001(\010\022\021\n\tr"
+    "oomNames\030\002 \003(\t\022\022\n\nuserCounts\030\003 \003(\003\"-\n\rC_"
+    "CREATE_ROOM\022\n\n\002id\030\001 \001(\t\022\020\n\010roomName\030\002 \001("
+    "\t\"4\n\rS_CREATE_ROOM\022\021\n\tisSuccess\030\001 \001(\010\022\020\n"
+    "\010roomName\030\002 \001(\t\"+\n\013C_JOIN_ROOM\022\n\n\002id\030\001 \001"
+    "(\t\022\020\n\010roomName\030\002 \001(\t\"C\n\013S_JOIN_ROOM\022\021\n\ti"
+    "sSuccess\030\001 \001(\010\022\020\n\010roomName\030\002 \001(\t\022\017\n\007user"
+    "Ids\030\003 \003(\t\"!\n\016S_REFRESH_ROOM\022\017\n\007userIds\030\001"
+    " \003(\t\"7\n\nC_CHAT_LOG\022\n\n\002id\030\001 \001(\t\022\020\n\010roomNa"
+    "me\030\002 \001(\t\022\013\n\003log\030\003 \001(\t\"%\n\nS_CHAT_LOG\022\n\n\002i"
+    "d\030\001 \001(\t\022\013\n\003log\030\002 \001(\t\"\014\n\nC_ROOM_OUT\"\014\n\nS_"
+    "ROOM_OUTb\006proto3"
 };
 static ::absl::once_flag descriptor_table_Protocol_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
     false,
     false,
-    346,
+    696,
     descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once,
     nullptr,
     0,
-    6,
+    15,
     schemas,
     file_default_instances,
     TableStruct_Protocol_2eproto::offsets,
@@ -308,644 +613,6 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_Protocol_2epro
     file_level_service_descriptors_Protocol_2eproto,
 };
 namespace Protocol {
-// ===================================================================
-
-class C_TEST::_Internal {
- public:
-  using HasBits =
-      decltype(::std::declval<C_TEST>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(C_TEST, _impl_._has_bits_);
-};
-
-C_TEST::C_TEST(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, C_TEST_class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Protocol.C_TEST)
-}
-C_TEST::C_TEST(
-    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const C_TEST& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, C_TEST_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(from._impl_) {
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-}
-PROTOBUF_NDEBUG_INLINE C_TEST::Impl_::Impl_(
-    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
-    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-      : _cached_size_{0} {}
-
-inline void C_TEST::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char*>(&_impl_) +
-               offsetof(Impl_, testnum_),
-           0,
-           offsetof(Impl_, islogin_) -
-               offsetof(Impl_, testnum_) +
-               sizeof(Impl_::islogin_));
-}
-C_TEST::~C_TEST() {
-  // @@protoc_insertion_point(destructor:Protocol.C_TEST)
-  SharedDtor(*this);
-}
-inline void C_TEST::SharedDtor(MessageLite& self) {
-  C_TEST& this_ = static_cast<C_TEST&>(self);
-  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
-    this_.CheckHasBitConsistency();
-  }
-  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.~Impl_();
-}
-
-inline void* PROTOBUF_NONNULL C_TEST::PlacementNew_(
-    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) C_TEST(arena);
-}
-constexpr auto C_TEST::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(C_TEST),
-                                            alignof(C_TEST));
-}
-constexpr auto C_TEST::InternalGenerateClassData_() {
-  return ::google::protobuf::internal::ClassDataFull{
-      ::google::protobuf::internal::ClassData{
-          &_C_TEST_default_instance_._instance,
-          &_table_.header,
-          nullptr,  // OnDemandRegisterArenaDtor
-          nullptr,  // IsInitialized
-          &C_TEST::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<C_TEST>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-          &C_TEST::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<C_TEST>(), &C_TEST::ByteSizeLong,
-              &C_TEST::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(C_TEST, _impl_._cached_size_),
-          false,
-      },
-      &C_TEST::kDescriptorMethods,
-      &descriptor_table_Protocol_2eproto,
-      nullptr,  // tracker
-  };
-}
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull C_TEST_class_data_ =
-        C_TEST::InternalGenerateClassData_();
-
-PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-C_TEST::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&C_TEST_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(C_TEST_class_data_.tc_table);
-  return C_TEST_class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 0, 2>
-C_TEST::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(C_TEST, _impl_._has_bits_),
-    0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    C_TEST_class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::Protocol::C_TEST>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // bool isTest = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(C_TEST, _impl_.istest_), 1>(),
-     {8, 1, 0,
-      PROTOBUF_FIELD_OFFSET(C_TEST, _impl_.istest_)}},
-    // uint64 testNum = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(C_TEST, _impl_.testnum_), 0>(),
-     {16, 0, 0,
-      PROTOBUF_FIELD_OFFSET(C_TEST, _impl_.testnum_)}},
-    // bool isLogin = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(C_TEST, _impl_.islogin_), 2>(),
-     {24, 2, 0,
-      PROTOBUF_FIELD_OFFSET(C_TEST, _impl_.islogin_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // bool isTest = 1;
-    {PROTOBUF_FIELD_OFFSET(C_TEST, _impl_.istest_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
-    // uint64 testNum = 2;
-    {PROTOBUF_FIELD_OFFSET(C_TEST, _impl_.testnum_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
-    // bool isLogin = 3;
-    {PROTOBUF_FIELD_OFFSET(C_TEST, _impl_.islogin_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
-  }},
-  // no aux_entries
-  {{
-  }},
-};
-PROTOBUF_NOINLINE void C_TEST::Clear() {
-// @@protoc_insertion_point(message_clear_start:Protocol.C_TEST)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  cached_has_bits = _impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
-    ::memset(&_impl_.testnum_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.islogin_) -
-        reinterpret_cast<char*>(&_impl_.testnum_)) + sizeof(_impl_.islogin_));
-  }
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL C_TEST::_InternalSerialize(
-    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
-    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const C_TEST& this_ = static_cast<const C_TEST&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL C_TEST::_InternalSerialize(
-    ::uint8_t* PROTOBUF_NONNULL target,
-    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const C_TEST& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
-    this_.CheckHasBitConsistency();
-  }
-  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_TEST)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  cached_has_bits = this_._impl_._has_bits_[0];
-  // bool isTest = 1;
-  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-    if (this_._internal_istest() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteBoolToArray(
-          1, this_._internal_istest(), target);
-    }
-  }
-
-  // uint64 testNum = 2;
-  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-    if (this_._internal_testnum() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-          2, this_._internal_testnum(), target);
-    }
-  }
-
-  // bool isLogin = 3;
-  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
-    if (this_._internal_islogin() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteBoolToArray(
-          3, this_._internal_islogin(), target);
-    }
-  }
-
-  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_TEST)
-  return target;
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t C_TEST::ByteSizeLong(const MessageLite& base) {
-  const C_TEST& this_ = static_cast<const C_TEST&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-::size_t C_TEST::ByteSizeLong() const {
-  const C_TEST& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:Protocol.C_TEST)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void)cached_has_bits;
-
-  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
-  cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
-    // uint64 testNum = 2;
-    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      if (this_._internal_testnum() != 0) {
-        total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
-            this_._internal_testnum());
-      }
-    }
-    // bool isTest = 1;
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-      if (this_._internal_istest() != 0) {
-        total_size += 2;
-      }
-    }
-    // bool isLogin = 3;
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
-      if (this_._internal_islogin() != 0) {
-        total_size += 2;
-      }
-    }
-  }
-  return this_.MaybeComputeUnknownFieldsSize(total_size,
-                                             &this_._impl_._cached_size_);
-}
-
-void C_TEST::MergeImpl(::google::protobuf::MessageLite& to_msg,
-                            const ::google::protobuf::MessageLite& from_msg) {
-   auto* const _this =
-      static_cast<C_TEST*>(&to_msg);
-  auto& from = static_cast<const C_TEST&>(from_msg);
-  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
-    from.CheckHasBitConsistency();
-  }
-  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_TEST)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
-    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      if (from._internal_testnum() != 0) {
-        _this->_impl_.testnum_ = from._impl_.testnum_;
-      }
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-      if (from._internal_istest() != 0) {
-        _this->_impl_.istest_ = from._impl_.istest_;
-      }
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
-      if (from._internal_islogin() != 0) {
-        _this->_impl_.islogin_ = from._impl_.islogin_;
-      }
-    }
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-}
-
-void C_TEST::CopyFrom(const C_TEST& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_TEST)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void C_TEST::InternalSwap(C_TEST* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
-  using ::std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(C_TEST, _impl_.islogin_)
-      + sizeof(C_TEST::_impl_.islogin_)
-      - PROTOBUF_FIELD_OFFSET(C_TEST, _impl_.testnum_)>(
-          reinterpret_cast<char*>(&_impl_.testnum_),
-          reinterpret_cast<char*>(&other->_impl_.testnum_));
-}
-
-::google::protobuf::Metadata C_TEST::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
-class S_TEST::_Internal {
- public:
-  using HasBits =
-      decltype(::std::declval<S_TEST>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(S_TEST, _impl_._has_bits_);
-};
-
-S_TEST::S_TEST(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, S_TEST_class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Protocol.S_TEST)
-}
-S_TEST::S_TEST(
-    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const S_TEST& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, S_TEST_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(from._impl_) {
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-}
-PROTOBUF_NDEBUG_INLINE S_TEST::Impl_::Impl_(
-    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
-    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-      : _cached_size_{0} {}
-
-inline void S_TEST::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char*>(&_impl_) +
-               offsetof(Impl_, testnum_),
-           0,
-           offsetof(Impl_, islogin_) -
-               offsetof(Impl_, testnum_) +
-               sizeof(Impl_::islogin_));
-}
-S_TEST::~S_TEST() {
-  // @@protoc_insertion_point(destructor:Protocol.S_TEST)
-  SharedDtor(*this);
-}
-inline void S_TEST::SharedDtor(MessageLite& self) {
-  S_TEST& this_ = static_cast<S_TEST&>(self);
-  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
-    this_.CheckHasBitConsistency();
-  }
-  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.~Impl_();
-}
-
-inline void* PROTOBUF_NONNULL S_TEST::PlacementNew_(
-    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) S_TEST(arena);
-}
-constexpr auto S_TEST::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(S_TEST),
-                                            alignof(S_TEST));
-}
-constexpr auto S_TEST::InternalGenerateClassData_() {
-  return ::google::protobuf::internal::ClassDataFull{
-      ::google::protobuf::internal::ClassData{
-          &_S_TEST_default_instance_._instance,
-          &_table_.header,
-          nullptr,  // OnDemandRegisterArenaDtor
-          nullptr,  // IsInitialized
-          &S_TEST::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<S_TEST>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-          &S_TEST::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<S_TEST>(), &S_TEST::ByteSizeLong,
-              &S_TEST::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(S_TEST, _impl_._cached_size_),
-          false,
-      },
-      &S_TEST::kDescriptorMethods,
-      &descriptor_table_Protocol_2eproto,
-      nullptr,  // tracker
-  };
-}
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull S_TEST_class_data_ =
-        S_TEST::InternalGenerateClassData_();
-
-PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-S_TEST::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&S_TEST_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(S_TEST_class_data_.tc_table);
-  return S_TEST_class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 0, 2>
-S_TEST::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(S_TEST, _impl_._has_bits_),
-    0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    S_TEST_class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::Protocol::S_TEST>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // bool isTest = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(S_TEST, _impl_.istest_), 1>(),
-     {8, 1, 0,
-      PROTOBUF_FIELD_OFFSET(S_TEST, _impl_.istest_)}},
-    // uint64 testNum = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(S_TEST, _impl_.testnum_), 0>(),
-     {16, 0, 0,
-      PROTOBUF_FIELD_OFFSET(S_TEST, _impl_.testnum_)}},
-    // bool isLogin = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(S_TEST, _impl_.islogin_), 2>(),
-     {24, 2, 0,
-      PROTOBUF_FIELD_OFFSET(S_TEST, _impl_.islogin_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // bool isTest = 1;
-    {PROTOBUF_FIELD_OFFSET(S_TEST, _impl_.istest_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
-    // uint64 testNum = 2;
-    {PROTOBUF_FIELD_OFFSET(S_TEST, _impl_.testnum_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
-    // bool isLogin = 3;
-    {PROTOBUF_FIELD_OFFSET(S_TEST, _impl_.islogin_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
-  }},
-  // no aux_entries
-  {{
-  }},
-};
-PROTOBUF_NOINLINE void S_TEST::Clear() {
-// @@protoc_insertion_point(message_clear_start:Protocol.S_TEST)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  cached_has_bits = _impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
-    ::memset(&_impl_.testnum_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.islogin_) -
-        reinterpret_cast<char*>(&_impl_.testnum_)) + sizeof(_impl_.islogin_));
-  }
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL S_TEST::_InternalSerialize(
-    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
-    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const S_TEST& this_ = static_cast<const S_TEST&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL S_TEST::_InternalSerialize(
-    ::uint8_t* PROTOBUF_NONNULL target,
-    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const S_TEST& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
-    this_.CheckHasBitConsistency();
-  }
-  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_TEST)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  cached_has_bits = this_._impl_._has_bits_[0];
-  // bool isTest = 1;
-  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-    if (this_._internal_istest() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteBoolToArray(
-          1, this_._internal_istest(), target);
-    }
-  }
-
-  // uint64 testNum = 2;
-  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-    if (this_._internal_testnum() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-          2, this_._internal_testnum(), target);
-    }
-  }
-
-  // bool isLogin = 3;
-  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
-    if (this_._internal_islogin() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteBoolToArray(
-          3, this_._internal_islogin(), target);
-    }
-  }
-
-  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_TEST)
-  return target;
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t S_TEST::ByteSizeLong(const MessageLite& base) {
-  const S_TEST& this_ = static_cast<const S_TEST&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-::size_t S_TEST::ByteSizeLong() const {
-  const S_TEST& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:Protocol.S_TEST)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void)cached_has_bits;
-
-  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
-  cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
-    // uint64 testNum = 2;
-    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      if (this_._internal_testnum() != 0) {
-        total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
-            this_._internal_testnum());
-      }
-    }
-    // bool isTest = 1;
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-      if (this_._internal_istest() != 0) {
-        total_size += 2;
-      }
-    }
-    // bool isLogin = 3;
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
-      if (this_._internal_islogin() != 0) {
-        total_size += 2;
-      }
-    }
-  }
-  return this_.MaybeComputeUnknownFieldsSize(total_size,
-                                             &this_._impl_._cached_size_);
-}
-
-void S_TEST::MergeImpl(::google::protobuf::MessageLite& to_msg,
-                            const ::google::protobuf::MessageLite& from_msg) {
-   auto* const _this =
-      static_cast<S_TEST*>(&to_msg);
-  auto& from = static_cast<const S_TEST&>(from_msg);
-  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
-    from.CheckHasBitConsistency();
-  }
-  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_TEST)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
-    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      if (from._internal_testnum() != 0) {
-        _this->_impl_.testnum_ = from._impl_.testnum_;
-      }
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-      if (from._internal_istest() != 0) {
-        _this->_impl_.istest_ = from._impl_.istest_;
-      }
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
-      if (from._internal_islogin() != 0) {
-        _this->_impl_.islogin_ = from._impl_.islogin_;
-      }
-    }
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-}
-
-void S_TEST::CopyFrom(const S_TEST& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_TEST)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void S_TEST::InternalSwap(S_TEST* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
-  using ::std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(S_TEST, _impl_.islogin_)
-      + sizeof(S_TEST::_impl_.islogin_)
-      - PROTOBUF_FIELD_OFFSET(S_TEST, _impl_.testnum_)>(
-          reinterpret_cast<char*>(&_impl_.testnum_),
-          reinterpret_cast<char*>(&other->_impl_.testnum_));
-}
-
-::google::protobuf::Metadata S_TEST::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
 // ===================================================================
 
 class C_LOGIN::_Internal {
@@ -2287,6 +1954,2965 @@ void S_REGISTER::InternalSwap(S_REGISTER* PROTOBUF_RESTRICT PROTOBUF_NONNULL oth
 
 ::google::protobuf::Metadata S_REGISTER::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class C_REFRESH_LOBBY::_Internal {
+ public:
+};
+
+C_REFRESH_LOBBY::C_REFRESH_LOBBY(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, C_REFRESH_LOBBY_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_REFRESH_LOBBY)
+}
+C_REFRESH_LOBBY::C_REFRESH_LOBBY(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const C_REFRESH_LOBBY& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, C_REFRESH_LOBBY_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  C_REFRESH_LOBBY* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_REFRESH_LOBBY)
+}
+
+inline void* PROTOBUF_NONNULL C_REFRESH_LOBBY::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) C_REFRESH_LOBBY(arena);
+}
+constexpr auto C_REFRESH_LOBBY::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(C_REFRESH_LOBBY),
+                                            alignof(C_REFRESH_LOBBY));
+}
+constexpr auto C_REFRESH_LOBBY::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_C_REFRESH_LOBBY_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &C_REFRESH_LOBBY::MergeImpl,
+          ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<C_REFRESH_LOBBY>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &C_REFRESH_LOBBY::SharedDtor,
+          ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<C_REFRESH_LOBBY>(), &C_REFRESH_LOBBY::ByteSizeLong,
+              &C_REFRESH_LOBBY::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(C_REFRESH_LOBBY, _impl_._cached_size_),
+          false,
+      },
+      &C_REFRESH_LOBBY::kDescriptorMethods,
+      &descriptor_table_Protocol_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull C_REFRESH_LOBBY_class_data_ =
+        C_REFRESH_LOBBY::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+C_REFRESH_LOBBY::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&C_REFRESH_LOBBY_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(C_REFRESH_LOBBY_class_data_.tc_table);
+  return C_REFRESH_LOBBY_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2>
+C_REFRESH_LOBBY::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    C_REFRESH_LOBBY_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::Protocol::C_REFRESH_LOBBY>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+::google::protobuf::Metadata C_REFRESH_LOBBY::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class S_REFRESH_LOBBY::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<S_REFRESH_LOBBY>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(S_REFRESH_LOBBY, _impl_._has_bits_);
+};
+
+S_REFRESH_LOBBY::S_REFRESH_LOBBY(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, S_REFRESH_LOBBY_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_REFRESH_LOBBY)
+}
+PROTOBUF_NDEBUG_INLINE S_REFRESH_LOBBY::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::Protocol::S_REFRESH_LOBBY& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        roomnames_{visibility, arena, from.roomnames_},
+        usercounts_{visibility, arena, from.usercounts_},
+        _usercounts_cached_byte_size_{0} {}
+
+S_REFRESH_LOBBY::S_REFRESH_LOBBY(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const S_REFRESH_LOBBY& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, S_REFRESH_LOBBY_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  S_REFRESH_LOBBY* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.issuccess_ = from._impl_.issuccess_;
+
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_REFRESH_LOBBY)
+}
+PROTOBUF_NDEBUG_INLINE S_REFRESH_LOBBY::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        roomnames_{visibility, arena},
+        usercounts_{visibility, arena},
+        _usercounts_cached_byte_size_{0} {}
+
+inline void S_REFRESH_LOBBY::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.issuccess_ = {};
+}
+S_REFRESH_LOBBY::~S_REFRESH_LOBBY() {
+  // @@protoc_insertion_point(destructor:Protocol.S_REFRESH_LOBBY)
+  SharedDtor(*this);
+}
+inline void S_REFRESH_LOBBY::SharedDtor(MessageLite& self) {
+  S_REFRESH_LOBBY& this_ = static_cast<S_REFRESH_LOBBY&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL S_REFRESH_LOBBY::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) S_REFRESH_LOBBY(arena);
+}
+constexpr auto S_REFRESH_LOBBY::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(S_REFRESH_LOBBY, _impl_.roomnames_) +
+          decltype(S_REFRESH_LOBBY::_impl_.roomnames_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(S_REFRESH_LOBBY, _impl_.usercounts_) +
+          decltype(S_REFRESH_LOBBY::_impl_.usercounts_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(S_REFRESH_LOBBY), alignof(S_REFRESH_LOBBY), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&S_REFRESH_LOBBY::PlacementNew_,
+                                 sizeof(S_REFRESH_LOBBY),
+                                 alignof(S_REFRESH_LOBBY));
+  }
+}
+constexpr auto S_REFRESH_LOBBY::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_S_REFRESH_LOBBY_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &S_REFRESH_LOBBY::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<S_REFRESH_LOBBY>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &S_REFRESH_LOBBY::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<S_REFRESH_LOBBY>(), &S_REFRESH_LOBBY::ByteSizeLong,
+              &S_REFRESH_LOBBY::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(S_REFRESH_LOBBY, _impl_._cached_size_),
+          false,
+      },
+      &S_REFRESH_LOBBY::kDescriptorMethods,
+      &descriptor_table_Protocol_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull S_REFRESH_LOBBY_class_data_ =
+        S_REFRESH_LOBBY::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+S_REFRESH_LOBBY::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&S_REFRESH_LOBBY_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(S_REFRESH_LOBBY_class_data_.tc_table);
+  return S_REFRESH_LOBBY_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 42, 2>
+S_REFRESH_LOBBY::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(S_REFRESH_LOBBY, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    S_REFRESH_LOBBY_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::Protocol::S_REFRESH_LOBBY>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool isSuccess = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(S_REFRESH_LOBBY, _impl_.issuccess_), 2>(),
+     {8, 2, 0,
+      PROTOBUF_FIELD_OFFSET(S_REFRESH_LOBBY, _impl_.issuccess_)}},
+    // repeated string roomNames = 2;
+    {::_pbi::TcParser::FastUR1,
+     {18, 0, 0,
+      PROTOBUF_FIELD_OFFSET(S_REFRESH_LOBBY, _impl_.roomnames_)}},
+    // repeated int64 userCounts = 3;
+    {::_pbi::TcParser::FastV64P1,
+     {26, 1, 0,
+      PROTOBUF_FIELD_OFFSET(S_REFRESH_LOBBY, _impl_.usercounts_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool isSuccess = 1;
+    {PROTOBUF_FIELD_OFFSET(S_REFRESH_LOBBY, _impl_.issuccess_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+    // repeated string roomNames = 2;
+    {PROTOBUF_FIELD_OFFSET(S_REFRESH_LOBBY, _impl_.roomnames_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // repeated int64 userCounts = 3;
+    {PROTOBUF_FIELD_OFFSET(S_REFRESH_LOBBY, _impl_.usercounts_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt64)},
+  }},
+  // no aux_entries
+  {{
+    "\30\0\11\0\0\0\0\0"
+    "Protocol.S_REFRESH_LOBBY"
+    "roomNames"
+  }},
+};
+PROTOBUF_NOINLINE void S_REFRESH_LOBBY::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_REFRESH_LOBBY)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      _impl_.roomnames_.Clear();
+    }
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000002U)) {
+      _impl_.usercounts_.Clear();
+    }
+  }
+  _impl_.issuccess_ = false;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL S_REFRESH_LOBBY::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const S_REFRESH_LOBBY& this_ = static_cast<const S_REFRESH_LOBBY&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL S_REFRESH_LOBBY::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const S_REFRESH_LOBBY& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_REFRESH_LOBBY)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // bool isSuccess = 1;
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (this_._internal_issuccess() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteBoolToArray(
+          1, this_._internal_issuccess(), target);
+    }
+  }
+
+  // repeated string roomNames = 2;
+  if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+    for (int i = 0, n = this_._internal_roomnames_size(); i < n; ++i) {
+      const auto& s = this_._internal_roomnames().Get(i);
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.S_REFRESH_LOBBY.roomNames");
+      target = stream->WriteString(2, s, target);
+    }
+  }
+
+  // repeated int64 userCounts = 3;
+  if (CheckHasBitForRepeated(cached_has_bits, 0x00000002U)) {
+    {
+      int byte_size = this_._impl_._usercounts_cached_byte_size_.Get();
+      if (byte_size > 0) {
+        target = stream->WriteInt64Packed(
+            3, this_._internal_usercounts(), byte_size, target);
+      }
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_REFRESH_LOBBY)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t S_REFRESH_LOBBY::ByteSizeLong(const MessageLite& base) {
+  const S_REFRESH_LOBBY& this_ = static_cast<const S_REFRESH_LOBBY&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t S_REFRESH_LOBBY::ByteSizeLong() const {
+  const S_REFRESH_LOBBY& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:Protocol.S_REFRESH_LOBBY)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    // repeated string roomNames = 2;
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      total_size +=
+          1 * ::google::protobuf::internal::FromIntSize(this_._internal_roomnames().size());
+      for (int i = 0, n = this_._internal_roomnames().size(); i < n; ++i) {
+        total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+            this_._internal_roomnames().Get(i));
+      }
+    }
+    // repeated int64 userCounts = 3;
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000002U)) {
+      total_size +=
+          ::_pbi::WireFormatLite::Int64SizeWithPackedTagSize(
+              this_._internal_usercounts(), 1,
+              this_._impl_._usercounts_cached_byte_size_);
+    }
+    // bool isSuccess = 1;
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (this_._internal_issuccess() != 0) {
+        total_size += 2;
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void S_REFRESH_LOBBY::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<S_REFRESH_LOBBY*>(&to_msg);
+  auto& from = static_cast<const S_REFRESH_LOBBY&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_REFRESH_LOBBY)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      _this->_internal_mutable_roomnames()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_roomnames());
+    }
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000002U)) {
+      _this->_internal_mutable_usercounts()->MergeFrom(from._internal_usercounts());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (from._internal_issuccess() != 0) {
+        _this->_impl_.issuccess_ = from._impl_.issuccess_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void S_REFRESH_LOBBY::CopyFrom(const S_REFRESH_LOBBY& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_REFRESH_LOBBY)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void S_REFRESH_LOBBY::InternalSwap(S_REFRESH_LOBBY* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.roomnames_.InternalSwap(&other->_impl_.roomnames_);
+  _impl_.usercounts_.InternalSwap(&other->_impl_.usercounts_);
+  swap(_impl_.issuccess_, other->_impl_.issuccess_);
+}
+
+::google::protobuf::Metadata S_REFRESH_LOBBY::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class C_CREATE_ROOM::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<C_CREATE_ROOM>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(C_CREATE_ROOM, _impl_._has_bits_);
+};
+
+C_CREATE_ROOM::C_CREATE_ROOM(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, C_CREATE_ROOM_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_CREATE_ROOM)
+}
+PROTOBUF_NDEBUG_INLINE C_CREATE_ROOM::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::Protocol::C_CREATE_ROOM& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        id_(arena, from.id_),
+        roomname_(arena, from.roomname_) {}
+
+C_CREATE_ROOM::C_CREATE_ROOM(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const C_CREATE_ROOM& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, C_CREATE_ROOM_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  C_CREATE_ROOM* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_CREATE_ROOM)
+}
+PROTOBUF_NDEBUG_INLINE C_CREATE_ROOM::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        id_(arena),
+        roomname_(arena) {}
+
+inline void C_CREATE_ROOM::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+C_CREATE_ROOM::~C_CREATE_ROOM() {
+  // @@protoc_insertion_point(destructor:Protocol.C_CREATE_ROOM)
+  SharedDtor(*this);
+}
+inline void C_CREATE_ROOM::SharedDtor(MessageLite& self) {
+  C_CREATE_ROOM& this_ = static_cast<C_CREATE_ROOM&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.id_.Destroy();
+  this_._impl_.roomname_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL C_CREATE_ROOM::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) C_CREATE_ROOM(arena);
+}
+constexpr auto C_CREATE_ROOM::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(C_CREATE_ROOM),
+                                            alignof(C_CREATE_ROOM));
+}
+constexpr auto C_CREATE_ROOM::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_C_CREATE_ROOM_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &C_CREATE_ROOM::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<C_CREATE_ROOM>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &C_CREATE_ROOM::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<C_CREATE_ROOM>(), &C_CREATE_ROOM::ByteSizeLong,
+              &C_CREATE_ROOM::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(C_CREATE_ROOM, _impl_._cached_size_),
+          false,
+      },
+      &C_CREATE_ROOM::kDescriptorMethods,
+      &descriptor_table_Protocol_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull C_CREATE_ROOM_class_data_ =
+        C_CREATE_ROOM::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+C_CREATE_ROOM::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&C_CREATE_ROOM_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(C_CREATE_ROOM_class_data_.tc_table);
+  return C_CREATE_ROOM_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 41, 2>
+C_CREATE_ROOM::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(C_CREATE_ROOM, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    C_CREATE_ROOM_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::Protocol::C_CREATE_ROOM>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string roomName = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 1, 0,
+      PROTOBUF_FIELD_OFFSET(C_CREATE_ROOM, _impl_.roomname_)}},
+    // string id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0,
+      PROTOBUF_FIELD_OFFSET(C_CREATE_ROOM, _impl_.id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string id = 1;
+    {PROTOBUF_FIELD_OFFSET(C_CREATE_ROOM, _impl_.id_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string roomName = 2;
+    {PROTOBUF_FIELD_OFFSET(C_CREATE_ROOM, _impl_.roomname_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\26\2\10\0\0\0\0\0"
+    "Protocol.C_CREATE_ROOM"
+    "id"
+    "roomName"
+  }},
+};
+PROTOBUF_NOINLINE void C_CREATE_ROOM::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_CREATE_ROOM)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _impl_.id_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.roomname_.ClearNonDefaultToEmpty();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL C_CREATE_ROOM::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const C_CREATE_ROOM& this_ = static_cast<const C_CREATE_ROOM&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL C_CREATE_ROOM::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const C_CREATE_ROOM& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_CREATE_ROOM)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // string id = 1;
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    if (!this_._internal_id().empty()) {
+      const ::std::string& _s = this_._internal_id();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.C_CREATE_ROOM.id");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  // string roomName = 2;
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (!this_._internal_roomname().empty()) {
+      const ::std::string& _s = this_._internal_roomname();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.C_CREATE_ROOM.roomName");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_CREATE_ROOM)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t C_CREATE_ROOM::ByteSizeLong(const MessageLite& base) {
+  const C_CREATE_ROOM& this_ = static_cast<const C_CREATE_ROOM&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t C_CREATE_ROOM::ByteSizeLong() const {
+  const C_CREATE_ROOM& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:Protocol.C_CREATE_ROOM)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    // string id = 1;
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!this_._internal_id().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_id());
+      }
+    }
+    // string roomName = 2;
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!this_._internal_roomname().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_roomname());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void C_CREATE_ROOM::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<C_CREATE_ROOM*>(&to_msg);
+  auto& from = static_cast<const C_CREATE_ROOM&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_CREATE_ROOM)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!from._internal_id().empty()) {
+        _this->_internal_set_id(from._internal_id());
+      } else {
+        if (_this->_impl_.id_.IsDefault()) {
+          _this->_internal_set_id("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!from._internal_roomname().empty()) {
+        _this->_internal_set_roomname(from._internal_roomname());
+      } else {
+        if (_this->_impl_.roomname_.IsDefault()) {
+          _this->_internal_set_roomname("");
+        }
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void C_CREATE_ROOM::CopyFrom(const C_CREATE_ROOM& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_CREATE_ROOM)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void C_CREATE_ROOM::InternalSwap(C_CREATE_ROOM* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.roomname_, &other->_impl_.roomname_, arena);
+}
+
+::google::protobuf::Metadata C_CREATE_ROOM::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class S_CREATE_ROOM::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<S_CREATE_ROOM>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(S_CREATE_ROOM, _impl_._has_bits_);
+};
+
+S_CREATE_ROOM::S_CREATE_ROOM(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, S_CREATE_ROOM_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_CREATE_ROOM)
+}
+PROTOBUF_NDEBUG_INLINE S_CREATE_ROOM::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::Protocol::S_CREATE_ROOM& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        roomname_(arena, from.roomname_) {}
+
+S_CREATE_ROOM::S_CREATE_ROOM(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const S_CREATE_ROOM& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, S_CREATE_ROOM_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  S_CREATE_ROOM* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.issuccess_ = from._impl_.issuccess_;
+
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_CREATE_ROOM)
+}
+PROTOBUF_NDEBUG_INLINE S_CREATE_ROOM::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        roomname_(arena) {}
+
+inline void S_CREATE_ROOM::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.issuccess_ = {};
+}
+S_CREATE_ROOM::~S_CREATE_ROOM() {
+  // @@protoc_insertion_point(destructor:Protocol.S_CREATE_ROOM)
+  SharedDtor(*this);
+}
+inline void S_CREATE_ROOM::SharedDtor(MessageLite& self) {
+  S_CREATE_ROOM& this_ = static_cast<S_CREATE_ROOM&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.roomname_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL S_CREATE_ROOM::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) S_CREATE_ROOM(arena);
+}
+constexpr auto S_CREATE_ROOM::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(S_CREATE_ROOM),
+                                            alignof(S_CREATE_ROOM));
+}
+constexpr auto S_CREATE_ROOM::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_S_CREATE_ROOM_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &S_CREATE_ROOM::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<S_CREATE_ROOM>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &S_CREATE_ROOM::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<S_CREATE_ROOM>(), &S_CREATE_ROOM::ByteSizeLong,
+              &S_CREATE_ROOM::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(S_CREATE_ROOM, _impl_._cached_size_),
+          false,
+      },
+      &S_CREATE_ROOM::kDescriptorMethods,
+      &descriptor_table_Protocol_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull S_CREATE_ROOM_class_data_ =
+        S_CREATE_ROOM::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+S_CREATE_ROOM::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&S_CREATE_ROOM_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(S_CREATE_ROOM_class_data_.tc_table);
+  return S_CREATE_ROOM_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 39, 2>
+S_CREATE_ROOM::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(S_CREATE_ROOM, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    S_CREATE_ROOM_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::Protocol::S_CREATE_ROOM>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string roomName = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 0, 0,
+      PROTOBUF_FIELD_OFFSET(S_CREATE_ROOM, _impl_.roomname_)}},
+    // bool isSuccess = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(S_CREATE_ROOM, _impl_.issuccess_), 1>(),
+     {8, 1, 0,
+      PROTOBUF_FIELD_OFFSET(S_CREATE_ROOM, _impl_.issuccess_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool isSuccess = 1;
+    {PROTOBUF_FIELD_OFFSET(S_CREATE_ROOM, _impl_.issuccess_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+    // string roomName = 2;
+    {PROTOBUF_FIELD_OFFSET(S_CREATE_ROOM, _impl_.roomname_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\26\0\10\0\0\0\0\0"
+    "Protocol.S_CREATE_ROOM"
+    "roomName"
+  }},
+};
+PROTOBUF_NOINLINE void S_CREATE_ROOM::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_CREATE_ROOM)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    _impl_.roomname_.ClearNonDefaultToEmpty();
+  }
+  _impl_.issuccess_ = false;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL S_CREATE_ROOM::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const S_CREATE_ROOM& this_ = static_cast<const S_CREATE_ROOM&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL S_CREATE_ROOM::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const S_CREATE_ROOM& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_CREATE_ROOM)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // bool isSuccess = 1;
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (this_._internal_issuccess() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteBoolToArray(
+          1, this_._internal_issuccess(), target);
+    }
+  }
+
+  // string roomName = 2;
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    if (!this_._internal_roomname().empty()) {
+      const ::std::string& _s = this_._internal_roomname();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.S_CREATE_ROOM.roomName");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_CREATE_ROOM)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t S_CREATE_ROOM::ByteSizeLong(const MessageLite& base) {
+  const S_CREATE_ROOM& this_ = static_cast<const S_CREATE_ROOM&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t S_CREATE_ROOM::ByteSizeLong() const {
+  const S_CREATE_ROOM& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:Protocol.S_CREATE_ROOM)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    // string roomName = 2;
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!this_._internal_roomname().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_roomname());
+      }
+    }
+    // bool isSuccess = 1;
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (this_._internal_issuccess() != 0) {
+        total_size += 2;
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void S_CREATE_ROOM::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<S_CREATE_ROOM*>(&to_msg);
+  auto& from = static_cast<const S_CREATE_ROOM&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_CREATE_ROOM)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!from._internal_roomname().empty()) {
+        _this->_internal_set_roomname(from._internal_roomname());
+      } else {
+        if (_this->_impl_.roomname_.IsDefault()) {
+          _this->_internal_set_roomname("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (from._internal_issuccess() != 0) {
+        _this->_impl_.issuccess_ = from._impl_.issuccess_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void S_CREATE_ROOM::CopyFrom(const S_CREATE_ROOM& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_CREATE_ROOM)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void S_CREATE_ROOM::InternalSwap(S_CREATE_ROOM* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.roomname_, &other->_impl_.roomname_, arena);
+  swap(_impl_.issuccess_, other->_impl_.issuccess_);
+}
+
+::google::protobuf::Metadata S_CREATE_ROOM::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class C_JOIN_ROOM::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<C_JOIN_ROOM>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(C_JOIN_ROOM, _impl_._has_bits_);
+};
+
+C_JOIN_ROOM::C_JOIN_ROOM(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, C_JOIN_ROOM_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_JOIN_ROOM)
+}
+PROTOBUF_NDEBUG_INLINE C_JOIN_ROOM::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::Protocol::C_JOIN_ROOM& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        id_(arena, from.id_),
+        roomname_(arena, from.roomname_) {}
+
+C_JOIN_ROOM::C_JOIN_ROOM(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const C_JOIN_ROOM& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, C_JOIN_ROOM_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  C_JOIN_ROOM* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_JOIN_ROOM)
+}
+PROTOBUF_NDEBUG_INLINE C_JOIN_ROOM::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        id_(arena),
+        roomname_(arena) {}
+
+inline void C_JOIN_ROOM::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+C_JOIN_ROOM::~C_JOIN_ROOM() {
+  // @@protoc_insertion_point(destructor:Protocol.C_JOIN_ROOM)
+  SharedDtor(*this);
+}
+inline void C_JOIN_ROOM::SharedDtor(MessageLite& self) {
+  C_JOIN_ROOM& this_ = static_cast<C_JOIN_ROOM&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.id_.Destroy();
+  this_._impl_.roomname_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL C_JOIN_ROOM::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) C_JOIN_ROOM(arena);
+}
+constexpr auto C_JOIN_ROOM::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(C_JOIN_ROOM),
+                                            alignof(C_JOIN_ROOM));
+}
+constexpr auto C_JOIN_ROOM::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_C_JOIN_ROOM_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &C_JOIN_ROOM::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<C_JOIN_ROOM>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &C_JOIN_ROOM::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<C_JOIN_ROOM>(), &C_JOIN_ROOM::ByteSizeLong,
+              &C_JOIN_ROOM::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(C_JOIN_ROOM, _impl_._cached_size_),
+          false,
+      },
+      &C_JOIN_ROOM::kDescriptorMethods,
+      &descriptor_table_Protocol_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull C_JOIN_ROOM_class_data_ =
+        C_JOIN_ROOM::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+C_JOIN_ROOM::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&C_JOIN_ROOM_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(C_JOIN_ROOM_class_data_.tc_table);
+  return C_JOIN_ROOM_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 39, 2>
+C_JOIN_ROOM::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(C_JOIN_ROOM, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    C_JOIN_ROOM_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::Protocol::C_JOIN_ROOM>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string roomName = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 1, 0,
+      PROTOBUF_FIELD_OFFSET(C_JOIN_ROOM, _impl_.roomname_)}},
+    // string id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0,
+      PROTOBUF_FIELD_OFFSET(C_JOIN_ROOM, _impl_.id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string id = 1;
+    {PROTOBUF_FIELD_OFFSET(C_JOIN_ROOM, _impl_.id_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string roomName = 2;
+    {PROTOBUF_FIELD_OFFSET(C_JOIN_ROOM, _impl_.roomname_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\24\2\10\0\0\0\0\0"
+    "Protocol.C_JOIN_ROOM"
+    "id"
+    "roomName"
+  }},
+};
+PROTOBUF_NOINLINE void C_JOIN_ROOM::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_JOIN_ROOM)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _impl_.id_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.roomname_.ClearNonDefaultToEmpty();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL C_JOIN_ROOM::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const C_JOIN_ROOM& this_ = static_cast<const C_JOIN_ROOM&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL C_JOIN_ROOM::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const C_JOIN_ROOM& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_JOIN_ROOM)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // string id = 1;
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    if (!this_._internal_id().empty()) {
+      const ::std::string& _s = this_._internal_id();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.C_JOIN_ROOM.id");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  // string roomName = 2;
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (!this_._internal_roomname().empty()) {
+      const ::std::string& _s = this_._internal_roomname();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.C_JOIN_ROOM.roomName");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_JOIN_ROOM)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t C_JOIN_ROOM::ByteSizeLong(const MessageLite& base) {
+  const C_JOIN_ROOM& this_ = static_cast<const C_JOIN_ROOM&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t C_JOIN_ROOM::ByteSizeLong() const {
+  const C_JOIN_ROOM& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:Protocol.C_JOIN_ROOM)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    // string id = 1;
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!this_._internal_id().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_id());
+      }
+    }
+    // string roomName = 2;
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!this_._internal_roomname().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_roomname());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void C_JOIN_ROOM::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<C_JOIN_ROOM*>(&to_msg);
+  auto& from = static_cast<const C_JOIN_ROOM&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_JOIN_ROOM)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!from._internal_id().empty()) {
+        _this->_internal_set_id(from._internal_id());
+      } else {
+        if (_this->_impl_.id_.IsDefault()) {
+          _this->_internal_set_id("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!from._internal_roomname().empty()) {
+        _this->_internal_set_roomname(from._internal_roomname());
+      } else {
+        if (_this->_impl_.roomname_.IsDefault()) {
+          _this->_internal_set_roomname("");
+        }
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void C_JOIN_ROOM::CopyFrom(const C_JOIN_ROOM& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_JOIN_ROOM)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void C_JOIN_ROOM::InternalSwap(C_JOIN_ROOM* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.roomname_, &other->_impl_.roomname_, arena);
+}
+
+::google::protobuf::Metadata C_JOIN_ROOM::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class S_JOIN_ROOM::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<S_JOIN_ROOM>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(S_JOIN_ROOM, _impl_._has_bits_);
+};
+
+S_JOIN_ROOM::S_JOIN_ROOM(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, S_JOIN_ROOM_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_JOIN_ROOM)
+}
+PROTOBUF_NDEBUG_INLINE S_JOIN_ROOM::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::Protocol::S_JOIN_ROOM& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        userids_{visibility, arena, from.userids_},
+        roomname_(arena, from.roomname_) {}
+
+S_JOIN_ROOM::S_JOIN_ROOM(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const S_JOIN_ROOM& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, S_JOIN_ROOM_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  S_JOIN_ROOM* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.issuccess_ = from._impl_.issuccess_;
+
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_JOIN_ROOM)
+}
+PROTOBUF_NDEBUG_INLINE S_JOIN_ROOM::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        userids_{visibility, arena},
+        roomname_(arena) {}
+
+inline void S_JOIN_ROOM::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.issuccess_ = {};
+}
+S_JOIN_ROOM::~S_JOIN_ROOM() {
+  // @@protoc_insertion_point(destructor:Protocol.S_JOIN_ROOM)
+  SharedDtor(*this);
+}
+inline void S_JOIN_ROOM::SharedDtor(MessageLite& self) {
+  S_JOIN_ROOM& this_ = static_cast<S_JOIN_ROOM&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.roomname_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL S_JOIN_ROOM::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) S_JOIN_ROOM(arena);
+}
+constexpr auto S_JOIN_ROOM::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(S_JOIN_ROOM, _impl_.userids_) +
+          decltype(S_JOIN_ROOM::_impl_.userids_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
+        sizeof(S_JOIN_ROOM), alignof(S_JOIN_ROOM), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&S_JOIN_ROOM::PlacementNew_,
+                                 sizeof(S_JOIN_ROOM),
+                                 alignof(S_JOIN_ROOM));
+  }
+}
+constexpr auto S_JOIN_ROOM::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_S_JOIN_ROOM_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &S_JOIN_ROOM::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<S_JOIN_ROOM>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &S_JOIN_ROOM::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<S_JOIN_ROOM>(), &S_JOIN_ROOM::ByteSizeLong,
+              &S_JOIN_ROOM::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(S_JOIN_ROOM, _impl_._cached_size_),
+          false,
+      },
+      &S_JOIN_ROOM::kDescriptorMethods,
+      &descriptor_table_Protocol_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull S_JOIN_ROOM_class_data_ =
+        S_JOIN_ROOM::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+S_JOIN_ROOM::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&S_JOIN_ROOM_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(S_JOIN_ROOM_class_data_.tc_table);
+  return S_JOIN_ROOM_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 44, 2>
+S_JOIN_ROOM::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(S_JOIN_ROOM, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    S_JOIN_ROOM_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::Protocol::S_JOIN_ROOM>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool isSuccess = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(S_JOIN_ROOM, _impl_.issuccess_), 2>(),
+     {8, 2, 0,
+      PROTOBUF_FIELD_OFFSET(S_JOIN_ROOM, _impl_.issuccess_)}},
+    // string roomName = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 1, 0,
+      PROTOBUF_FIELD_OFFSET(S_JOIN_ROOM, _impl_.roomname_)}},
+    // repeated string userIds = 3;
+    {::_pbi::TcParser::FastUR1,
+     {26, 0, 0,
+      PROTOBUF_FIELD_OFFSET(S_JOIN_ROOM, _impl_.userids_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool isSuccess = 1;
+    {PROTOBUF_FIELD_OFFSET(S_JOIN_ROOM, _impl_.issuccess_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+    // string roomName = 2;
+    {PROTOBUF_FIELD_OFFSET(S_JOIN_ROOM, _impl_.roomname_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string userIds = 3;
+    {PROTOBUF_FIELD_OFFSET(S_JOIN_ROOM, _impl_.userids_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+  }},
+  // no aux_entries
+  {{
+    "\24\0\10\7\0\0\0\0"
+    "Protocol.S_JOIN_ROOM"
+    "roomName"
+    "userIds"
+  }},
+};
+PROTOBUF_NOINLINE void S_JOIN_ROOM::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_JOIN_ROOM)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      _impl_.userids_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.roomname_.ClearNonDefaultToEmpty();
+    }
+  }
+  _impl_.issuccess_ = false;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL S_JOIN_ROOM::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const S_JOIN_ROOM& this_ = static_cast<const S_JOIN_ROOM&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL S_JOIN_ROOM::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const S_JOIN_ROOM& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_JOIN_ROOM)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // bool isSuccess = 1;
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (this_._internal_issuccess() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteBoolToArray(
+          1, this_._internal_issuccess(), target);
+    }
+  }
+
+  // string roomName = 2;
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (!this_._internal_roomname().empty()) {
+      const ::std::string& _s = this_._internal_roomname();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.S_JOIN_ROOM.roomName");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  // repeated string userIds = 3;
+  if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+    for (int i = 0, n = this_._internal_userids_size(); i < n; ++i) {
+      const auto& s = this_._internal_userids().Get(i);
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.S_JOIN_ROOM.userIds");
+      target = stream->WriteString(3, s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_JOIN_ROOM)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t S_JOIN_ROOM::ByteSizeLong(const MessageLite& base) {
+  const S_JOIN_ROOM& this_ = static_cast<const S_JOIN_ROOM&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t S_JOIN_ROOM::ByteSizeLong() const {
+  const S_JOIN_ROOM& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:Protocol.S_JOIN_ROOM)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    // repeated string userIds = 3;
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      total_size +=
+          1 * ::google::protobuf::internal::FromIntSize(this_._internal_userids().size());
+      for (int i = 0, n = this_._internal_userids().size(); i < n; ++i) {
+        total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+            this_._internal_userids().Get(i));
+      }
+    }
+    // string roomName = 2;
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!this_._internal_roomname().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_roomname());
+      }
+    }
+    // bool isSuccess = 1;
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (this_._internal_issuccess() != 0) {
+        total_size += 2;
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void S_JOIN_ROOM::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<S_JOIN_ROOM*>(&to_msg);
+  auto& from = static_cast<const S_JOIN_ROOM&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_JOIN_ROOM)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      _this->_internal_mutable_userids()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_userids());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!from._internal_roomname().empty()) {
+        _this->_internal_set_roomname(from._internal_roomname());
+      } else {
+        if (_this->_impl_.roomname_.IsDefault()) {
+          _this->_internal_set_roomname("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (from._internal_issuccess() != 0) {
+        _this->_impl_.issuccess_ = from._impl_.issuccess_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void S_JOIN_ROOM::CopyFrom(const S_JOIN_ROOM& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_JOIN_ROOM)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void S_JOIN_ROOM::InternalSwap(S_JOIN_ROOM* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.userids_.InternalSwap(&other->_impl_.userids_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.roomname_, &other->_impl_.roomname_, arena);
+  swap(_impl_.issuccess_, other->_impl_.issuccess_);
+}
+
+::google::protobuf::Metadata S_JOIN_ROOM::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class S_REFRESH_ROOM::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<S_REFRESH_ROOM>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(S_REFRESH_ROOM, _impl_._has_bits_);
+};
+
+S_REFRESH_ROOM::S_REFRESH_ROOM(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, S_REFRESH_ROOM_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_REFRESH_ROOM)
+}
+PROTOBUF_NDEBUG_INLINE S_REFRESH_ROOM::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::Protocol::S_REFRESH_ROOM& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        userids_{visibility, arena, from.userids_} {}
+
+S_REFRESH_ROOM::S_REFRESH_ROOM(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const S_REFRESH_ROOM& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, S_REFRESH_ROOM_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  S_REFRESH_ROOM* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_REFRESH_ROOM)
+}
+PROTOBUF_NDEBUG_INLINE S_REFRESH_ROOM::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        userids_{visibility, arena} {}
+
+inline void S_REFRESH_ROOM::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+S_REFRESH_ROOM::~S_REFRESH_ROOM() {
+  // @@protoc_insertion_point(destructor:Protocol.S_REFRESH_ROOM)
+  SharedDtor(*this);
+}
+inline void S_REFRESH_ROOM::SharedDtor(MessageLite& self) {
+  S_REFRESH_ROOM& this_ = static_cast<S_REFRESH_ROOM&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL S_REFRESH_ROOM::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) S_REFRESH_ROOM(arena);
+}
+constexpr auto S_REFRESH_ROOM::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(S_REFRESH_ROOM, _impl_.userids_) +
+          decltype(S_REFRESH_ROOM::_impl_.userids_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(S_REFRESH_ROOM), alignof(S_REFRESH_ROOM), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&S_REFRESH_ROOM::PlacementNew_,
+                                 sizeof(S_REFRESH_ROOM),
+                                 alignof(S_REFRESH_ROOM));
+  }
+}
+constexpr auto S_REFRESH_ROOM::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_S_REFRESH_ROOM_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &S_REFRESH_ROOM::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<S_REFRESH_ROOM>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &S_REFRESH_ROOM::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<S_REFRESH_ROOM>(), &S_REFRESH_ROOM::ByteSizeLong,
+              &S_REFRESH_ROOM::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(S_REFRESH_ROOM, _impl_._cached_size_),
+          false,
+      },
+      &S_REFRESH_ROOM::kDescriptorMethods,
+      &descriptor_table_Protocol_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull S_REFRESH_ROOM_class_data_ =
+        S_REFRESH_ROOM::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+S_REFRESH_ROOM::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&S_REFRESH_ROOM_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(S_REFRESH_ROOM_class_data_.tc_table);
+  return S_REFRESH_ROOM_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 39, 2>
+S_REFRESH_ROOM::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(S_REFRESH_ROOM, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    S_REFRESH_ROOM_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::Protocol::S_REFRESH_ROOM>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated string userIds = 1;
+    {::_pbi::TcParser::FastUR1,
+     {10, 0, 0,
+      PROTOBUF_FIELD_OFFSET(S_REFRESH_ROOM, _impl_.userids_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated string userIds = 1;
+    {PROTOBUF_FIELD_OFFSET(S_REFRESH_ROOM, _impl_.userids_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+  }},
+  // no aux_entries
+  {{
+    "\27\7\0\0\0\0\0\0"
+    "Protocol.S_REFRESH_ROOM"
+    "userIds"
+  }},
+};
+PROTOBUF_NOINLINE void S_REFRESH_ROOM::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_REFRESH_ROOM)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+    _impl_.userids_.Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL S_REFRESH_ROOM::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const S_REFRESH_ROOM& this_ = static_cast<const S_REFRESH_ROOM&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL S_REFRESH_ROOM::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const S_REFRESH_ROOM& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_REFRESH_ROOM)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // repeated string userIds = 1;
+  if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+    for (int i = 0, n = this_._internal_userids_size(); i < n; ++i) {
+      const auto& s = this_._internal_userids().Get(i);
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.S_REFRESH_ROOM.userIds");
+      target = stream->WriteString(1, s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_REFRESH_ROOM)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t S_REFRESH_ROOM::ByteSizeLong(const MessageLite& base) {
+  const S_REFRESH_ROOM& this_ = static_cast<const S_REFRESH_ROOM&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t S_REFRESH_ROOM::ByteSizeLong() const {
+  const S_REFRESH_ROOM& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:Protocol.S_REFRESH_ROOM)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+   {
+    // repeated string userIds = 1;
+    cached_has_bits = this_._impl_._has_bits_[0];
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      total_size +=
+          1 * ::google::protobuf::internal::FromIntSize(this_._internal_userids().size());
+      for (int i = 0, n = this_._internal_userids().size(); i < n; ++i) {
+        total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+            this_._internal_userids().Get(i));
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void S_REFRESH_ROOM::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<S_REFRESH_ROOM*>(&to_msg);
+  auto& from = static_cast<const S_REFRESH_ROOM&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_REFRESH_ROOM)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+    _this->_internal_mutable_userids()->InternalMergeFromWithArena(
+        ::google::protobuf::MessageLite::internal_visibility(), arena,
+        from._internal_userids());
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void S_REFRESH_ROOM::CopyFrom(const S_REFRESH_ROOM& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_REFRESH_ROOM)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void S_REFRESH_ROOM::InternalSwap(S_REFRESH_ROOM* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.userids_.InternalSwap(&other->_impl_.userids_);
+}
+
+::google::protobuf::Metadata S_REFRESH_ROOM::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class C_CHAT_LOG::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<C_CHAT_LOG>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(C_CHAT_LOG, _impl_._has_bits_);
+};
+
+C_CHAT_LOG::C_CHAT_LOG(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, C_CHAT_LOG_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_CHAT_LOG)
+}
+PROTOBUF_NDEBUG_INLINE C_CHAT_LOG::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::Protocol::C_CHAT_LOG& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        id_(arena, from.id_),
+        roomname_(arena, from.roomname_),
+        log_(arena, from.log_) {}
+
+C_CHAT_LOG::C_CHAT_LOG(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const C_CHAT_LOG& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, C_CHAT_LOG_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  C_CHAT_LOG* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_CHAT_LOG)
+}
+PROTOBUF_NDEBUG_INLINE C_CHAT_LOG::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        id_(arena),
+        roomname_(arena),
+        log_(arena) {}
+
+inline void C_CHAT_LOG::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+C_CHAT_LOG::~C_CHAT_LOG() {
+  // @@protoc_insertion_point(destructor:Protocol.C_CHAT_LOG)
+  SharedDtor(*this);
+}
+inline void C_CHAT_LOG::SharedDtor(MessageLite& self) {
+  C_CHAT_LOG& this_ = static_cast<C_CHAT_LOG&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.id_.Destroy();
+  this_._impl_.roomname_.Destroy();
+  this_._impl_.log_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL C_CHAT_LOG::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) C_CHAT_LOG(arena);
+}
+constexpr auto C_CHAT_LOG::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(C_CHAT_LOG),
+                                            alignof(C_CHAT_LOG));
+}
+constexpr auto C_CHAT_LOG::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_C_CHAT_LOG_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &C_CHAT_LOG::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<C_CHAT_LOG>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &C_CHAT_LOG::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<C_CHAT_LOG>(), &C_CHAT_LOG::ByteSizeLong,
+              &C_CHAT_LOG::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(C_CHAT_LOG, _impl_._cached_size_),
+          false,
+      },
+      &C_CHAT_LOG::kDescriptorMethods,
+      &descriptor_table_Protocol_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull C_CHAT_LOG_class_data_ =
+        C_CHAT_LOG::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+C_CHAT_LOG::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&C_CHAT_LOG_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(C_CHAT_LOG_class_data_.tc_table);
+  return C_CHAT_LOG_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 41, 2>
+C_CHAT_LOG::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(C_CHAT_LOG, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    C_CHAT_LOG_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::Protocol::C_CHAT_LOG>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0,
+      PROTOBUF_FIELD_OFFSET(C_CHAT_LOG, _impl_.id_)}},
+    // string roomName = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 1, 0,
+      PROTOBUF_FIELD_OFFSET(C_CHAT_LOG, _impl_.roomname_)}},
+    // string log = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 2, 0,
+      PROTOBUF_FIELD_OFFSET(C_CHAT_LOG, _impl_.log_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string id = 1;
+    {PROTOBUF_FIELD_OFFSET(C_CHAT_LOG, _impl_.id_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string roomName = 2;
+    {PROTOBUF_FIELD_OFFSET(C_CHAT_LOG, _impl_.roomname_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string log = 3;
+    {PROTOBUF_FIELD_OFFSET(C_CHAT_LOG, _impl_.log_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\23\2\10\3\0\0\0\0"
+    "Protocol.C_CHAT_LOG"
+    "id"
+    "roomName"
+    "log"
+  }},
+};
+PROTOBUF_NOINLINE void C_CHAT_LOG::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_CHAT_LOG)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _impl_.id_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.roomname_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      _impl_.log_.ClearNonDefaultToEmpty();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL C_CHAT_LOG::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const C_CHAT_LOG& this_ = static_cast<const C_CHAT_LOG&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL C_CHAT_LOG::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const C_CHAT_LOG& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_CHAT_LOG)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // string id = 1;
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    if (!this_._internal_id().empty()) {
+      const ::std::string& _s = this_._internal_id();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.C_CHAT_LOG.id");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  // string roomName = 2;
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (!this_._internal_roomname().empty()) {
+      const ::std::string& _s = this_._internal_roomname();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.C_CHAT_LOG.roomName");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  // string log = 3;
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (!this_._internal_log().empty()) {
+      const ::std::string& _s = this_._internal_log();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.C_CHAT_LOG.log");
+      target = stream->WriteStringMaybeAliased(3, _s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_CHAT_LOG)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t C_CHAT_LOG::ByteSizeLong(const MessageLite& base) {
+  const C_CHAT_LOG& this_ = static_cast<const C_CHAT_LOG&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t C_CHAT_LOG::ByteSizeLong() const {
+  const C_CHAT_LOG& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:Protocol.C_CHAT_LOG)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    // string id = 1;
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!this_._internal_id().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_id());
+      }
+    }
+    // string roomName = 2;
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!this_._internal_roomname().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_roomname());
+      }
+    }
+    // string log = 3;
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (!this_._internal_log().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_log());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void C_CHAT_LOG::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<C_CHAT_LOG*>(&to_msg);
+  auto& from = static_cast<const C_CHAT_LOG&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_CHAT_LOG)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!from._internal_id().empty()) {
+        _this->_internal_set_id(from._internal_id());
+      } else {
+        if (_this->_impl_.id_.IsDefault()) {
+          _this->_internal_set_id("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!from._internal_roomname().empty()) {
+        _this->_internal_set_roomname(from._internal_roomname());
+      } else {
+        if (_this->_impl_.roomname_.IsDefault()) {
+          _this->_internal_set_roomname("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (!from._internal_log().empty()) {
+        _this->_internal_set_log(from._internal_log());
+      } else {
+        if (_this->_impl_.log_.IsDefault()) {
+          _this->_internal_set_log("");
+        }
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void C_CHAT_LOG::CopyFrom(const C_CHAT_LOG& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_CHAT_LOG)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void C_CHAT_LOG::InternalSwap(C_CHAT_LOG* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.roomname_, &other->_impl_.roomname_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.log_, &other->_impl_.log_, arena);
+}
+
+::google::protobuf::Metadata C_CHAT_LOG::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class S_CHAT_LOG::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<S_CHAT_LOG>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(S_CHAT_LOG, _impl_._has_bits_);
+};
+
+S_CHAT_LOG::S_CHAT_LOG(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, S_CHAT_LOG_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_CHAT_LOG)
+}
+PROTOBUF_NDEBUG_INLINE S_CHAT_LOG::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::Protocol::S_CHAT_LOG& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        id_(arena, from.id_),
+        log_(arena, from.log_) {}
+
+S_CHAT_LOG::S_CHAT_LOG(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const S_CHAT_LOG& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, S_CHAT_LOG_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  S_CHAT_LOG* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_CHAT_LOG)
+}
+PROTOBUF_NDEBUG_INLINE S_CHAT_LOG::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        id_(arena),
+        log_(arena) {}
+
+inline void S_CHAT_LOG::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+S_CHAT_LOG::~S_CHAT_LOG() {
+  // @@protoc_insertion_point(destructor:Protocol.S_CHAT_LOG)
+  SharedDtor(*this);
+}
+inline void S_CHAT_LOG::SharedDtor(MessageLite& self) {
+  S_CHAT_LOG& this_ = static_cast<S_CHAT_LOG&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.id_.Destroy();
+  this_._impl_.log_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL S_CHAT_LOG::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) S_CHAT_LOG(arena);
+}
+constexpr auto S_CHAT_LOG::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(S_CHAT_LOG),
+                                            alignof(S_CHAT_LOG));
+}
+constexpr auto S_CHAT_LOG::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_S_CHAT_LOG_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &S_CHAT_LOG::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<S_CHAT_LOG>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &S_CHAT_LOG::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<S_CHAT_LOG>(), &S_CHAT_LOG::ByteSizeLong,
+              &S_CHAT_LOG::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(S_CHAT_LOG, _impl_._cached_size_),
+          false,
+      },
+      &S_CHAT_LOG::kDescriptorMethods,
+      &descriptor_table_Protocol_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull S_CHAT_LOG_class_data_ =
+        S_CHAT_LOG::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+S_CHAT_LOG::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&S_CHAT_LOG_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(S_CHAT_LOG_class_data_.tc_table);
+  return S_CHAT_LOG_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 33, 2>
+S_CHAT_LOG::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(S_CHAT_LOG, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    S_CHAT_LOG_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::Protocol::S_CHAT_LOG>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string log = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 1, 0,
+      PROTOBUF_FIELD_OFFSET(S_CHAT_LOG, _impl_.log_)}},
+    // string id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0,
+      PROTOBUF_FIELD_OFFSET(S_CHAT_LOG, _impl_.id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string id = 1;
+    {PROTOBUF_FIELD_OFFSET(S_CHAT_LOG, _impl_.id_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string log = 2;
+    {PROTOBUF_FIELD_OFFSET(S_CHAT_LOG, _impl_.log_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\23\2\3\0\0\0\0\0"
+    "Protocol.S_CHAT_LOG"
+    "id"
+    "log"
+  }},
+};
+PROTOBUF_NOINLINE void S_CHAT_LOG::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_CHAT_LOG)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _impl_.id_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.log_.ClearNonDefaultToEmpty();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL S_CHAT_LOG::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const S_CHAT_LOG& this_ = static_cast<const S_CHAT_LOG&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL S_CHAT_LOG::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const S_CHAT_LOG& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_CHAT_LOG)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // string id = 1;
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    if (!this_._internal_id().empty()) {
+      const ::std::string& _s = this_._internal_id();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.S_CHAT_LOG.id");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  // string log = 2;
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (!this_._internal_log().empty()) {
+      const ::std::string& _s = this_._internal_log();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Protocol.S_CHAT_LOG.log");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_CHAT_LOG)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t S_CHAT_LOG::ByteSizeLong(const MessageLite& base) {
+  const S_CHAT_LOG& this_ = static_cast<const S_CHAT_LOG&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t S_CHAT_LOG::ByteSizeLong() const {
+  const S_CHAT_LOG& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:Protocol.S_CHAT_LOG)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    // string id = 1;
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!this_._internal_id().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_id());
+      }
+    }
+    // string log = 2;
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!this_._internal_log().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_log());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void S_CHAT_LOG::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<S_CHAT_LOG*>(&to_msg);
+  auto& from = static_cast<const S_CHAT_LOG&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_CHAT_LOG)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!from._internal_id().empty()) {
+        _this->_internal_set_id(from._internal_id());
+      } else {
+        if (_this->_impl_.id_.IsDefault()) {
+          _this->_internal_set_id("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!from._internal_log().empty()) {
+        _this->_internal_set_log(from._internal_log());
+      } else {
+        if (_this->_impl_.log_.IsDefault()) {
+          _this->_internal_set_log("");
+        }
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void S_CHAT_LOG::CopyFrom(const S_CHAT_LOG& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_CHAT_LOG)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void S_CHAT_LOG::InternalSwap(S_CHAT_LOG* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.log_, &other->_impl_.log_, arena);
+}
+
+::google::protobuf::Metadata S_CHAT_LOG::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class C_ROOM_OUT::_Internal {
+ public:
+};
+
+C_ROOM_OUT::C_ROOM_OUT(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, C_ROOM_OUT_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_ROOM_OUT)
+}
+C_ROOM_OUT::C_ROOM_OUT(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const C_ROOM_OUT& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, C_ROOM_OUT_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  C_ROOM_OUT* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_ROOM_OUT)
+}
+
+inline void* PROTOBUF_NONNULL C_ROOM_OUT::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) C_ROOM_OUT(arena);
+}
+constexpr auto C_ROOM_OUT::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(C_ROOM_OUT),
+                                            alignof(C_ROOM_OUT));
+}
+constexpr auto C_ROOM_OUT::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_C_ROOM_OUT_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &C_ROOM_OUT::MergeImpl,
+          ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<C_ROOM_OUT>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &C_ROOM_OUT::SharedDtor,
+          ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<C_ROOM_OUT>(), &C_ROOM_OUT::ByteSizeLong,
+              &C_ROOM_OUT::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(C_ROOM_OUT, _impl_._cached_size_),
+          false,
+      },
+      &C_ROOM_OUT::kDescriptorMethods,
+      &descriptor_table_Protocol_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull C_ROOM_OUT_class_data_ =
+        C_ROOM_OUT::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+C_ROOM_OUT::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&C_ROOM_OUT_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(C_ROOM_OUT_class_data_.tc_table);
+  return C_ROOM_OUT_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2>
+C_ROOM_OUT::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    C_ROOM_OUT_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::Protocol::C_ROOM_OUT>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+::google::protobuf::Metadata C_ROOM_OUT::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class S_ROOM_OUT::_Internal {
+ public:
+};
+
+S_ROOM_OUT::S_ROOM_OUT(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, S_ROOM_OUT_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_ROOM_OUT)
+}
+S_ROOM_OUT::S_ROOM_OUT(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const S_ROOM_OUT& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, S_ROOM_OUT_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  S_ROOM_OUT* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_ROOM_OUT)
+}
+
+inline void* PROTOBUF_NONNULL S_ROOM_OUT::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) S_ROOM_OUT(arena);
+}
+constexpr auto S_ROOM_OUT::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(S_ROOM_OUT),
+                                            alignof(S_ROOM_OUT));
+}
+constexpr auto S_ROOM_OUT::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_S_ROOM_OUT_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &S_ROOM_OUT::MergeImpl,
+          ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<S_ROOM_OUT>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &S_ROOM_OUT::SharedDtor,
+          ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<S_ROOM_OUT>(), &S_ROOM_OUT::ByteSizeLong,
+              &S_ROOM_OUT::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(S_ROOM_OUT, _impl_._cached_size_),
+          false,
+      },
+      &S_ROOM_OUT::kDescriptorMethods,
+      &descriptor_table_Protocol_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull S_ROOM_OUT_class_data_ =
+        S_ROOM_OUT::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+S_ROOM_OUT::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&S_ROOM_OUT_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(S_ROOM_OUT_class_data_.tc_table);
+  return S_ROOM_OUT_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2>
+S_ROOM_OUT::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    S_ROOM_OUT_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::Protocol::S_ROOM_OUT>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+::google::protobuf::Metadata S_ROOM_OUT::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace Protocol

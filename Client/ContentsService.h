@@ -24,18 +24,18 @@ public:
 		Send(pkt);
 	}
 
-	static void Execute(T model)
+	static void Execute(T model, bool isClear=true)
 	{
 		WriteLockGuard guard(_lock);
 
 		if (_callback)_callback(model);
-		_callback = nullptr;
+		if(isClear)_callback = nullptr;
 
 	}
 
 private:
 	template<typename U>
-	void Send(U& pkt)
+	void Send(U&& pkt)
 	{
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(pkt);
 		ClientGlobal::GServerSession->Send(sendBuffer);

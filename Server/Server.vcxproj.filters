@@ -51,7 +51,10 @@
     <ClCompile Include="LobbyRespondent.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ChatLogRespondent.cpp">
+    <ClCompile Include="RoomHandler.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomRepondent.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,7 +83,13 @@
     <ClInclude Include="LobbyRespondent.h">
       <Filter>헤더 파일\PacketRespondent</Filter>
     </ClInclude>
-    <ClInclude Include="ChatLogRespondent.h">
+    <ClInclude Include="RoomHandler.h">
+      <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomRepondent.h">
+      <Filter>헤더 파일\PacketRespondent</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketRespondentGroub.h">
       <Filter>헤더 파일\PacketRespondent</Filter>
     </ClInclude>
   </ItemGroup>
