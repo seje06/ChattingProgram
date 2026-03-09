@@ -34,15 +34,59 @@ int main()
     ASSERT_CRASH(GDBConnectionPool->Connect(20, L"DRIVER={MySQL ODBC 8.0 Unicode Driver};SERVER=localhost;PORT=3306;DATABASE=chat;UID=root;PWD=1234;"));
 
     DBConnection* dbConn = GDBConnectionPool->Pop();
-    auto query = L"DROP TABLE IF EXISTS `chat`.`account`;";
+
+    auto query = L"DROP TABLE IF EXISTS `chat`.`room`;";
     ASSERT_CRASH(dbConn->Execute(query));
+    // 룸 테이블 생성
+    query = LR"(
+    CREATE TABLE IF NOT EXISTS `chat`.`room` (
+        `room_id` INT NOT NULL AUTO_INCREMENT,
+        `room_name` VARCHAR(30) NOT NULL,
+        `user_count` INT NOT NULL DEFAULT 1,
+        PRIMARY KEY (`room_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+)";
+    ASSERT_CRASH(dbConn->Execute(query));
+
+    query = L"DROP TABLE IF EXISTS `chat`.`account`;";
+    ASSERT_CRASH(dbConn->Execute(query));
+    // 계정 테이블 생성
     query = LR"(
     CREATE TABLE `chat`.`account` (
         `id` VARCHAR(30) NOT NULL,
         `password` VARCHAR(255) NOT NULL,
         `create_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `is_online` BOOL NOT NULL DEFAULT 0,
-        PRIMARY KEY (`id`)
+        `current_room_id` INT NULL,
+        PRIMARY KEY (`id`),
+        CONSTRAINT `fk_account_room`
+            FOREIGN KEY (`current_room_id`) 
+            REFERENCES `chat`.`room` (`room_id`) 
+            ON DELETE SET NULL
+            ON UPDATE CASCADE
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+)";
+    ASSERT_CRASH(dbConn->Execute(query));
+
+    auto query = L"DROP TABLE IF EXISTS `chat`.`room`;";
+    ASSERT_CRASH(dbConn->Execute(query));
+    //채팅 기록 테이블 생성
+    query = LR"(
+    CREATE TABLE `chat`.`chat_log` (
+        `log_id` INT NOT NULL AUTO_INCREMENT,
+        `account_id` VARCHAR(30),
+        `room_id` INT,
+        `message` TEXT NOT NULL,
+        `send_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (`log_id`),
+        -- 유저 삭제 시 로그 삭제
+        CONSTRAINT `fk_log_account`
+            FOREIGN KEY (`account_id`) REFERENCES `chat`.`account` (`id`)
+            ON DELETE CASCADE ON UPDATE CASCADE,
+        -- 방 삭제 시 로그 삭제
+        CONSTRAINT `fk_log_room`
+            FOREIGN KEY (`room_id`) REFERENCES `chat`.`room` (`room_id`)
+            ON DELETE CASCADE ON UPDATE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 )";
     ASSERT_CRASH(dbConn->Execute(query));

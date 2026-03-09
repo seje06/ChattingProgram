@@ -19,6 +19,9 @@
     <Filter Include="헤더 파일\Main">
       <UniqueIdentifier>{6981b115-a3a0-4892-833b-d72607d80058}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\PacketRespondent">
+      <UniqueIdentifier>{b53faf43-d338-49bf-9d20-8aa3a8a17523}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Server.cpp">
@@ -39,6 +42,18 @@
     <ClCompile Include="ClientSessionManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="PacketRespondent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AuthRespondent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LobbyRespondent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ChatLogRespondent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Protocol.pb.h">
@@ -55,6 +70,18 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketRespondent.h">
+      <Filter>헤더 파일\PacketRespondent</Filter>
+    </ClInclude>
+    <ClInclude Include="AuthRespondent.h">
+      <Filter>헤더 파일\PacketRespondent</Filter>
+    </ClInclude>
+    <ClInclude Include="LobbyRespondent.h">
+      <Filter>헤더 파일\PacketRespondent</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatLogRespondent.h">
+      <Filter>헤더 파일\PacketRespondent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

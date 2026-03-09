@@ -155,9 +155,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AuthRespondent.cpp" />
+    <ClCompile Include="ChatLogRespondent.cpp" />
     <ClCompile Include="ClientPacketHandler.cpp" />
     <ClCompile Include="ClientSession.cpp" />
     <ClCompile Include="ClientSessionManager.cpp" />
+    <ClCompile Include="LobbyRespondent.cpp" />
+    <ClCompile Include="PacketRespondent.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -173,9 +177,13 @@
     <ClCompile Include="Server.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AuthRespondent.h" />
+    <ClInclude Include="ChatLogRespondent.h" />
     <ClInclude Include="ClientPacketHandler.h" />
     <ClInclude Include="ClientSession.h" />
     <ClInclude Include="ClientSessionManager.h" />
+    <ClInclude Include="LobbyRespondent.h" />
+    <ClInclude Include="PacketRespondent.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Protocol.pb.h" />
   </ItemGroup>
