@@ -13,8 +13,12 @@ public:
 	virtual ~CPageRoom();
 
 	void AddCharLine(const CString& line);
+	void ClearChatLines();
 	void ClearUsers();
 	void AddUser(const CString& name);
+
+	void SetRoomName(CString& name);
+	CString GetRoomName();
 
 	CString GetChatText() const { return _chatText; }
 // 대화 상자 데이터입니다.
@@ -35,4 +39,5 @@ private:
 	CListBox _chatLog;
 	CListBox _users;
 	CString _chatText;
+	CString _roomName;
 };

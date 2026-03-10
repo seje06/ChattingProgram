@@ -26,6 +26,7 @@ void LoginHandler::Execute(UIEvent ev, CDialogEx* page)
 		OnRegisterCompleted(loginPg);
 		break;
 	default:
+		CRASH("mapping");
 		break;
 	}
 
@@ -47,11 +48,12 @@ void LoginHandler::OnClickedLogin(CPageLogin* loginPg)
 void LoginHandler::OnLoginCompleted(CPageLogin* loginPg)
 {	
 	bool isEmpty;
-	auto data = AuthModel::Pop(isEmpty);
+	auto data = AuthModel::Front(isEmpty);
 	ASSERT_CRASH(!isEmpty);
 	if (!data.isSuccess)
 	{
 		AfxMessageBox(L"로그인 실패!.", MB_OK | MB_ICONERROR);
+		AuthModel::Pop(isEmpty);
 		return;
 	}
 	loginPg->ShowWindow(SW_HIDE);
@@ -75,13 +77,14 @@ void LoginHandler::OnClickedRegister(CPageLogin* loginPg)
 void LoginHandler::OnRegisterCompleted(CPageLogin* loginPg)
 {
 	bool isEmpty;
-	auto data = AuthModel::Pop(isEmpty);
+	auto data = AuthModel::Front(isEmpty);
 	ASSERT_CRASH(!isEmpty);
 	if (!data.isSuccess)
 	{
 		AfxMessageBox(L"회원가입 실패!.", MB_OK | MB_ICONERROR);
+		AuthModel::Pop(isEmpty);
 		return;
 	}
-
+	AuthModel::Pop(isEmpty);
 	AfxMessageBox(L"회원가입이 완료되었습니다.", MB_OK | MB_ICONINFORMATION);
 }

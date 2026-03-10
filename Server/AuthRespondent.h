@@ -27,14 +27,14 @@ public:
             bool canLogin = dbBind.Fetch();
             if (canLogin)
             {
-                DBBind<2, 0> dbBind(*dbConn, L"UPDATE chat.account SET is_online = ? WHERE id = ?;");
+                DBBind<2, 0> dbBind1(*dbConn, L"UPDATE chat.account SET is_online = ? WHERE id = ?;");
 
                 bool isOnline = true;
-                dbBind.BindParam(0, isOnline);
+                dbBind1.BindParam(0, isOnline);
 
-                dbBind.BindParam(1, (WCHAR*)id.data());
+                dbBind1.BindParam(1, (WCHAR*)id.data());
 
-                ASSERT_CRASH(dbBind.Execute());
+                ASSERT_CRASH(dbBind1.Execute());
             }      
 
             pktS.set_issuccess(canLogin); // 해당하는 아이디 있고, 오프라인상태면 성공

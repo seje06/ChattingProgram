@@ -34,6 +34,11 @@ void CPageRoom::AddCharLine(const CString& line)
 	}
 }
 
+void CPageRoom::ClearChatLines()
+{
+	_chatLog.ResetContent();
+}
+
 void CPageRoom::ClearUsers()
 {
 	// 유저 목록 전체 삭제
@@ -44,6 +49,16 @@ void CPageRoom::AddUser(const CString& name)
 {
 	// 유저 목록에 한 명 추가
 	_users.AddString(name);
+}
+
+void CPageRoom::SetRoomName(CString& name)
+{
+	_roomName = name;
+}
+
+CString CPageRoom::GetRoomName()
+{
+	return _roomName;
 }
 
 void CPageRoom::DoDataExchange(CDataExchange* pDX)

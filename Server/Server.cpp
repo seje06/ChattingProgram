@@ -49,20 +49,22 @@ int main()
         `room_id` INT NOT NULL AUTO_INCREMENT,
         `room_name` VARCHAR(30) NOT NULL,
         `user_count` INT NOT NULL DEFAULT 1,
-        PRIMARY KEY (`room_id`)
+        PRIMARY KEY (`room_id`),
+        UNIQUE KEY `uq_room_name` (`room_name`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-)";
+    )";
     ASSERT_CRASH(dbConn->Execute(query));
 
     // 계정 테이블 생성
     query = LR"(
-    CREATE TABLE `chat`.`account` (
+        CREATE TABLE IF NOT EXISTS `chat`.`account` (
         `id` VARCHAR(30) NOT NULL,
         `password` VARCHAR(255) NOT NULL,
         `create_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `is_online` BOOL NOT NULL DEFAULT 0,
         `current_room_id` INT NULL,
         PRIMARY KEY (`id`),
+        INDEX `idx_account_current_room_id` (`current_room_id`),
         CONSTRAINT `fk_account_room`
             FOREIGN KEY (`current_room_id`) 
             REFERENCES `chat`.`room` (`room_id`) 
@@ -74,18 +76,16 @@ int main()
 
     //채팅 기록 테이블 생성
     query = LR"(
-    CREATE TABLE `chat`.`log` (
+    CREATE TABLE IF NOT EXISTS `chat`.`log` (
         `log_id` INT NOT NULL AUTO_INCREMENT,
         `account_id` VARCHAR(30),
         `room_id` INT,
         `message` TEXT NOT NULL,
         `send_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (`log_id`),
-        -- 유저 삭제 시 로그 삭제
         CONSTRAINT `fk_log_account`
             FOREIGN KEY (`account_id`) REFERENCES `chat`.`account` (`id`)
             ON DELETE CASCADE ON UPDATE CASCADE,
-        -- 방 삭제 시 로그 삭제
         CONSTRAINT `fk_log_room`
             FOREIGN KEY (`room_id`) REFERENCES `chat`.`room` (`room_id`)
             ON DELETE CASCADE ON UPDATE CASCADE

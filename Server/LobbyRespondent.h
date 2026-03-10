@@ -38,10 +38,10 @@ public:
 	PacketRespondent(shared_ptr<PacketSession>& session, Protocol::C_CREATE_ROOM& pkt, OUT bool& isSuccess)
 	{
 		RESPONSE_START(session, pkt)
-			DBBind<1, 1> dbBind(*dbConn, L"SELECT room_id FROM chat.room WHERE room_id = ?;");
+			DBBind<1, 1> dbBind(*dbConn, L"SELECT room_id FROM chat.room WHERE room_name = ?;");
 			wstring roomName = Utf8ToWstring(pkt.roomname());
 			dbBind.BindParam(0, (WCHAR*)roomName.data());
-			WCHAR outRoomId[14];
+			int outRoomId;
 			dbBind.BindCol(0, OUT outRoomId);
 
 			ASSERT_CRASH(dbBind.Execute());
@@ -55,15 +55,24 @@ public:
 				//룸 생성
 				DBBind<1, 0> dbBind1(*dbConn, L"INSERT INTO chat.room (room_name) VALUES(?);");
 				dbBind1.BindParam(0, (WCHAR*)roomName.data());
-				ASSERT_CRASH(dbBind.Execute());
-				//유저 정보 업데이트
-				DBBind<2, 0> dbBind2(*dbConn, L"UPDATE chat.account SET current_room_id = ? WHERE id = ?;");
-				dbBind2.BindParam(0, outRoomId);
-				wstring id = Utf8ToWstring(pkt.id());
-				dbBind2.BindParam(1, (WCHAR*)id.data());
-				ASSERT_CRASH(dbBind2.Execute());
+				ASSERT_CRASH(dbBind1.Execute());
 
-				shared_ptr<Room> room = make_shared<Room>(pkt.roomname(), pkt.id(), session);
+				// 유저의 룸번호를 설정해주기 위해 room id 가져오기
+				DBBind<1, 1> dbBind2(*dbConn, L"SELECT room_id FROM chat.room WHERE room_name = ?;");
+				wstring roomName = Utf8ToWstring(pkt.roomname());
+				dbBind2.BindParam(0, (WCHAR*)roomName.data());
+				dbBind2.BindCol(0, OUT outRoomId);
+				ASSERT_CRASH(dbBind2.Execute());
+				ASSERT_CRASH(dbBind.Fetch());
+
+				//유저 정보 업데이트
+				DBBind<2, 0> dbBind3(*dbConn, L"UPDATE chat.account SET current_room_id = ? WHERE id = ?;");
+				dbBind3.BindParam(0, outRoomId);
+				wstring id = Utf8ToWstring(pkt.id());
+				dbBind3.BindParam(1, (WCHAR*)id.data());
+				ASSERT_CRASH(dbBind3.Execute());
+
+				shared_ptr<Room> room = make_shared<Room>(outRoomId, pkt.id(), session);
 				RoomHandler::AddRoom(room);
 			}
 
@@ -85,7 +94,7 @@ public:
 			DBBind<1, 2> dbBind(*dbConn, L"SELECT room_id, room_name FROM chat.room WHERE room_name = ?;");
 			wstring roomName = Utf8ToWstring(pkt.roomname());
 			dbBind.BindParam(0, (WCHAR*)roomName.data());
-			WCHAR outRoomId[14];
+			int outRoomId;
 			dbBind.BindCol(0, OUT outRoomId);
 			WCHAR outRoomName[14];
 			dbBind.BindCol(1, OUT outRoomName);
@@ -123,7 +132,7 @@ public:
 					multiPktS.add_userids(WCHARToUTF8(outId)); //브로드캐스트 pkt
 				}
 				// 룸에 세션을 추가해주고, 룸정보 업데이트되었으니까 브로드캐스트해주기
-				shared_ptr<Room> room = RoomHandler::GetRoom(pkt.roomname());
+				shared_ptr<Room> room = RoomHandler::GetRoom(outRoomId);
 				ASSERT_CRASH(room);
 				room->AddUser(pkt.id(), session);
 				room->BroadCast(multiPktS, session);

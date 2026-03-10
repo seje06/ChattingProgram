@@ -22,28 +22,12 @@ void Room::RemoveUser(const string& userId)
 }
 
 
-shared_ptr<Room> RoomHandler::GetRoom(const string& roomName)
+shared_ptr<Room> RoomHandler::GetRoom(const int& roomName)
 {
 	if (_rooms.find(roomName) == _rooms.end()) return shared_ptr<Room>();
 
 	return _rooms[roomName];
 }
 
-shared_ptr<Room> RoomHandler::GetRoom(wstring& roomNameW)
-{
-	const string roomName = WCHARToUTF8(roomNameW.c_str());
-	if (_rooms.find(roomName) == _rooms.end()) return shared_ptr<Room>();
-
-	return _rooms[roomName];
-}
-
-shared_ptr<Room> RoomHandler::GetRoom(WCHAR* roomNameW)
-{
-	const string roomName = WCHARToUTF8(roomNameW);
-	if (_rooms.find(roomName) == _rooms.end()) return shared_ptr<Room>();
-
-	return _rooms[roomName];
-}
-
-map<const string, shared_ptr<Room>> RoomHandler::_rooms;
+map<const int, shared_ptr<Room>> RoomHandler::_rooms;
 Lock RoomHandler::_lock;

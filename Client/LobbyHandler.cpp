@@ -39,25 +39,30 @@ void LobbyHandler::Execute(UIEvent ev, CDialogEx* page)
 	case UIEvent::LeaveRoomCompleted_Lobby:
 		OnLeaveRoomCompleted(lobbyPg);
 		break;
+	default:
+		CRASH("mapping");
+		break;
 	}
 }
 
 void LobbyHandler::OnLoginCompleted(CPageLobby* lobbyPg)
 {
+	lobbyPg->ShowWindow(SW_SHOW);
+	bool isEmpty;
+	auto data = AuthModel::Front(OUT isEmpty);
+
 	Protocol::C_REFRESH_LOBBY pkt;
-	
+	if (!isEmpty)
+	{
+		lobbyPg->SetMeText(data.id);
+		lobbyPg->ClearRooms();
+	}
 	function<void(RefreshLobbyModel)> callback = [this](RefreshLobbyModel model)
 		{
 			_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::RefreshCompleted_Lobby);
 		};
 	ContentsService<RefreshLobbyModel>::ContentsService(pkt, callback);
-	lobbyPg->ShowWindow(SW_SHOW);
-	bool isEmpty;
-	auto data = AuthModel::Front(OUT isEmpty);
-	if (!isEmpty)
-	{
-		lobbyPg->SetMeText(data.id);
-	}
+	
 	
 }
 
@@ -84,6 +89,8 @@ void LobbyHandler::OnRefreshCompleted(CPageLobby* lobbyPg)
 		while (!data.roomNames.empty())
 		{
 			lobbyPg->AddRoomRow(data.roomNames.front(), data.userCounts.front(), 100);
+			data.roomNames.pop();
+			data.userCounts.pop();
 		}
 	}
 }
@@ -107,6 +114,12 @@ void LobbyHandler::OnCreateRoomCompleted(CPageLobby* lobbyPg)
 	auto data = CreateRoomModel::Front(isEmpty);
 	ASSERT_CRASH(!isEmpty);
 
+	if (!data.isSuccess)
+	{
+		AfxMessageBox(L"생성 실패!.", MB_OK | MB_ICONERROR);
+		return;
+	}
+
 	lobbyPg->ShowWindow(SW_HIDE);
 	_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::CreateRoomCompleted_Room);
 }
@@ -129,26 +142,30 @@ void LobbyHandler::OnJoinRoomCompleted(CPageLobby* lobbyPg)
 	bool isEmpty;
 	auto data = JoinRoomModel::Front(isEmpty);
 	ASSERT_CRASH(!isEmpty);
+	if (!data.isSuccess)
+	{
+		AfxMessageBox(L"참가 실패!.", MB_OK | MB_ICONERROR);
+		return;
+	}
 	lobbyPg->ShowWindow(SW_HIDE);
-
 	_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::JoinRoomCompleted_Room);
 }
 
 
 void LobbyHandler::OnLeaveRoomCompleted(CPageLobby* lobbyPg)
 {
+	lobbyPg->ShowWindow(SW_SHOW);
+	lobbyPg->ClearRooms();
+	bool isEmpty;
+	auto data = AuthModel::Front(OUT isEmpty);
+	ASSERT_CRASH(!isEmpty);
+	
 	Protocol::C_REFRESH_LOBBY pkt;
-
+	lobbyPg->SetMeText(data.id);
 	function<void(RefreshLobbyModel)> callback = [this](RefreshLobbyModel model)
 		{
 			_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::RefreshCompleted_Lobby);
 		};
 	ContentsService<RefreshLobbyModel>::ContentsService(pkt, callback);
-	lobbyPg->ShowWindow(SW_SHOW);
-	bool isEmpty;
-	auto data = AuthModel::Front(OUT isEmpty);
-	if (!isEmpty)
-	{
-		lobbyPg->SetMeText(data.id);
-	}
+	
 }

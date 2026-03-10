@@ -45,7 +45,6 @@ void CommandMapper::Mapping(std::map<UIEvent, std::pair<class CDialogEx*, class 
 
 	map[UIEvent::RegisterClicked_Register] = { loginPage, loginHandler };
 	map[UIEvent::RegisterCompleted_Register] = { loginPage, loginHandler };
-	map[UIEvent::RegisterCompleted_Lobby] = { lobbyPage, lobbyHandler };
 
 	map[UIEvent::CreateRoomClicked_Lobby] = { lobbyPage, lobbyHandler };
 	map[UIEvent::CreateRoomCompleted_Lobby] = { lobbyPage, lobbyHandler };
@@ -61,8 +60,9 @@ void CommandMapper::Mapping(std::map<UIEvent, std::pair<class CDialogEx*, class 
 	map[UIEvent::SendChatClicked_Room] = { roomPage, roomHandler };
 	map[UIEvent::SendChatCompleted_Room] = { roomPage, roomHandler };
 	map[UIEvent::RefreshRoomCompleted] = { roomPage, roomHandler }; 
-	function<void(RefreshRoomModel)> func = [parent](RefreshRoomModel model) // 룸의 유저들은 언제 갱신될지모른다.
-		{parent->PostMessageW(WMU_UI_EVENT, WPARAM(UIEvent::RefreshRoomCompleted), 0); };
+	
+	function<void(RefreshRoomModel)> func = [parent](RefreshRoomModel model) // 룸의 유저들은 언제 갱신될지 모르기에 미리 등록
+		{parent->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::RefreshRoomCompleted, 0); };
 	ContentsService<RefreshRoomModel>::ContentsService(func);
 
 	map[UIEvent::LeaveRoomClicked_Room] = { roomPage, roomHandler };

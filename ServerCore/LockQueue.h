@@ -52,13 +52,19 @@ public:
 			items.push_back(item);										
 		}																
 	}																	
-																		
+		
+	int Size()
+	{
+		WriteLockGuard guard(_lock);
+		return _items.size();
+	}
+
 	void Clear()														
 	{																	
 		WriteLockGuard guard(_lock);									
 		_items = queue<T>();
 	}																	
-																		
+																	
 private:																
 	Lock _lock;															
 	queue<T> _items;													

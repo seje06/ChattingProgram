@@ -40,6 +40,18 @@ public:
 	}
 
 public:
+
+	void SetParamNull(int32_t idx)
+	{
+		_paramFlag |= (1LL << idx);      // Validate 통과용
+		_paramIndex[idx] = SQL_NULL_DATA;
+	}
+
+	bool IsColNull(int32_t idx) const
+	{
+		return _columnIndex[idx] == SQL_NULL_DATA;
+	}
+
 	template<typename T>
 	void BindParam(int32_t idx, T& value)
 	{

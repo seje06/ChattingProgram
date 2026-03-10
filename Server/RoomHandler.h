@@ -4,7 +4,7 @@
 class Room
 {
 public:
-	Room(const string& roomName, const string& userId, const shared_ptr<PacketSession>& user) : _roomName(roomName)
+	Room(const int& roomId, const string& userId, const shared_ptr<PacketSession>& user) : _roomName(roomId)
 	{
 		WriteLockGuard guard(_lock);
 		_users[userId] = user;
@@ -39,29 +39,27 @@ public:
 		}
 	}
 
-	const string GetRoomName() { return _roomName; }
+	const int GetRoomName() { return _roomName; }
 private:
 	map<const string, shared_ptr<PacketSession>> _users;
 	Lock _lock;
-	const string _roomName;
+	const int _roomName;
 };
 
 class RoomHandler
 {
 public:
-	static shared_ptr<Room> GetRoom(const string& roomName);
-	static shared_ptr<Room> GetRoom(wstring& roomNameW);
-	static shared_ptr<Room> GetRoom(WCHAR* roomNameW);
+	static shared_ptr<Room> GetRoom(const int& roomName);
 
 	static void AddRoom(shared_ptr<Room>& room) { WriteLockGuard guard(_lock); _rooms[room->GetRoomName()] = room; }
 
 	friend class Room;
 
 private:
-	static void RemoveRoom(const string& roomName) { WriteLockGuard guard(_lock); _rooms.erase(roomName); }
+	static void RemoveRoom(const int& roomName) { WriteLockGuard guard(_lock); _rooms.erase(roomName); }
 
 private:
-	static map<const string, shared_ptr<Room>> _rooms;
+	static map<const int, shared_ptr<Room>> _rooms;
 	static Lock _lock;
 };
 
