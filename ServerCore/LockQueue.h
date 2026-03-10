@@ -11,7 +11,15 @@ public:
 		WriteLockGuard guard(_lock);									
 		_items.push(item);												
 	}																	
-																		
+	
+	T Front(OUT bool& isEmpty)
+	{
+		WriteLockGuard guard(_lock);
+		if (isEmpty = _items.empty()) return T();
+
+		return _items.front();
+	}
+
 	T Pop()																
 	{																	
 		WriteLockGuard guard(_lock);									

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "afxdialogex.h"
 
 
@@ -13,9 +13,11 @@ public:
 	virtual ~CPageLobby();
 
 	void SetMeText(const CString& name);
+	CString GetMeText();
 	CString GetRoomName() const { return _roomName; }
 	int GetSelectedRoomIndex() const;
-	
+	CString GetSelectedRoomName() const;
+
 	void InitRoomListColumns();
 	void ClearRooms();
 	void AddRoomRow(const CString& roomName, int cur, int max);
@@ -40,4 +42,5 @@ private:
 	CStatic _me;
 	CListCtrl _rooms;
 	CString _roomName;
+	CString _selectedRoomName;
 };

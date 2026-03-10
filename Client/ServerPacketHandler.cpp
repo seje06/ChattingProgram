@@ -102,7 +102,7 @@ bool Handle_S_CHAT_LOG(shared_ptr<PacketSession>& session, Protocol::S_CHAT_LOG&
 
 bool Handle_S_ROOM_OUT(shared_ptr<PacketSession>& session, Protocol::S_ROOM_OUT& pkt)
 {
-	
+	ContentsService<RoomOutModel>::Execute(RoomOutModel(RoomOutData()));
 
 	return true;
 }

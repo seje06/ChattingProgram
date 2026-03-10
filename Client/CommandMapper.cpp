@@ -10,6 +10,9 @@
 #include "RoomHandler.h"
 #include "resource.h"
 
+#include "Model.h"
+#include "ContentsService.h"
+
 void CommandMapper::Mapping(std::map<UIEvent, std::pair<class CDialogEx*, class ICommandHandler*>>OUT & map, CWnd* parent)
 {
 	// 페이지 생성 및 설정
@@ -57,10 +60,15 @@ void CommandMapper::Mapping(std::map<UIEvent, std::pair<class CDialogEx*, class 
 
 	map[UIEvent::SendChatClicked_Room] = { roomPage, roomHandler };
 	map[UIEvent::SendChatCompleted_Room] = { roomPage, roomHandler };
+	map[UIEvent::RefreshRoomCompleted] = { roomPage, roomHandler }; 
+	function<void(RefreshRoomModel)> func = [parent](RefreshRoomModel model) // 룸의 유저들은 언제 갱신될지모른다.
+		{parent->PostMessageW(WMU_UI_EVENT, WPARAM(UIEvent::RefreshRoomCompleted), 0); };
+	ContentsService<RefreshRoomModel>::ContentsService(func);
+
 	map[UIEvent::LeaveRoomClicked_Room] = { roomPage, roomHandler };
 	map[UIEvent::LeaveRoomCompleted_Room] = { roomPage, roomHandler };
 	map[UIEvent::LeaveRoomCompleted_Lobby] = { lobbyPage, lobbyHandler };
-
+		
 }
 
 void CommandMapper::PlacePage(CDialogEx* page)

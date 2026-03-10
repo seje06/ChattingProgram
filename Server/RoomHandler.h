@@ -50,6 +50,9 @@ class RoomHandler
 {
 public:
 	static shared_ptr<Room> GetRoom(const string& roomName);
+	static shared_ptr<Room> GetRoom(wstring& roomNameW);
+	static shared_ptr<Room> GetRoom(WCHAR* roomNameW);
+
 	static void AddRoom(shared_ptr<Room>& room) { WriteLockGuard guard(_lock); _rooms[room->GetRoomName()] = room; }
 
 	friend class Room;

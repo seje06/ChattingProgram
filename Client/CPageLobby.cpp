@@ -26,11 +26,25 @@ void CPageLobby::SetMeText(const CString& name)
 	if (::IsWindow(_me.GetSafeHwnd())) _me.SetWindowTextW(name);
 }
 
+CString CPageLobby::GetMeText()
+{
+	CString text;
+	if (!::IsWindow(_me.GetSafeHwnd())) return text;
+	
+	_me.GetWindowTextW(text);
+	if (::IsWindow(_me.GetSafeHwnd())) return text;
+}
+
 int CPageLobby::GetSelectedRoomIndex() const
 {
 	POSITION pos = _rooms.GetFirstSelectedItemPosition();
 	if (!pos) return -1;
 	return _rooms.GetNextSelectedItem(pos);
+}
+
+CString CPageLobby::GetSelectedRoomName() const
+{
+	return _selectedRoomName;
 }
 
 void CPageLobby::InitRoomListColumns()
@@ -89,8 +103,9 @@ void CPageLobby::OnBnClickedCreateRoom()
 
 void CPageLobby::OnBnClickedJoinRoom()
 {
-	if (GetSelectedRoomIndex() < 0) return;
-
+	int index = GetSelectedRoomIndex();
+	if (index < 0) return;
+	_selectedRoomName = _rooms.GetItemText(index, 0);
 	if (GetParent())
 	{
 		GetParent()->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::JoinRoomClicked_Lobby, 0);

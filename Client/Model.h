@@ -10,6 +10,11 @@ public:
 		_lockQueue.Push(data);
 	}
 
+	static T Front(OUT bool& isEmpty)
+	{
+		return _lockQueue.Front(OUT isEmpty);
+	}
+
 	static T Pop(OUT bool& isEmpty)
 	{
 		return _lockQueue.Pop(OUT isEmpty);
@@ -116,6 +121,18 @@ class ChatLogModel : public Model<ChatLogData>
 {
 public:
 	ChatLogModel(ChatLogData data) : Model(data)
+	{
+
+	}
+};
+
+struct RoomOutData
+{
+};
+class RoomOutModel : public Model<RoomOutData>
+{
+public:
+	RoomOutModel(RoomOutData data) : Model(data)
 	{
 
 	}

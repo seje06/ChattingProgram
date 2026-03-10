@@ -36,5 +36,6 @@ enum class UIEvent : WPARAM
     LeaveRoomClicked_Room,
     LeaveRoomCompleted_Room,
     LeaveRoomCompleted_Lobby,
+    RefreshRoomCompleted
 
 };

@@ -10,19 +10,22 @@ public:
 	{
 		_callback = callback;
 	}
-	ContentsService(Protocol::C_LOGIN& pkt, function<void(T)>& callback)
+	template<typename U>
+	ContentsService(U&& pkt, function<void(T)>& callback)
+	{
+		_callback = callback;
+
+		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(pkt);
+		ClientGlobal::GServerSession->Send(sendBuffer);
+		//Send(pkt);
+
+	}
+	/*ContentsService(Protocol::C_REGISTER& pkt, function<void(T)>& callback)
 	{
 		_callback = callback;
 
 		Send(pkt);
-
-	}
-	ContentsService(Protocol::C_REGISTER& pkt, function<void(T)>& callback)
-	{
-		_callback = callback;
-
-		Send(pkt);
-	}
+	}*/
 
 	static void Execute(T model, bool isClear=true)
 	{
@@ -34,12 +37,12 @@ public:
 	}
 
 private:
-	template<typename U>
+	/*template<typename U>
 	void Send(U&& pkt)
 	{
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(pkt);
 		ClientGlobal::GServerSession->Send(sendBuffer);
-	}
+	}*/
 private:
 	static function<void(T)> _callback;
 
