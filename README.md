@@ -44,25 +44,3 @@ Windows **IOCP 기반 비동기 네트워크 서버**와 **MFC 클라이언트**
 
 ---
 
-# System Architecture
-
-클라이언트 UI 이벤트는 Handler를 통해 서비스 계층으로 전달되며  
-서비스 계층은 서버와 통신하고 DB와 연동하여 결과를 반환합니다.
-
-```mermaid
-flowchart TD
-
-Client["MFC Client"]
-
-Handler["Handler Layer"]
-
-Service["Contents Service"]
-
-Server["IOCP Server"]
-
-DB[(MySQL Database)]
-
-Client --> Handler
-Handler --> Service
-Service --> Server
-Server --> DB
