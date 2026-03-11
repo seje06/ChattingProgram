@@ -25,8 +25,10 @@ public:
 	virtual BOOL InitInstance();
 	virtual int ExitInstance();
 // 구현입니다.
-
+	
 	DECLARE_MESSAGE_MAP()
+private:
+	shared_ptr<class ClientService> service;
 };
 
 extern CClientApp theApp;

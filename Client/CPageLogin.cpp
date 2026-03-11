@@ -38,9 +38,15 @@ BOOL CPageLogin::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	_status.SetWindowTextW(L"Not connected"); //커넥 텍스트 초기 설정
+	_status.SetWindowTextW(L"connected"); //커넥 텍스트 초기 설정
 
 	return true;
+}
+
+void CPageLogin::PostNcDestroy()
+{
+	CDialog::PostNcDestroy();
+	//delete this;
 }
 
 void CPageLogin::OnBnClickedLogin()

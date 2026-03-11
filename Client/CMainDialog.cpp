@@ -19,6 +19,12 @@ CMainDialog::CMainDialog(CWnd* pParent /*=nullptr*/)
 
 CMainDialog::~CMainDialog()
 {
+	
+	for (auto& it : _eventMap)
+	{
+		//delete it.second.first;
+		//delete it.second.second;
+	}
 }
 
 void CMainDialog::DoDataExchange(CDataExchange* pDX)

@@ -1,5 +1,6 @@
 #pragma once
 #include "PacketRespondent.h"
+#include "ClientSession.h"
 
 template<>
 class PacketRespondent<Protocol::C_LOGIN>
@@ -35,6 +36,8 @@ public:
                 dbBind1.BindParam(1, (WCHAR*)id.data());
 
                 ASSERT_CRASH(dbBind1.Execute());
+
+                dynamic_pointer_cast<ClientSession>(session)->SetId(pkt.id()); 
             }      
 
             pktS.set_issuccess(canLogin); // 해당하는 아이디 있고, 오프라인상태면 성공

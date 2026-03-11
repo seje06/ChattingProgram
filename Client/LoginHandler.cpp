@@ -42,7 +42,7 @@ void LoginHandler::OnClickedLogin(CPageLogin* loginPg)
 		_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::LoginCompleted_Login, 0);
 		};
 
-	ContentsService<AuthModel>(pkt, callback);
+	RequestService<AuthModel>(pkt, callback);
 }
 
 void LoginHandler::OnLoginCompleted(CPageLogin* loginPg)
@@ -71,7 +71,7 @@ void LoginHandler::OnClickedRegister(CPageLogin* loginPg)
 		_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::RegisterCompleted_Register, 0);
 		};
 
-	ContentsService<AuthModel>(pkt, callback);
+	RequestService<AuthModel>(pkt, callback);
 }
 
 void LoginHandler::OnRegisterCompleted(CPageLogin* loginPg)

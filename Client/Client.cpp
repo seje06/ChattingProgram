@@ -12,7 +12,7 @@
 //#endif
 
 
-//////////////////////// 통신테스트 ////////////////////////////
+//////////////////////// 시스템 ////////////////////////////
 #include "Service.h"
 #include "ThreadManager.h"
 #include "ServerSession.h"
@@ -60,7 +60,7 @@ BOOL CClientApp::InitInstance()
 	
 	this_thread::sleep_for(1s);
 	
-	shared_ptr<ClientService> service = make_shared<ClientService>(
+	service = make_shared<ClientService>(
 		NetAddress(L"127.0.0.1", 7777),
 		make_shared<IocpCore>(),
 		make_shared<ServerSession>, //TODO : SessionManager 등
@@ -72,10 +72,12 @@ BOOL CClientApp::InitInstance()
 	{
 		GThreadManager->Launch([=]()
 			{
-				while (true)
+				TRACE(L"Worker Start\n");
+				while (service->IsRunning())
 				{
-					service->GetIocpCore()->Dispatch();
+					service->GetIocpCore()->Dispatch(30);
 				}
+				TRACE(L"Worker End\n");
 			});
 	}
 	
@@ -148,6 +150,8 @@ BOOL CClientApp::InitInstance()
 
 int CClientApp::ExitInstance()
 {
+	service->CloseService();
+
 	GThreadManager->Join();
 
 	delete GCoreGlobal;

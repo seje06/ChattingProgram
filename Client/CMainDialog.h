@@ -25,8 +25,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	std::map<UIEvent, std::pair<CDialogEx*, ICommandHandler*>> _eventMap;
-	CommandMapper _cmdMapper;
+	std::map<UIEvent, std::pair<CDialogEx*, IEventHandler*>> _eventMap;
+	EventMapper _cmdMapper;
 public:
 	afx_msg void OnStnClickedStaticPageHost();
 };

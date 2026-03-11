@@ -1,5 +1,6 @@
 #pragma once
 #include "PacketRespondent.h"
+#include "ClientSession.h"
 
 template<>
 class PacketRespondent<Protocol::C_REFRESH_LOBBY>
@@ -72,7 +73,11 @@ public:
 				dbBind3.BindParam(1, (WCHAR*)id.data());
 				ASSERT_CRASH(dbBind3.Execute());
 
+				//룸 생성하고 유저에게 룸 설정
 				shared_ptr<Room> room = make_shared<Room>(outRoomId, pkt.id(), session);
+				auto user = dynamic_pointer_cast<ClientSession>(session);
+				ASSERT_CRASH(user);
+				user->SetRoom(room); // set room을 밖에서 해주는 이유는 룸의 생성자에서 shared_form_this를 하면 소유권이 아직 설정이 안되서 에러발생
 				RoomHandler::AddRoom(room);
 			}
 

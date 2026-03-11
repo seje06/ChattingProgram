@@ -76,6 +76,12 @@ BOOL CPageRoom::OnInitDialog()
 	return TRUE;
 }
 
+void CPageRoom::PostNcDestroy()
+{
+	CDialog::PostNcDestroy();
+	//delete this;
+}
+
 void CPageRoom::OnBnClickedSend()
 {
 	UpdateData(TRUE);

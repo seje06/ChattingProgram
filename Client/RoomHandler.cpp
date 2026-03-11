@@ -84,7 +84,7 @@ void RoomHandler::OnSendChatClicked(CPageRoom* roomPg)
 			_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::SendChatCompleted_Room, 0);
 		};
 
-	ContentsService<ChatLogModel>(pkt, callback);
+	RequestService<ChatLogModel>(pkt, callback);
 }
 
 void RoomHandler::OnSendChatCompleted(CPageRoom* roomPg)
@@ -126,7 +126,7 @@ void RoomHandler::OnLeaveRoomClicked(CPageRoom* roomPg)
 		{
 			_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::LeaveRoomCompleted_Room);
 		};
-	ContentsService<RoomOutModel>(pkt, callback);
+	RequestService<RoomOutModel>(pkt, callback);
 }
 
 void RoomHandler::OnLeaveRoomCompleted(CPageRoom* roomPg)

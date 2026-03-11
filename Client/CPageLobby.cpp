@@ -90,6 +90,12 @@ BOOL CPageLobby::OnInitDialog()
 	return TRUE;
 }
 
+void CPageLobby::PostNcDestroy()
+{
+	CDialog::PostNcDestroy();
+	//delete this;
+}
+
 void CPageLobby::OnBnClickedCreateRoom()
 {
 	UpdateData(TRUE);

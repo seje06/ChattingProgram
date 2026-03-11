@@ -25,7 +25,7 @@ protected:
 	// 컨트롤의값을 변수에 넣거나 또는 반대로 하게해줄수 있음, 또는 유효성 검사
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 	virtual BOOL OnInitDialog() override;
-
+	virtual void PostNcDestroy() override;
 	//afx_msg란 메시지에 함수를 연결시키려면 붙여줘야하는 매크로
 	afx_msg void OnBnClickedLogin();
 	afx_msg void OnBnClickedLegister();

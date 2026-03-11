@@ -13,7 +13,7 @@
 #include "Model.h"
 #include "ContentsService.h"
 
-void CommandMapper::Mapping(std::map<UIEvent, std::pair<class CDialogEx*, class ICommandHandler*>>OUT & map, CWnd* parent)
+void EventMapper::Mapping(std::map<UIEvent, std::pair<class CDialogEx*, class IEventHandler*>>OUT & map, CWnd* parent)
 {
 	// 페이지 생성 및 설정
 	auto* loginPage = new CPageLogin(parent); 
@@ -59,19 +59,24 @@ void CommandMapper::Mapping(std::map<UIEvent, std::pair<class CDialogEx*, class 
 
 	map[UIEvent::SendChatClicked_Room] = { roomPage, roomHandler };
 	map[UIEvent::SendChatCompleted_Room] = { roomPage, roomHandler };
+	{
+		function<void(ChatLogModel)> func = [parent](ChatLogModel model) // 채팅은 먼저 요청하기 전에 올수 있으므로 등록
+			{parent->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::SendChatCompleted_Room, 0); };
+		RequestService<ChatLogModel>::Subscribe( func);
+	}
 	map[UIEvent::RefreshRoomCompleted] = { roomPage, roomHandler }; 
-	
-	function<void(RefreshRoomModel)> func = [parent](RefreshRoomModel model) // 룸의 유저들은 언제 갱신될지 모르기에 미리 등록
-		{parent->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::RefreshRoomCompleted, 0); };
-	ContentsService<RefreshRoomModel>::ContentsService(func);
-
+	{
+		function<void(RefreshRoomModel)> func = [parent](RefreshRoomModel model) // 룸의 유저들은 언제 갱신될지 모르기에 미리 등록
+			{parent->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::RefreshRoomCompleted, 0); };
+		RequestService<RefreshRoomModel>::Subscribe(func);
+	}
 	map[UIEvent::LeaveRoomClicked_Room] = { roomPage, roomHandler };
 	map[UIEvent::LeaveRoomCompleted_Room] = { roomPage, roomHandler };
 	map[UIEvent::LeaveRoomCompleted_Lobby] = { lobbyPage, lobbyHandler };
 		
 }
 
-void CommandMapper::PlacePage(CDialogEx* page, CWnd* parent)
+void EventMapper::PlacePage(CDialogEx* page, CWnd* parent)
 {
 	CWnd* host = page->GetParent()->GetDlgItem(IDC_STATIC_PAGE_HOST);
 

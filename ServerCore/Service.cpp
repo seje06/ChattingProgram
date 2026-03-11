@@ -6,7 +6,7 @@
 Service::Service(ServiceType type, NetAddress address, shared_ptr<IocpCore> core, SessionFactory factory, int32_t maxSessionCount)
 	: _type(type), _netAddress(address), _iocpCore(core), _sessionFactory(factory), _maxSessionCount(maxSessionCount)
 {
-
+	_isRunning = true;
 }
 
 Service::~Service()
@@ -15,6 +15,7 @@ Service::~Service()
 
 void Service::CloseService()
 {
+	_isRunning = false;
 	// TODO
 }
 

@@ -30,6 +30,7 @@ public:
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX) override;    // DDX/DDV 지원입니다.
 	virtual BOOL OnInitDialog() override;
+	virtual void PostNcDestroy() override;
 
 	afx_msg void OnBnClickedCreateRoom();
 	afx_msg void OnBnClickedJoinRoom();

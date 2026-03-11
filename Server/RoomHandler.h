@@ -1,14 +1,10 @@
 #pragma once
 #include "ClientPacketHandler.h"
 
-class Room
+class Room : public enable_shared_from_this<Room>
 {
 public:
-	Room(const int& roomId, const string& userId, const shared_ptr<PacketSession>& user) : _roomName(roomId)
-	{
-		WriteLockGuard guard(_lock);
-		_users[userId] = user;
-	}
+	Room(const int& roomId, const string& userId, const shared_ptr<PacketSession>& user);
 
 	bool AddUser(const string& userId, shared_ptr<PacketSession> user);
 	void RemoveUser(const string& userId);
@@ -39,11 +35,11 @@ public:
 		}
 	}
 
-	const int GetRoomName() { return _roomName; }
+	const int GetRoomId() { return _roomId; }
 private:
 	map<const string, shared_ptr<PacketSession>> _users;
 	Lock _lock;
-	const int _roomName;
+	const int _roomId;
 };
 
 class RoomHandler
@@ -51,7 +47,7 @@ class RoomHandler
 public:
 	static shared_ptr<Room> GetRoom(const int& roomName);
 
-	static void AddRoom(shared_ptr<Room>& room) { WriteLockGuard guard(_lock); _rooms[room->GetRoomName()] = room; }
+	static void AddRoom(shared_ptr<Room>& room) { WriteLockGuard guard(_lock); _rooms[room->GetRoomId()] = room; }
 
 	friend class Room;
 

@@ -2,32 +2,40 @@
 #include "ServerPacketHandler.h"
 
 template<typename T>
-class ContentsService
+class RequestService
 {
 public:
 	
-	ContentsService(function<void(T)>& callback)
+	RequestService(function<void(T)>& callback)
 	{
 		_callback = callback;
 	}
 	template<typename U>
-	ContentsService(U&& pkt, function<void(T)>& callback)
+	RequestService(U&& pkt, function<void(T)>& callback)
 	{
 		_callback = callback;
 
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(pkt);
 		ClientGlobal::GServerSession->Send(sendBuffer);
-		//Send(pkt);
 
 	}
-	/*ContentsService(Protocol::C_REGISTER& pkt, function<void(T)>& callback)
+
+	static void Subscribe(function<void(T)>& callback)
+	{
+		_callback = callback;
+	}
+
+	template<typename U>
+	static void Request(U&& pkt, function<void(T)>& callback)
 	{
 		_callback = callback;
 
-		Send(pkt);
-	}*/
+		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(pkt);
+		ClientGlobal::GServerSession->Send(sendBuffer);
 
-	static void Execute(T model, bool isClear=true)
+	}
+
+	static void Execute(T&& model, bool isClear=true)
 	{
 		WriteLockGuard guard(_lock);
 
@@ -37,20 +45,13 @@ public:
 	}
 
 private:
-	/*template<typename U>
-	void Send(U&& pkt)
-	{
-		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(pkt);
-		ClientGlobal::GServerSession->Send(sendBuffer);
-	}*/
-private:
 	static function<void(T)> _callback;
 
 	// 테스트용
 	static Lock _lock; 
 };
 template<typename T>
-function<void(T)> ContentsService<T>::_callback = nullptr;
+function<void(T)> RequestService<T>::_callback = nullptr;
 template<typename T>
-Lock ContentsService<T>::_lock;
+Lock RequestService<T>::_lock;
 

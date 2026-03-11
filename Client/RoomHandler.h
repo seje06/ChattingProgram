@@ -3,7 +3,7 @@
 
 class CPageRoom;
 
-class RoomHandler : public ICommandHandler
+class RoomHandler : public IEventHandler
 {
 public:
 	virtual void Execute(UIEvent ev, CDialogEx* page) override;

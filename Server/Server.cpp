@@ -8,6 +8,7 @@
 #include "DBBind.h"
 #include "DBConnectionPool.h"
 #include "ClientPacketHandler.h"
+#include <cstdlib>
 
 enum
 {
@@ -16,7 +17,7 @@ enum
 
 void WorkerThread(shared_ptr<ServerService>& service)
 {
-    while (true)
+    while (service->IsRunning())
     {
         LEndTickCount = ::GetTickCount64() + WORKER_TICK;
 
@@ -24,6 +25,17 @@ void WorkerThread(shared_ptr<ServerService>& service)
 
         JobQueue::ExcuteGlobalJobs();
     }
+}
+
+shared_ptr<ServerService> service;
+
+void OnClose() 
+{
+    service->CloseService();
+
+    GThreadManager->Join();
+
+    delete GCoreGlobal;
 }
 
 int main()
@@ -97,25 +109,21 @@ int main()
 
     ClientPacketHandler::Init();
 
-    shared_ptr<ServerService> service(new ServerService(
+    service =  std::make_shared<ServerService>(
         NetAddress(L"127.0.0.1", 7777),
         make_shared<IocpCore>(),
         make_shared<ClientSession>,
-        100));
-
+        100);
+    atexit(OnClose);
     ASSERT_CRASH(service->Start());
 
     for (int32_t i = 0; i < 5; i++)
     {
-        GThreadManager->Launch([&service]()
+        GThreadManager->Launch([]()
             {
                 WorkerThread(service);
             });
     }
 
     WorkerThread(service);
-    
-    GThreadManager->Join();
-
-    delete GCoreGlobal;
 }

@@ -17,7 +17,7 @@ bool Handle_S_LOGIN(shared_ptr<PacketSession>& session, Protocol::S_LOGIN& pkt)
 	data.id = CA2W(pkt.id().c_str(), CP_UTF8);
 	data.pasd = CA2W(pkt.pssd().c_str(), CP_UTF8);
 
-	ContentsService<AuthModel>::Execute(AuthModel(data));
+	RequestService<AuthModel>::Execute(AuthModel(data));
 
 	return true;
 }
@@ -29,7 +29,7 @@ bool Handle_S_REGISTER(shared_ptr<PacketSession>& session, Protocol::S_REGISTER&
 	data.id = CA2W(pkt.id().c_str(), CP_UTF8);
 	data.pasd = CA2W(pkt.pssd().c_str(), CP_UTF8);
 
-	ContentsService<AuthModel>::Execute(AuthModel(data));
+	RequestService<AuthModel>::Execute(AuthModel(data));
 
 	return true;
 }
@@ -45,7 +45,7 @@ bool Handle_S_REFRESH_LOBBY(shared_ptr<PacketSession>& session, Protocol::S_REFR
 		data.roomNames.push(roomName);
 		data.userCounts.push(userCount);
 	}
-	ContentsService<RefreshLobbyModel>::Execute(RefreshLobbyModel(data));
+	RequestService<RefreshLobbyModel>::Execute(RefreshLobbyModel(data));
 
 	return true;
 }
@@ -56,7 +56,7 @@ bool Handle_S_CREATE_ROOM(shared_ptr<PacketSession>& session, Protocol::S_CREATE
 	data.isSuccess = pkt.issuccess();
 	data.roomName = CA2W(pkt.roomname().c_str(), CP_UTF8);
 
-	ContentsService<CreateRoomModel>::Execute(CreateRoomModel(data));
+	RequestService<CreateRoomModel>::Execute(CreateRoomModel(data));
 
 	return true;
 }
@@ -71,7 +71,7 @@ bool Handle_S_JOIN_ROOM(shared_ptr<PacketSession>& session, Protocol::S_JOIN_ROO
 		CString userId = CA2W(pkt.userids().Get(i).c_str(), CP_UTF8);
 		data.userIds.push(userId);
 	}
-	ContentsService<JoinRoomModel>::Execute(JoinRoomModel(data));
+	RequestService<JoinRoomModel>::Execute(JoinRoomModel(data));
 
 	return true;
 }
@@ -84,7 +84,7 @@ bool Handle_S_REFRESH_ROOM(shared_ptr<PacketSession>& session, Protocol::S_REFRE
 		CString id = CA2W(pkt.userids().Get(i).c_str(), CP_UTF8);
 		data.userIds.push(id);
 	}
-	ContentsService<RefreshRoomModel>::Execute(RefreshRoomModel(data),false);
+	RequestService<RefreshRoomModel>::Execute(RefreshRoomModel(data),false);
 
 	return true;
 }
@@ -95,14 +95,14 @@ bool Handle_S_CHAT_LOG(shared_ptr<PacketSession>& session, Protocol::S_CHAT_LOG&
 	data.id = CA2W(pkt.id().c_str(), CP_UTF8);
 	data.log= CA2W(pkt.log().c_str(), CP_UTF8);
 
-	ContentsService<ChatLogModel>::Execute(ChatLogModel(data), false);
+	RequestService<ChatLogModel>::Execute(ChatLogModel(data), false);
 
 	return true;
 }
 
 bool Handle_S_ROOM_OUT(shared_ptr<PacketSession>& session, Protocol::S_ROOM_OUT& pkt)
 {
-	ContentsService<RoomOutModel>::Execute(RoomOutModel(RoomOutData()));
+	RequestService<RoomOutModel>::Execute(RoomOutModel(RoomOutData()));
 
 	return true;
 }

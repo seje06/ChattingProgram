@@ -61,7 +61,7 @@ void LobbyHandler::OnLoginCompleted(CPageLobby* lobbyPg)
 		{
 			_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::RefreshCompleted_Lobby);
 		};
-	ContentsService<RefreshLobbyModel>::ContentsService(pkt, callback);
+	RequestService<RefreshLobbyModel>::RequestService(pkt, callback);
 	
 	
 }
@@ -74,7 +74,7 @@ void LobbyHandler::OnRefreshClicked(CPageLobby* lobbyPg)
 		{
 			_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::RefreshCompleted_Lobby);
 		};
-	ContentsService<RefreshLobbyModel>::ContentsService(pkt, callback);
+	RequestService<RefreshLobbyModel>::RequestService(pkt, callback);
 }
 
 void LobbyHandler::OnRefreshCompleted(CPageLobby* lobbyPg)
@@ -105,7 +105,7 @@ void LobbyHandler::OnCreateRoomClicked(CPageLobby* lobbyPg)
 		{
 			_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::CreateRoomCompleted_Lobby);
 		};
-	ContentsService<CreateRoomModel>::ContentsService(pkt, callback);
+	RequestService<CreateRoomModel>::RequestService(pkt, callback);
 }
 
 void LobbyHandler::OnCreateRoomCompleted(CPageLobby* lobbyPg)
@@ -134,7 +134,7 @@ void LobbyHandler::OnJoinRoomClicked(CPageLobby* lobbyPg)
 		{
 			_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::JoinRoomCompleted_Lobby);
 		};
-	ContentsService<JoinRoomModel>::ContentsService(pkt, callback);
+	RequestService<JoinRoomModel>::RequestService(pkt, callback);
 }
 
 void LobbyHandler::OnJoinRoomCompleted(CPageLobby* lobbyPg)
@@ -166,6 +166,6 @@ void LobbyHandler::OnLeaveRoomCompleted(CPageLobby* lobbyPg)
 		{
 			_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::RefreshCompleted_Lobby);
 		};
-	ContentsService<RefreshLobbyModel>::ContentsService(pkt, callback);
+	RequestService<RefreshLobbyModel>::RequestService(pkt, callback);
 	
 }

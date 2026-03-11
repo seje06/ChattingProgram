@@ -1,9 +1,9 @@
 #pragma once
 
-class ICommandHandler
+class IEventHandler
 {
 public:
-	virtual ~ICommandHandler() = default;
+	virtual ~IEventHandler() = default;
 	virtual void Execute(UIEvent ev, CDialogEx* page) = 0;
 	void SetOwner(CDialogEx* owner) 
 	{

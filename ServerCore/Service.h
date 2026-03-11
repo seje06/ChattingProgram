@@ -34,6 +34,7 @@ public:
 	int32_t	GetCurrentSessionCount() { return _sessionCount; }
 	int32_t	GetMaxSessionCount() { return _maxSessionCount; }
 
+	bool IsRunning() { return _isRunning; }
 public:
 	ServiceType	GetServiceType() { return _type; }
 	NetAddress GetNetAddress() { return _netAddress; }
@@ -49,6 +50,8 @@ protected:
 	int32_t	_sessionCount = 0;
 	int32_t	_maxSessionCount = 0;
 	SessionFactory _sessionFactory;
+
+	bool _isRunning = false;
 };
 
 

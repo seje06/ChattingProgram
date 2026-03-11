@@ -2,10 +2,10 @@
 
 
 template<typename T>
-class Model
+class ResponseQ
 {
 public:
-	Model(T data)
+	ResponseQ(T data)
 	{
 		_lockQueue.Push(data);
 	}
@@ -33,7 +33,7 @@ private:
 	static LockQueue<T> _lockQueue;
 };
 template<typename T>
-LockQueue<T> Model<T>::_lockQueue;
+LockQueue<T> ResponseQ<T>::_lockQueue;
 
 //////////// Auth /////////////
 struct AuthData
@@ -42,10 +42,10 @@ struct AuthData
 	CString id;
 	CString pasd;
 };
-class AuthModel : public Model<AuthData>
+class AuthModel : public ResponseQ<AuthData>
 {
 public:
-	AuthModel(AuthData data) : Model(data)
+	AuthModel(AuthData data) : ResponseQ(data)
 	{
 
 	}
@@ -58,10 +58,10 @@ struct CreateRoomData
 	bool isSuccess;
 	CString roomName;
 };
-class CreateRoomModel : public Model<CreateRoomData>
+class CreateRoomModel : public ResponseQ<CreateRoomData>
 {
 public:
-	CreateRoomModel(CreateRoomData data) : Model(data)
+	CreateRoomModel(CreateRoomData data) : ResponseQ(data)
 	{
 
 	}
@@ -73,10 +73,10 @@ struct JoinRoomData
 	CString roomName;
 	queue<CString> userIds;
 };
-class JoinRoomModel : public Model<JoinRoomData>
+class JoinRoomModel : public ResponseQ<JoinRoomData>
 {
 public:
-	JoinRoomModel(JoinRoomData data) : Model(data)
+	JoinRoomModel(JoinRoomData data) : ResponseQ(data)
 	{
 
 	}
@@ -88,10 +88,10 @@ struct RefreshLobbyData
 	queue<CString> roomNames;
 	queue<int> userCounts;
 };
-class RefreshLobbyModel : public Model<RefreshLobbyData>
+class RefreshLobbyModel : public ResponseQ<RefreshLobbyData>
 {
 public:
-	RefreshLobbyModel(RefreshLobbyData data) : Model(data)
+	RefreshLobbyModel(RefreshLobbyData data) : ResponseQ(data)
 	{
 
 	}
@@ -101,10 +101,10 @@ struct RefreshRoomData
 {
 	queue<CString> userIds;
 };
-class RefreshRoomModel : public Model<RefreshRoomData>
+class RefreshRoomModel : public ResponseQ<RefreshRoomData>
 {
 public:
-	RefreshRoomModel(RefreshRoomData data) : Model(data)
+	RefreshRoomModel(RefreshRoomData data) : ResponseQ(data)
 	{
 
 	}
@@ -117,10 +117,10 @@ struct ChatLogData
 	CString id;
 	CString log;
 };
-class ChatLogModel : public Model<ChatLogData>
+class ChatLogModel : public ResponseQ<ChatLogData>
 {
 public:
-	ChatLogModel(ChatLogData data) : Model(data)
+	ChatLogModel(ChatLogData data) : ResponseQ(data)
 	{
 
 	}
@@ -129,10 +129,10 @@ public:
 struct RoomOutData
 {
 };
-class RoomOutModel : public Model<RoomOutData>
+class RoomOutModel : public ResponseQ<RoomOutData>
 {
 public:
-	RoomOutModel(RoomOutData data) : Model(data)
+	RoomOutModel(RoomOutData data) : ResponseQ(data)
 	{
 
 	}

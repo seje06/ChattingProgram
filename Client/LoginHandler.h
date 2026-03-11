@@ -1,7 +1,7 @@
 #pragma once
 #include "ICommandHandler.h"
 
-class LoginHandler : public ICommandHandler
+class LoginHandler : public IEventHandler
 {
 public:
 	virtual void Execute(UIEvent ev, CDialogEx* page) override;
