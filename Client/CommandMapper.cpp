@@ -24,9 +24,9 @@ void CommandMapper::Mapping(std::map<UIEvent, std::pair<class CDialogEx*, class 
 	lobbyPage->Create(IDD_PAGE_LOBBY, parent);
 	roomPage->Create(IDD_PAGE_ROOM, parent);
 
-	PlacePage(loginPage);
-	PlacePage(lobbyPage);
-	PlacePage(roomPage);
+	PlacePage(loginPage, parent);
+	PlacePage(lobbyPage, parent);
+	PlacePage(roomPage, parent);
 
 	loginPage->ShowWindow(SW_SHOW);
 	lobbyPage->ShowWindow(SW_HIDE);
@@ -71,13 +71,13 @@ void CommandMapper::Mapping(std::map<UIEvent, std::pair<class CDialogEx*, class 
 		
 }
 
-void CommandMapper::PlacePage(CDialogEx* page)
+void CommandMapper::PlacePage(CDialogEx* page, CWnd* parent)
 {
 	CWnd* host = page->GetParent()->GetDlgItem(IDC_STATIC_PAGE_HOST);
 
 	CRect rc;
 	host->GetWindowRect(&rc);
-	page->ScreenToClient(&rc);
+	parent->ScreenToClient(&rc);
 
 	page->SetWindowPos(nullptr,
 		rc.left, rc.top,
