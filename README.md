@@ -18,6 +18,38 @@ IOCP(ServerCore) + Protobuf + MySQL(ODBC) 기반의 **MFC 채팅 클라이언트
 - Client UI: MFC(Dialog 기반, 페이지 전환 구조)
 - DB: MySQL + ODBC(Unicode Driver) + 바인딩 유틸(DBBind/ConnectionPool)
 
+## Concurrency & Core Design
+
+- **IOCP Networking**  
+  Windows IOCP 모델을 활용하여 다수의 클라이언트 연결을 비동기 방식으로 처리하고, Worker Thread가 Completion Queue의 이벤트를 처리하도록 구성했습니다.
+
+- **Session 기반 연결 관리**  
+  각 클라이언트 연결을 Session 객체로 관리하여 소켓, 패킷 처리, 연결 상태를 일관된 구조로 유지했습니다.
+
+- **PacketSession + PacketHeader 구조**  
+  고정 PacketHeader(size, id)와 Protobuf 메시지를 조합한 구조를 사용하여 패킷 파싱과 메시지 확장을 쉽게 설계했습니다.
+
+- **Protocol Buffers 기반 메시지 직렬화**  
+  Protobuf를 활용하여 네트워크 메시지를 직렬화하고, 클라이언트와 서버 간 동일한 프로토콜 구조를 유지했습니다.
+
+- **RequestService 구조**  
+  클라이언트 요청을 RequestService<T>로 캡슐화하여 요청 전송과 응답 콜백 처리를 분리하고, 비동기 요청 흐름을 명확하게 관리했습니다.
+
+- **PacketRespondent 구조**  
+  서버에서 수신한 패킷을 PacketRespondent<T>를 통해 처리하여 패킷 타입별 처리 로직을 모듈화했습니다.
+
+- **Room 관리 시스템**  
+  채팅방 단위로 사용자 세션을 관리하고 Broadcast를 통해 동일 방 사용자에게 메시지를 전파하는 구조를 구현했습니다.
+
+- **JobQueue 기반 작업 실행 구조**  
+  네트워크 이벤트와 실제 서비스 로직 실행을 분리하기 위해 JobQueue를 사용하여 작업을 큐에 적재하고 순차적으로 실행하도록 설계했습니다.
+
+- **Custom RWLock 구현**  
+  읽기 작업을 병렬로 허용하고 쓰기 작업을 단독 수행하도록 하는 RWLock을 구현하여 읽기 중심 데이터 접근에서 Mutex보다 효율적인 동기화를 적용했습니다.
+
+- **ODBC ConnectionPool 기반 DB 접근**  
+  DB 접근 시 ConnectionPool을 사용하여 연결 재사용을 가능하게 하고 서버 성능 저하를 방지했습니다.
+
 ## 전체 시스템 아키텍처 / 서버 아키텍처 (Mermaid)
 
 
