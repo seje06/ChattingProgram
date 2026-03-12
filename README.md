@@ -313,10 +313,21 @@ Client/
    - 로그인/회원가입 → 로비에서 방 생성/입장 → 룸에서 채팅 전송/퇴장
 
 ## 실행 화면 안내 ()
-- (1) 로그인 페이지: ID/PW 입력 + 로그인/회원가입 버튼
-- (2) 로비 페이지: 방 목록/유저 수 표시, 새 방 생성/입장
-- (3) 룸 페이지: 유저 리스트, 채팅 로그, 전송/퇴장 버튼
-- (4) DB: room/account/log 테이블 상태
+## 1. CPP Multi Game
+<table>
+  <tr>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Login.png" width="400"/></td>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Lobby.png" width="400"/></td>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Room.png" width="400"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/AccountTable.png" width="400"/></td>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/RoomTable.png" width="400"/></td>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/LogTable.png" width="400"/></td>
+  </tr>
+</table>
 
 ## 회고
 - IOCP 코어를 ServerCore로 분리하면서, 네트워크 이벤트 루프와 컨텐츠 로직을 명확히 분리할 수 있었습니다.
