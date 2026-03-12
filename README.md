@@ -20,51 +20,56 @@ IOCP(ServerCore) + Protobuf + MySQL(ODBC) 기반의 **MFC 채팅 클라이언트
 
 ## 전체 시스템 아키텍처 / 서버 아키텍처 (Mermaid)
 
+
 ```mermaid
-flowchart LR
-  %% ============ System ============
-  subgraph SYSTEM["전체 시스템"]
-    UI["MFC Client UI\n(CMainDialog / Pages)"]
-    CH["Client Handlers\n(Login/Lobby/Room)"]
-    RS["RequestService<T>\n(callback + send)"]
-    CS["ServerSession\n(PacketSession)"]
-    PHC["ServerPacketHandler\n(PacketHeader + Protobuf)"]
-    UI --> CH --> RS --> CS --> PHC
-  end
+flowchart TD
 
-  subgraph SERVER["Server Process"]
-    SS["ClientSession\n(PacketSession)"]
-    PHS["ClientPacketHandler\n(PacketHeader + Protobuf)"]
-    RESP["PacketRespondent<T>\n(Auth/Lobby/Room)"]
-    ROOM["Room / RoomHandler\n(Broadcast, Users)"]
-    DB["MySQL\n(ODBC ConnectionPool)"]
+%% ================= CLIENT =================
+subgraph CLIENT["Client (MFC)"]
 
-    SS --> PHS --> RESP
-    RESP --> DB
-    RESP --> ROOM
-    ROOM --> SS
-  end
+UI["MFC UI\n(Login / Lobby / Room Pages)"]
 
-  PHC -->|"TCP (127.0.0.1:7777)"| SS
-  SS -->|"S_* packets"| PHC
+HANDLER["Client Handler\n(LoginHandler / LobbyHandler / RoomHandler)"]
 
-  %% ============ ServerCore ============
-  subgraph CORE["ServerCore(IOCP)"]
-    IOCP["IocpCore\n(CreateIoCompletionPort,\nGetQueuedCompletionStatus)"]
-    SERVICE["Service\n(ClientService/ServerService)"]
-    LISTENER["Listener\n(Accept loop)"]
-    SESSION["Session / PacketSession\n(PacketHeader size,id)"]
-    WORKER["Worker Threads\nDispatch + JobQueue"]
-    IOCP <--> SESSION
-    SERVICE --> LISTENER
-    SERVICE --> SESSION
-    WORKER --> IOCP
-  end
+REQUEST["RequestService<T>\nRequest + Callback"]
 
-  SS --- SESSION
-  CS --- SESSION
-  SERVICE --- SS
-  SERVICE --- CS
+SESSION_CLIENT["ServerSession\n(PacketSession)"]
+
+PACKET_CLIENT["ServerPacketHandler\n(Protobuf Decode)"]
+
+UI --> HANDLER
+HANDLER --> REQUEST
+REQUEST --> SESSION_CLIENT
+SESSION_CLIENT --> PACKET_CLIENT
+
+end
+
+%% ================= NETWORK =================
+
+PACKET_CLIENT -->|TCP 127.0.0.1:7777| SESSION_SERVER
+
+%% ================= SERVER =================
+subgraph SERVER["Server"]
+
+SESSION_SERVER["ClientSession\n(PacketSession)"]
+
+PACKET_SERVER["ClientPacketHandler\n(Protobuf Decode)"]
+
+RESPONDENT["PacketRespondent<T>\n(Auth / Lobby / Room)"]
+
+ROOM["Room / RoomHandler\nBroadcast / User 관리"]
+
+DB["MySQL\nODBC ConnectionPool"]
+
+SESSION_SERVER --> PACKET_SERVER
+PACKET_SERVER --> RESPONDENT
+
+RESPONDENT --> DB
+RESPONDENT --> ROOM
+
+ROOM --> SESSION_SERVER
+
+end
 ```
 
 ## 채팅 처리 시퀀스 (Mermaid)
