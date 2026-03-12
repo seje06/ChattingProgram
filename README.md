@@ -312,8 +312,7 @@ Client/
 4. 동작 플로우
    - 로그인/회원가입 → 로비에서 방 생성/입장 → 룸에서 채팅 전송/퇴장
 
-## 실행 화면 안내 ()
-## 1. CPP Multi Game
+## 실행 화면 안내 및 DB Table
 <table>
   <tr>
     <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Login.png" width="400"/></td>
