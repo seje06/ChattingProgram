@@ -4,13 +4,10 @@ IOCP(ServerCore) + Protobuf + MySQL(ODBC) 기반의 **MFC 채팅 클라이언트
 
 ## 개발 상태
 - 구현됨
-  - 로그인 / 회원가입 (`C_LOGIN`, `C_REGISTER`)
-  - 로비: 방 목록 갱신 / 방 생성 / 방 입장 (`C_REFRESH_LOBBY`, `C_CREATE_ROOM`, `C_JOIN_ROOM`)
-  - 룸: 채팅 전송(브로드캐스트) / 퇴장 / 유저 목록 갱신 (`C_CHAT_LOG`, `C_ROOM_OUT`, `S_REFRESH_ROOM`)
-- TODO(개선 여지)
-  - DB 문자열 버퍼 길이(현재 14) 확장 또는 동적 처리
-  - 스키마 DROP/CREATE 개발모드 분리 및 설정
-
+  - 로그인 / 회원가입
+  - 로비: 방 목록 갱신 / 방 생성 / 방 입장
+  - 룸: 채팅 전송(브로드캐스트) / 퇴장 / 유저 목록 갱신
+  - 
 ## 기술 스택
 - Language: C++ (Windows)
 - Network: IOCP 기반 비동기 소켓(ServerCore)
