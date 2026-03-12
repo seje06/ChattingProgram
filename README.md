@@ -59,15 +59,15 @@ flowchart TD
 %% ================= CLIENT =================
 subgraph CLIENT["Client (MFC)"]
 
-UI["MFC UI\n(Login / Lobby / Room Pages)"]
+UI["MFC UI(Login / Lobby / Room Pages)"]
 
-HANDLER["Client Handler\n(LoginHandler / LobbyHandler / RoomHandler)"]
+HANDLER["Client Handler(LoginHandler / LobbyHandler / RoomHandler)"]
 
-REQUEST["RequestService<T>\nRequest + Callback"]
+REQUEST["RequestService<T>(Request + Callback)"]
 
-SESSION_CLIENT["ServerSession\n(PacketSession)"]
+SESSION_CLIENT["ServerSession(PacketSession)"]
 
-PACKET_CLIENT["ServerPacketHandler\n(Protobuf Decode)"]
+PACKET_CLIENT["ServerPacketHandler(Protobuf Decode)"]
 
 UI --> HANDLER
 HANDLER --> REQUEST
@@ -83,15 +83,15 @@ PACKET_CLIENT -->|TCP 127.0.0.1:7777| SESSION_SERVER
 %% ================= SERVER =================
 subgraph SERVER["Server"]
 
-SESSION_SERVER["ClientSession\n(PacketSession)"]
+SESSION_SERVER["ClientSession(PacketSession)"]
 
-PACKET_SERVER["ClientPacketHandler\n(Protobuf Decode)"]
+PACKET_SERVER["ClientPacketHandler(Protobuf Decode)"]
 
-RESPONDENT["PacketRespondent<T>\n(Auth / Lobby / Room)"]
+RESPONDENT["PacketRespondent<T>(Auth / Lobby / Room)"]
 
-ROOM["Room / RoomHandler\nBroadcast / User 관리"]
+ROOM["Room / RoomHandler(Broadcast / User 관리)"]
 
-DB["MySQL\nODBC ConnectionPool"]
+DB["MySQL ODBC ConnectionPool"]
 
 SESSION_SERVER --> PACKET_SERVER
 PACKET_SERVER --> RESPONDENT
