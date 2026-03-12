@@ -36,7 +36,8 @@ public:
 			DBBind<3, 0> dbBind1(*dbConn, L"INSERT INTO chat.log (account_id, room_id, message) VALUES(?, ?, ?);");
 			dbBind1.BindParam(0, (WCHAR*)id.data());
 			dbBind1.BindParam(1, outRoomId);
-			dbBind1.BindParam(2, (WCHAR*)outRoomName);
+			wstring log = Utf8ToWstring(pkt.log());
+			dbBind1.BindParam(2, (WCHAR*)log.data());
 			ASSERT_CRASH(dbBind1.Execute());
 
 			//브로드캐스트로 로그 해당 방에 뿌리기
