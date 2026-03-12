@@ -7,7 +7,7 @@ IOCP(ServerCore) + Protobuf + MySQL(ODBC) 기반의 **MFC 채팅 클라이언트
   - 로그인 / 회원가입
   - 로비: 방 목록 갱신 / 방 생성 / 방 입장
   - 룸: 채팅 전송(브로드캐스트) / 퇴장 / 유저 목록 갱신
-  - 
+
 ## 기술 스택
 - Language: C++ (Windows)
 - Network: IOCP 기반 비동기 소켓(ServerCore)
