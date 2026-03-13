@@ -1,6 +1,6 @@
 
 # ChattingProgram
-IOCP(ServerCore) + Protobuf + MySQL(ODBC) 기반의 **MFC 채팅 클라이언트/서버** 프로젝트입니다.
+IOCP(ServerCore) + Protobuf + MySQL(ODBC) 기반의 **MFC 채팅 클라이언트/고성능 서버** 프로젝트입니다.
 
 ## 개발 상태
 - 구현됨
