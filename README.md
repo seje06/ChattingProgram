@@ -47,6 +47,24 @@ IOCP(ServerCore) + Protobuf + MySQL(ODBC) 기반의 **MFC 채팅 클라이언트
 - **ODBC ConnectionPool 기반 DB 접근**  
   DB 접근 시 ConnectionPool을 사용하여 연결 재사용을 가능하게 하고 서버 성능 저하를 방지했습니다.
 
+
+## 실행 화면 안내 및 DB Table
+<table>
+  <tr>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Login.png" width="500"/></td>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Lobby.png" width="500"/></td>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Room.png" width="500"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/AccountTable.png" width="500"/></td>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/RoomTable.png" width="500"/></td>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/LogTable.png" width="500"/></td>
+  </tr>
+</table>
+
+
 ## 전체 시스템 아키텍처 / 서버 아키텍처 (Mermaid)
 
 
@@ -108,7 +126,7 @@ sequenceDiagram
   autonumber
   participant UI as MFC UI (Room Page)
   participant RH as Client RoomHandler
-  participant RS as RequestService<ChatLogModel>
+  participant RS as RequestService<ChatLogQueue>
   participant SS as ServerSession
   participant SPH as ServerPacketHandler
   participant CS as ClientSession (Server)
@@ -129,7 +147,7 @@ sequenceDiagram
   ROOM-->>CS: 각 유저 세션에 Send
   CS-->>SS: S_CHAT_LOG 패킷 전송
   SS->>SPH: Handle_S_CHAT_LOG
-  SPH->>RS: Execute(ChatLogModel, false)
+  SPH->>RS: Execute(ChatLogQueue, false)
   RS-->>UI: PostMessage(WMU_UI_EVENT)로 UI 갱신 유도
 ```
 
@@ -308,22 +326,6 @@ Client/
    - 실행 시 IOCP ClientService가 서버에 연결합니다.
 4. 동작 플로우
    - 로그인/회원가입 → 로비에서 방 생성/입장 → 룸에서 채팅 전송/퇴장
-
-## 실행 화면 안내 및 DB Table
-<table>
-  <tr>
-    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Login.png" width="400"/></td>
-    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Lobby.png" width="400"/></td>
-    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Room.png" width="400"/></td>
-  </tr>
-</table>
-<table>
-  <tr>
-    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/AccountTable.png" width="400"/></td>
-    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/RoomTable.png" width="400"/></td>
-    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/LogTable.png" width="400"/></td>
-  </tr>
-</table>
 
 ## 회고
 - IOCP 코어를 ServerCore로 분리하면서, 네트워크 이벤트 루프와 컨텐츠 로직을 명확히 분리할 수 있었습니다.
