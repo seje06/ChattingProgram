@@ -283,40 +283,6 @@ FOREIGN KEY (account_id) REFERENCES chat.account(id) ON DELETE CASCADE ON UPDATE
 FOREIGN KEY (room_id) REFERENCES chat.room(room_id) ON DELETE CASCADE ON UPDATE CASCADE
 ```
 
-## 프로젝트 디렉터리 트리 (분석 범위만)
-```text
-ServerCore/
-  IocpCore.cpp/h
-  Session.h/.cpp
-  Service.cpp/h
-  Listener.cpp/h
-  JobQueue.cpp/h
-  DBConnectionPool.cpp/h
-  ...
-
-Server/
-  Server.cpp
-  ClientSession.cpp/h
-  ClientPacketHandler.cpp/h
-  LobbyRespondent.h
-  RoomRepondent.h
-  RoomHandler.cpp/h
-  Protocol.pb.cc/h
-
-Client/
-  Client.cpp
-  CMainDialog.cpp/h
-  CommandMapper.cpp/h
-  UIEvent.h
-  ContentsService.h
-  Model.h
-  ServerSession.cpp/h
-  ServerPacketHandler.cpp/h
-  LoginHandler.cpp/h
-  RoomHandler.cpp/h
-  Protocol.pb.cc/h
-```
-
 ## 실행 방법 (로컬)
 1. MySQL 준비: `chat` DB 생성, ODBC 드라이버 설정(Unicode Driver)
 2. Server 실행
