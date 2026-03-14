@@ -10,7 +10,7 @@
 #define RESPONSE_START(session, pkt)						\
 	isSuccess = false;										\
 															\
-	function<void()> func = [session, pkt]() {				\
+	function<void()> func = [session, pkt]() {		\
 		DBConnection* dbConn = GDBConnectionPool->Pop();	
 
 #define RESPONSE_END()											  \

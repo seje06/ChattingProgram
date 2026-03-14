@@ -45,19 +45,28 @@ public:
 			int outRoomId;
 			dbBind.BindCol(0, OUT outRoomId);
 
-			ASSERT_CRASH(dbBind.Execute());
-
 			Protocol::S_CREATE_ROOM pktS;
-			pktS.set_roomname(pkt.roomname());
-			bool canCreate = !dbBind.Fetch(); // 같은 이름의 방이 존재하지 않아야 생성가능
-			pktS.set_issuccess(canCreate);
+			bool canCreate;
+			{
+				WriteLockGuard guard(_lock); // 해당 스코프에서 락을 걸어준 이유는 Select 질의는 여러곳에서 true가 나올수 있기 때문
+
+				ASSERT_CRASH(dbBind.Execute());
+
+				pktS.set_roomname(pkt.roomname());
+				canCreate = !dbBind.Fetch(); // 같은 이름의 방이 존재하지 않아야 생성가능
+				pktS.set_issuccess(canCreate);
+
+				if (canCreate)
+				{
+					//룸 생성
+					DBBind<1, 0> dbBind1(*dbConn, L"INSERT INTO chat.room (room_name) VALUES(?);");
+					dbBind1.BindParam(0, (WCHAR*)roomName.data());
+					ASSERT_CRASH(dbBind1.Execute());
+				}
+			}
+
 			if (canCreate)
 			{
-				//룸 생성
-				DBBind<1, 0> dbBind1(*dbConn, L"INSERT INTO chat.room (room_name) VALUES(?);");
-				dbBind1.BindParam(0, (WCHAR*)roomName.data());
-				ASSERT_CRASH(dbBind1.Execute());
-
 				// 유저의 룸번호를 설정해주기 위해 room id 가져오기
 				DBBind<1, 1> dbBind2(*dbConn, L"SELECT room_id FROM chat.room WHERE room_name = ?;");
 				wstring roomName = Utf8ToWstring(pkt.roomname());
@@ -75,6 +84,7 @@ public:
 
 				//룸 생성하고 유저에게 룸 설정
 				shared_ptr<Room> room = make_shared<Room>(outRoomId, pkt.id(), session);
+				room->roomState.fetch_add(1);
 				auto user = dynamic_pointer_cast<ClientSession>(session);
 				ASSERT_CRASH(user);
 				user->SetRoom(room); // set room을 밖에서 해주는 이유는 룸의 생성자에서 shared_form_this를 하면 소유권이 아직 설정이 안되서 에러발생
@@ -86,7 +96,11 @@ public:
 
 		RESPONSE_END()
 	}
+
+private:
+	static Lock _lock;
 };
+
 
 template<>
 class PacketRespondent<Protocol::C_JOIN_ROOM>
@@ -109,11 +123,42 @@ public:
 			Protocol::S_JOIN_ROOM pktS;
 			pktS.set_roomname(pkt.roomname());
 			bool canJoin = dbBind.Fetch(); // 같은 이름의 방이 존재해야 입장가능 
-			pktS.set_issuccess(canJoin);
+			shared_ptr<Room> room;
 			if (canJoin)
 			{
+				room = RoomHandler::GetRoom(outRoomId);
+				int state;
+				if (!room)
+				{
+					canJoin = false;
+				}
+				else if ((state = room->roomState) == Destruction)
+				{
+					canJoin = false;
+				}
+				else
+				{
+					while (true) //  CAS하면서 Destruction(룸을 파괴하는 상황)만 아니면 유저를 Join 시킨다.
+					{
+						if (room->roomState.compare_exchange_strong(state, state + 1))
+						{
+							break;
+						}
+						else if (state != Destruction)
+						{
+							continue;
+						}
+						else
+						{
+							canJoin = false;
+							break;
+						}
+					}
+				}
+			}
+			if(canJoin)
+			{
 				Protocol::S_REFRESH_ROOM multiPktS;
-
 
 				// 유저 정보 업데이트
 				DBBind<2, 0> dbBind1(*dbConn, L"UPDATE chat.account SET current_room_id = ? WHERE id = ?;");
@@ -136,15 +181,15 @@ public:
 					pktS.add_userids(WCHARToUTF8(outId));
 					multiPktS.add_userids(WCHARToUTF8(outId)); //브로드캐스트 pkt
 				}
+
 				// 룸에 세션을 추가해주고, 룸정보 업데이트되었으니까 브로드캐스트해주기
-				shared_ptr<Room> room = RoomHandler::GetRoom(outRoomId);
 				ASSERT_CRASH(room);
 				room->AddUser(pkt.id(), session);
 				room->BroadCast(multiPktS, session);
 			}
-
-		auto sendBuffer = ClientPacketHandler::MakeSendBuffer(pktS);
-		session->Send(sendBuffer);
+			pktS.set_issuccess(canJoin);
+			auto sendBuffer = ClientPacketHandler::MakeSendBuffer(pktS);
+			session->Send(sendBuffer);
 
 		RESPONSE_END()
 	}

@@ -117,6 +117,8 @@ void LobbyHandler::OnCreateRoomCompleted(CPageLobby* lobbyPg)
 	if (!data.isSuccess)
 	{
 		AfxMessageBox(L"생성 실패!.", MB_OK | MB_ICONERROR);
+		bool isEmpty;
+		auto data = CreateRoomModel::Pop(isEmpty);
 		return;
 	}
 
@@ -144,7 +146,8 @@ void LobbyHandler::OnJoinRoomCompleted(CPageLobby* lobbyPg)
 	ASSERT_CRASH(!isEmpty);
 	if (!data.isSuccess)
 	{
-		AfxMessageBox(L"참가 실패!.", MB_OK | MB_ICONERROR);
+		AfxMessageBox(L"참가 실패!.", MB_OK | MB_ICONERROR);;
+		auto data = JoinRoomModel::Pop(isEmpty);
 		return;
 	}
 	lobbyPg->ShowWindow(SW_HIDE);

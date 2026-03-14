@@ -19,11 +19,17 @@ CMainDialog::CMainDialog(CWnd* pParent /*=nullptr*/)
 
 CMainDialog::~CMainDialog()
 {
-	
-	for (auto& it : _eventMap)
+	set<void*> mustDeleteSet;
+	auto it = _eventMap.begin();
+	while (it != _eventMap.end())
 	{
-		//delete it.second.first;
-		//delete it.second.second;
+		mustDeleteSet.insert(it->second.first);
+		mustDeleteSet.insert(it->second.second);
+		it++;
+	}
+	for (auto it : mustDeleteSet)
+	{
+		delete it;
 	}
 }
 

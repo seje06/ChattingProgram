@@ -30,7 +30,6 @@ void Room::RemoveUser(const string& userId)
 	{
 		DBBind<2, 0> dbBind(*dbConn, L"UPDATE chat.account SET current_room_id = ? WHERE id = ?;");
 		int32_t roomId = 0;
-		id = Utf8ToWstring(userId);
 
 		// 해당 유저의 룸아이디를 널로 변경.
 		dbBind.BindParam(0, roomId);
@@ -45,23 +44,24 @@ void Room::RemoveUser(const string& userId)
 		dbBind.BindParam(0, roomId);
 		ASSERT_CRASH(dbBind.Execute());
 	}
-	// 룸의 유저카운트가 0보다 작으면 제거
-	{
-		DBBind<1, 0> dbBind(*dbConn, L"DELETE FROM chat.room WHERE room_id = ? AND user_count <= 0;");
-		int roomId = _roomId;
-		dbBind.BindParam(0, roomId);
-		ASSERT_CRASH(dbBind.Execute());
-	}
 
 	ASSERT_CRASH(_users.find(userId) != _users.end())
 
 	dynamic_pointer_cast<ClientSession>(_users[userId])->SetRoom(nullptr);
 	
 	_users.erase(userId);
-	
-	if (_users.size() == 0)
+	roomState.fetch_sub(1);
+	int state = Empty;
+	if (roomState.compare_exchange_strong(state,Destruction)) // true면 유저가 0이라 파괴해도 되는상황
 	{
+		// 룸의 유저카운트가 0보다 작거나 같으면 제거
+		DBBind<1, 0> dbBind(*dbConn, L"DELETE FROM chat.room WHERE room_id = ? AND user_count <= 0;");
+		int roomId = _roomId;
+		dbBind.BindParam(0, roomId);
+		ASSERT_CRASH(dbBind.Execute());
+		
 		RoomHandler::RemoveRoom(_roomId);
+
 	}
 	else
 	{
@@ -75,22 +75,33 @@ void Room::RemoveUser(const string& userId)
 		WCHAR outId[14];
 		dbBind.BindCol(0, outId);
 		ASSERT_CRASH(dbBind.Execute());
+		bool isEmpty = true;
 		while (dbBind.Fetch())
 		{
+			isEmpty = false;
 			multiPktS.add_userids(WCHARToUTF8(outId)); //브로드캐스트 pkt
 		}
-		BroadCast(multiPktS);
+		if(!isEmpty) BroadCast(multiPktS);
 	}
 
 	GDBConnectionPool->Push(dbConn);
 }
 
 
-shared_ptr<Room> RoomHandler::GetRoom(const int& roomName)
+shared_ptr<Room> RoomHandler::GetRoom(const int& roomId)
 {
-	if (_rooms.find(roomName) == _rooms.end()) return shared_ptr<Room>();
+	if (_rooms.find(roomId) == _rooms.end()) return shared_ptr<Room>();
 
-	return _rooms[roomName];
+	return _rooms[roomId];
+}
+
+void RoomHandler::RemoveRoom(const int& roomId)
+{
+	WriteLockGuard guard(_lock); 
+	
+	ASSERT_CRASH(_rooms.find(roomId) != _rooms.end());
+
+	_rooms.erase(roomId);
 }
 
 map<const int, shared_ptr<Room>> RoomHandler::_rooms;

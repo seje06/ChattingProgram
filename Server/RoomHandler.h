@@ -1,8 +1,17 @@
 #pragma once
 #include "ClientPacketHandler.h"
 
+enum ERoomState : int
+{
+	Destruction = -1,
+	Empty
+	//NonEmpty -> 0이상
+};
+
 class Room : public enable_shared_from_this<Room>
 {
+	
+
 public:
 	Room(const int& roomId, const string& userId, const shared_ptr<PacketSession>& user);
 
@@ -36,6 +45,10 @@ public:
 	}
 
 	const int GetRoomId() { return _roomId; }
+
+public:
+	atomic<int> roomState = Empty;
+
 private:
 	map<const string, shared_ptr<PacketSession>> _users;
 	Lock _lock;
@@ -45,14 +58,14 @@ private:
 class RoomHandler
 {
 public:
-	static shared_ptr<Room> GetRoom(const int& roomName);
+	static shared_ptr<Room> GetRoom(const int& roomId);
 
 	static void AddRoom(shared_ptr<Room>& room) { WriteLockGuard guard(_lock); _rooms[room->GetRoomId()] = room; }
 
 	friend class Room;
 
 private:
-	static void RemoveRoom(const int& roomName) { WriteLockGuard guard(_lock); _rooms.erase(roomName); }
+	static void RemoveRoom(const int& roomId);
 
 private:
 	static map<const int, shared_ptr<Room>> _rooms;
