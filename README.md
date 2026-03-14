@@ -300,3 +300,4 @@ FOREIGN KEY (room_id) REFERENCES chat.room(room_id) ON DELETE CASCADE ON UPDATE 
 - IOCP 코어를 ServerCore로 분리하면서, 네트워크 이벤트 루프와 컨텐츠 로직을 명확히 분리할 수 있었습니다.
 - Protobuf + PacketHeader 조합으로 바이너리 프로토콜을 단순화했고, 핸들러 테이블 기반 디스패치로 확장성을 확보했습니다.
 - MFC UI는 메시지 기반(WMU_UI_EVENT)으로 네트워크 스레드와 UI 스레드의 경계를 분명히 했습니다.
+- CAS 기능을 활용하여 비동기적인 환경에서 발생하는 문제들을 해결할 수 있었습니다.
