@@ -286,8 +286,45 @@ FOREIGN KEY (room_id) REFERENCES chat.room(room_id) ON DELETE CASCADE ON UPDATE 
 ```
 
 ## 성능 개선 사례
-
-
+  - DB접근 개선
+    - 원래는 DB의 Select -> Insert동안 Lock을 걸어 서버에서 동기성을 보장하여 순차적 DB접근을 했다면, 서버에서 DB로 동시 접근을 하여 반환되는 결과를 통해 실패 성공 유무를 정했습니다.
+    (기존 5000명의 동시 회원가입 처리가 6초가량 걸렸다면, 이후 1초내로 처리하는 모습입니다.)![alt text](Images/Register_5000_user.gif)
+    > 변경 전 코드
+    ```cpp
+    {
+      WriteLockGuard guard(_lock); // SELECT 실행 부터 INSERT까지 락을 걸어놔서 서버와 DB의 데이터 동기화가 이루어져 INSERT시 무조건 성공하게 보장 
+      ASSERT_CRASH(dbBind.Execute());
+      canLogin = dbBind.Fetch();
+      if (canLogin)
+      {
+          DBBind<2, 0> dbBind1(*dbConn, L"UPDATE chat.account SET is_online = ? WHERE id = ?;");
+          bool isOnline = true;
+          dbBind1.BindParam(0, isOnline);
+          dbBind1.BindParam(1, (WCHAR*)id.data());
+          ASSERT_CRASH(dbBind1.Execute());
+          dynamic_pointer_cast<ClientSession>(session)->SetId(pkt.id());
+      }
+    }
+    ```
+    > 변경 후 코드
+    ```cpp
+    // 바로 INSERT 시도 (SELECT 과정을 생략하여 DB 왕복 횟수 절반으로 감소)
+    DBBind<4, 0> insertBind(*dbConn,  L"INSERT INTO chat.account (id, password, create_date, is_online) VALUES(?, ?, ?, ?);");
+    insertBind.BindParam(0, (WCHAR*)id.data());
+    insertBind.BindParam(1, (WCHAR*)pssd.data());
+    insertBind.BindParam(2, ts);
+    insertBind.BindParam(3, isOnline);
+    // Execute 결과로 성공/실패(중복) 판단
+    if (insertBind.Execute(false))
+    {
+        pktS.set_issuccess(true);
+    }
+    else
+    {
+        pktS.set_issuccess(false);
+    }
+    ```
+    
 ## 실행 방법 (로컬)
 1. MySQL 준비: `chat` DB 생성, ODBC 드라이버 설정(Unicode Driver)
 2. Server 실행
