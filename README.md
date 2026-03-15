@@ -18,6 +18,22 @@ IOCP(ServerCore) + Protobuf + MySQL(ODBC) 기반의 **MFC 채팅 클라이언트
 - Client UI: MFC(Dialog 기반, 페이지 전환 구조)
 - DB: MySQL + ODBC(Unicode Driver) + 바인딩 유틸(DBBind/ConnectionPool)
 
+## 실행 화면 안내 및 DB Table
+<table>
+  <tr>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Login.png" width="500"/></td>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Lobby.png" width="500"/></td>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Room.png" width="500"/></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/AccountTable.png" width="500"/></td>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/RoomTable.png" width="500"/></td>
+    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/LogTable.png" width="500"/></td>
+  </tr>
+</table>
+
 ## Concurrency & Core Design
 
 - **IOCP Networking**  
@@ -49,23 +65,6 @@ IOCP(ServerCore) + Protobuf + MySQL(ODBC) 기반의 **MFC 채팅 클라이언트
 
 - **ODBC ConnectionPool 기반 DB 접근**  
   DB 접근 시 ConnectionPool을 사용하여 연결 재사용을 가능하게 하고 서버 성능 저하를 방지했습니다.
-
-
-## 실행 화면 안내 및 DB Table
-<table>
-  <tr>
-    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Login.png" width="500"/></td>
-    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Lobby.png" width="500"/></td>
-    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/Room.png" width="500"/></td>
-  </tr>
-</table>
-<table>
-  <tr>
-    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/AccountTable.png" width="500"/></td>
-    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/RoomTable.png" width="500"/></td>
-    <td><img src="https://github.com/seje06/ChattingProgram/blob/main/Images/LogTable.png" width="500"/></td>
-  </tr>
-</table>
 
 
 ## 전체 시스템 아키텍처 / 서버 아키텍처 (Mermaid)
@@ -285,6 +284,9 @@ send_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 FOREIGN KEY (account_id) REFERENCES chat.account(id) ON DELETE CASCADE ON UPDATE CASCADE
 FOREIGN KEY (room_id) REFERENCES chat.room(room_id) ON DELETE CASCADE ON UPDATE CASCADE
 ```
+
+## 성능 개선 사례
+
 
 ## 실행 방법 (로컬)
 1. MySQL 준비: `chat` DB 생성, ODBC 드라이버 설정(Unicode Driver)
