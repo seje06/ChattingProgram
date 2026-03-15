@@ -1,6 +1,8 @@
 #pragma once
 
-#define THREAD_COUNT 20
+#define MULTIPLE_CONNECT_TEST_MODE 0
+
+#define THREAD_MAX_COUNT 32
 
 #define NAMESPACE_BEGIN(name) namespace name{
 #define NAMESPACE_END		  }

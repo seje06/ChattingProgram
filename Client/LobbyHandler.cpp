@@ -121,7 +121,7 @@ void LobbyHandler::OnCreateRoomCompleted(CPageLobby* lobbyPg)
 		auto data = CreateRoomModel::Pop(isEmpty);
 		return;
 	}
-
+	lobbyPg->SetRoomName(data.roomName);
 	lobbyPg->ShowWindow(SW_HIDE);
 	_owner->PostMessageW(WMU_UI_EVENT, (WPARAM)UIEvent::CreateRoomCompleted_Room);
 }

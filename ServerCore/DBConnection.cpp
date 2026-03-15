@@ -52,7 +52,7 @@ void DBConnection::Clear()
 	}
 }
 
-bool DBConnection::Execute(const WCHAR* query)
+bool DBConnection::Execute(const WCHAR* query, bool doHandleError)
 {
 	SQLRETURN ret = ::SQLExecDirectW(_statement, (SQLWCHAR*)query, SQL_NTSL);
 	if (ret == SQL_SUCCESS || ret == SQL_SUCCESS_WITH_INFO)
@@ -60,7 +60,7 @@ bool DBConnection::Execute(const WCHAR* query)
 		return true;
 	}
 
-	HandleError(ret);
+	if(doHandleError) HandleError(ret);
 
 	return false;
 }

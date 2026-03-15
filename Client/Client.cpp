@@ -68,16 +68,14 @@ BOOL CClientApp::InitInstance()
 	);
 	
 	ASSERT_CRASH(service->Start());
-	for (int32_t i = 0; i < 3; i++)
+	for (int32_t i = 0; i < 2; i++)
 	{
 		GThreadManager->Launch([=]()
 			{
-				TRACE(L"Worker Start\n");
 				while (service->IsRunning())
 				{
 					service->GetIocpCore()->Dispatch(30);
 				}
-				TRACE(L"Worker End\n");
 			});
 	}
 	

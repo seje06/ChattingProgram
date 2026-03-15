@@ -25,11 +25,11 @@ private:
 	atomic<int> _ownerThreadId = -1;
 	
 #ifdef _DEBUG
-	atomic<uint16_t> _readDepthArray[THREAD_COUNT] = { 0 };
+	atomic<uint16_t> _readDepthArray[THREAD_MAX_COUNT] = { 0 };
 
 	void ValidateThreadId() // threadID가 최대치를 넘진않았는지 검증
 	{
-		if (LThreadId < 0 || LThreadId >= THREAD_COUNT) CRASH("Invalid LThreadId");
+		if (LThreadId < 0 || LThreadId >= THREAD_MAX_COUNT) CRASH("Invalid LThreadId");
 	}
 #endif
 };

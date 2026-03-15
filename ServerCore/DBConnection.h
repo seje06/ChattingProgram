@@ -18,7 +18,7 @@ public:
 	bool Connect(SQLHENV henv, const WCHAR* connectionString);
 	void Clear();
 
-	bool Execute(const WCHAR* query);
+	bool Execute(const WCHAR* query, bool doHandleError= true);
 	bool Fetch();
 	int32_t GetRowCount();
 	void Unbind();

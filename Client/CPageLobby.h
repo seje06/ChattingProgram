@@ -15,6 +15,7 @@ public:
 	void SetMeText(const CString& name);
 	CString GetMeText();
 	CString GetRoomName() const { return _roomName; }
+	void SetRoomName(const CString& roomName) { _roomName = roomName; }
 	int GetSelectedRoomIndex() const;
 	CString GetSelectedRoomName() const;
 

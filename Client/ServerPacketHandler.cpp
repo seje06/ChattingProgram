@@ -24,6 +24,11 @@ bool Handle_S_LOGIN(shared_ptr<PacketSession>& session, Protocol::S_LOGIN& pkt)
 
 bool Handle_S_REGISTER(shared_ptr<PacketSession>& session, Protocol::S_REGISTER& pkt)
 {
+#if MULTIPLE_CONNECT_TEST_MODE
+	// 테스트
+	return true;
+	//
+#endif
 	AuthData data;
 	data.isSuccess = pkt.issuccess();
 	data.id = CA2W(pkt.id().c_str(), CP_UTF8);

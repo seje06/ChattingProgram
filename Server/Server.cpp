@@ -40,20 +40,22 @@ void OnClose()
 
 int main()
 {
+    SetConsoleOutputCP(65001);
+
     GCoreGlobal = new CoreGlobal();
 
     // db 연결 시도
-    ASSERT_CRASH(GDBConnectionPool->Connect(20, L"DRIVER={MySQL ODBC 8.0 Unicode Driver};SERVER=localhost;PORT=3306;DATABASE=chat;UID=root;PWD=1234;"));
+    ASSERT_CRASH(GDBConnectionPool->Connect(30, L"DRIVER={MySQL ODBC 8.0 Unicode Driver};SERVER=localhost;PORT=3306;DATABASE=chat;UID=root;PWD=1234;"));
 
     DBConnection* dbConn = GDBConnectionPool->Pop();
     const wchar_t * query;
 
     query = L"DROP TABLE IF EXISTS `chat`.`log`;";
-    ASSERT_CRASH(dbConn->Execute(query));
+    ASSERT_CRASH(dbConn->Execute(query,true));
     query = L"DROP TABLE IF EXISTS `chat`.`account`;";
-    ASSERT_CRASH(dbConn->Execute(query));
+    ASSERT_CRASH(dbConn->Execute(query, true));
     query = L"DROP TABLE IF EXISTS `chat`.`room`;";
-    ASSERT_CRASH(dbConn->Execute(query));
+    ASSERT_CRASH(dbConn->Execute(query, true));
     
     // 룸 테이블 생성
     query = LR"(
@@ -65,7 +67,7 @@ int main()
         UNIQUE KEY `uq_room_name` (`room_name`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     )";
-    ASSERT_CRASH(dbConn->Execute(query));
+    ASSERT_CRASH(dbConn->Execute(query, true));
 
     // 계정 테이블 생성
     query = LR"(
@@ -84,7 +86,7 @@ int main()
             ON UPDATE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 )";
-    ASSERT_CRASH(dbConn->Execute(query));
+    ASSERT_CRASH(dbConn->Execute(query, true));
 
     //채팅 기록 테이블 생성
     query = LR"(
@@ -103,7 +105,7 @@ int main()
             ON DELETE CASCADE ON UPDATE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 )";
-    ASSERT_CRASH(dbConn->Execute(query));
+    ASSERT_CRASH(dbConn->Execute(query, true));
 
     GDBConnectionPool->Push(dbConn);
 
@@ -117,7 +119,7 @@ int main()
     atexit(OnClose);
     ASSERT_CRASH(service->Start());
 
-    for (int32_t i = 0; i < 5; i++)
+    for (int32_t i = 0; i < 10; i++)
     {
         GThreadManager->Launch([]()
             {

@@ -69,50 +69,54 @@ public:
 
 	PacketRespondent(shared_ptr<PacketSession>& session, Protocol::C_REGISTER& pkt, OUT bool& isSuccess)
 	{
+
         RESPONSE_START(session, pkt)
-            DBBind<1, 1> dbBind(*dbConn, L"SELECT id FROM chat.account WHERE id = ?;");
-
+            // 문자열 변환
             wstring id = Utf8ToWstring(pkt.id());
-            dbBind.BindParam(0, (WCHAR*)id.data());
+            wstring pssd = Utf8ToWstring(pkt.pssd());
+            auto ts = GetCurrentTimeStamp();
+            bool isOnline = false;
 
-            WCHAR outId[14];
-            dbBind.BindCol(0, OUT outId);
+            Protocol::S_REGISTER pktS; // S_LOGIN 대신 S_REGISTER로 명칭 확인 필요
+            pktS.set_id(pkt.id());
+            pktS.set_pssd(pkt.pssd());
 
-            Protocol::S_LOGIN pktS;
-          
+
+            // 바로 INSERT 시도 (SELECT 과정을 생략하여 DB 왕복 횟수 절반으로 감소)
+            DBBind<4, 0> insertBind(*dbConn, L"INSERT INTO chat.account (id, password, create_date, is_online) VALUES(?, ?, ?, ?);");
+            insertBind.BindParam(0, (WCHAR*)id.data());
+            insertBind.BindParam(1, (WCHAR*)pssd.data());
+            insertBind.BindParam(2, ts);
+            insertBind.BindParam(3, isOnline);
+            // Execute 결과로 성공/실패(중복) 판단
+            if (insertBind.Execute(false))
             {
-                WriteLockGuard guard(_lock); // 동시에 회원가입이 가능하다고 확인하고 둘다 해당 계정으로 가입을 시도할 수 있기 때문에 select후 Insert완료 까진 락을 걸어줘야함.
-
-                ASSERT_CRASH(dbBind.Execute());
-
-                bool isExist = dbBind.Fetch();
-                pktS.set_issuccess(!isExist); // 해당하는 아이디 없으면 성공
-                pktS.set_id(pkt.id());
-                pktS.set_pssd(pkt.pssd());
-
-                if (!isExist)
-                {
-                    DBBind<4, 0> dbBind(*dbConn, L"INSERT INTO chat.account (id, password, create_date, is_online) VALUES(?, ?, ?, ?);");
-
-                    dbBind.BindParam(0, (WCHAR*)id.data());
-                    wstring passd = Utf8ToWstring(pktS.pssd());
-                    dbBind.BindParam(1, (WCHAR*)passd.data());
-                    auto ts = GetCurrentTimeStamp();
-                    dbBind.BindParam(2, ts);
-                    bool isOnline = false;
-                    dbBind.BindParam(3, isOnline);
-
-                    ASSERT_CRASH(dbBind.Execute());
-                }
+                pktS.set_issuccess(true);
             }
+            else
+            {
+                pktS.set_issuccess(false);
+            }
+
+            // 3. 패킷 전송
             auto sendBuffer = ClientPacketHandler::MakeSendBuffer(pktS);
             session->Send(sendBuffer);
 
-            RESPONSE_END()
+#if MULTIPLE_CONNECT_TEST_MODE
+            // 4. 테스트 카운팅 
+            int currentCount = ++registerCount;
+            if (currentCount % 100 == 0)
+            {
+                cout << currentCount << "번째 회원가입 처리 중 (ID: " << pkt.id() << ")" << endl;
+            }
+#endif
+        RESPONSE_END()
 	}
 
 private:
-
+#if MULTIPLE_CONNECT_TEST_MODE
+    static atomic<int> registerCount;
+#endif
     static Lock _lock;
 };
 

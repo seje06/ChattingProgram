@@ -28,10 +28,10 @@ public:
 		return _paramFlag == FullBits<ParamCount>::value && _columnFlag == FullBits<ColumnCount>::value;
 	}
 
-	bool Execute()
+	bool Execute(bool doHandleError = true)
 	{
 		ASSERT_CRASH(Validate());
-		return _dbConnection.Execute(_query);
+		return _dbConnection.Execute(_query, doHandleError);
 	}
 
 	bool Fetch()
@@ -89,7 +89,7 @@ public:
 	template<int32_t N>
 	void BindCol(int32_t idx, WCHAR(&value)[N])
 	{
-		_dbConnection.BindCol(idx + 1, value, N-1, &_columnIndex[idx]);
+		_dbConnection.BindCol(idx + 1, value, sizeof(value), &_columnIndex[idx]);
 		_columnFlag |= (1LL << idx);
 	}
 
