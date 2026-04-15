@@ -324,16 +324,7 @@ FOREIGN KEY (room_id) REFERENCES chat.room(room_id) ON DELETE CASCADE ON UPDATE 
         pktS.set_issuccess(false);
     }
     ```
-    
-## 실행 방법 (로컬)
-1. MySQL 준비: `chat` DB 생성, ODBC 드라이버 설정(Unicode Driver)
-2. Server 실행
-   - 실행 시 `room/account/log` 테이블을 DROP/CREATE 합니다(개발 모드).
-   - 기본 포트: `127.0.0.1:7777`
-3. Client 실행(MFC)
-   - 실행 시 IOCP ClientService가 서버에 연결합니다.
-4. 동작 플로우
-   - 로그인/회원가입 → 로비에서 방 생성/입장 → 룸에서 채팅 전송/퇴장
+
 
 ## 회고
 - IOCP 코어를 ServerCore로 분리하면서, 네트워크 이벤트 루프와 컨텐츠 로직을 명확히 분리할 수 있었습니다.
